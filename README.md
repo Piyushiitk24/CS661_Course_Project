@@ -2,6 +2,7 @@
 
 ## 🚨 Important Notice
 This is a **temporary README** to guide all team members on how to work on this project without breaking anything. We are working on separate modules, and we will combine our work later. **Do NOT make changes directly on the `main` branch.** Follow the steps below carefully to work on your own module.
+
 ---
 
 ## Project Overview
@@ -158,4 +159,5 @@ If there are conflicts, ask for help (e.g., message in Whatsapp Group).
 - Each person’s branch (e.g., `Ananya_Arpita_feature`, `piyush_feature`) will be reviewed via Pull Requests.
 - Once everyone’s work is ready, we’ll merge all branches into `main`.
 - We’ll resolve any conflicts together as a team.
+
 ---

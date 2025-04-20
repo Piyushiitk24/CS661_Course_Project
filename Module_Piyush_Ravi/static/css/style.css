@@ -1,259 +1,251 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Quantico:wght@400;700&display=swap');
 
 :root {
-    /* --- Core Palette --- */
-    --bg-deep-space: #0d1018;
-    --bg-panel-1: #181e28;
-    --bg-panel-2: #222a38;
-    --border-glow: rgba(0, 255, 255, 0.7);
-    --border-subtle: rgba(64, 72, 83, 0.7);
+    /* --- Updated Palette --- */
+    --bg-body: #F5F5F5;
+    --bg-tint: rgba(147, 112, 219, 0.05);
+    --panel-bg: rgba(255, 255, 255, 0.2);
+    --panel-tint: rgba(147, 112, 219, 0.1);
+    --panel-border: #00BFFF;
+    --panel-border-glow: rgba(0, 191, 255, 0.5);
+    --panel-shadow: rgba(0, 0, 0, 0.1);
 
     /* --- Accents --- */
-    --accent-cyan: #00ffff;
-    --accent-magenta: #ff00ff;
+    --accent-blue: #00aaff;
     --accent-lime: #aaff00;
-    --accent-yellow: #ffff00;
+    --accent-magenta: #ff00ff;
     --accent-orange: #ffaa00;
-    --accent-electric-blue: #00aaff;
+    --accent-yellow: #ffff00;
+    --accent-red: #ff4444;
+    --accent-aqua: #00ffff;
 
     /* --- Text --- */
-    --text-primary: #e0e8f0;
-    --text-secondary: #90a0b8;
-    --text-headings: #ffffff; /* White base color for headings */
-    --text-highlight: var(--accent-cyan);
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-headings: #222222;
+    --text-dark: #222222;
 
     /* --- Fonts --- */
-    --font-body: 'Roboto Mono', monospace;
-    --font-headings: 'Orbitron', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --font-headings: 'Quantico', sans-serif;
 
     /* --- Transitions --- */
     --transition-fast: 0.2s ease-out;
-    --transition-medium: 0.4s ease-out;
+    --transition-medium: 0.3s ease-out;
 }
 
 body {
-    background: linear-gradient(to bottom right, var(--bg-deep-space), #141a24);
+    background: var(--bg-body);
+    background-attachment: fixed;
     color: var(--text-primary);
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     padding-top: 20px;
     min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-tint);
+    pointer-events: none;
+    z-index: -1;
 }
 
 h1, h2 {
     font-family: var(--font-headings);
-    color: var(--text-headings);
     text-align: center;
     margin-bottom: 30px;
     font-weight: 700;
     letter-spacing: 1px;
-    text-shadow: 0 0 6px var(--border-glow),
-                 0 0 15px var(--border-glow),
-                 0 0 25px rgba(0, 255, 255, 0.4);
+    text-shadow: none;
 }
 h1 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     margin-bottom: 40px;
-    color: var(--accent-lime); /* Use Lime for H1 */
-    text-shadow: 0 0 6px var(--accent-lime),
-                 0 0 12px var(--accent-yellow); /* Add neon yellow glow */
+    text-transform: uppercase;
+    color: var(--text-headings);
 }
 h2 {
-    font-size: 1.6rem;
-    color: var(--text-headings); /* Keep white base */
-    font-family: var(--font-headings);
-    text-align: center;
-    margin-bottom: 30px;
+    font-size: 1.4rem;
     font-weight: 700;
-    letter-spacing: 1px;
-    /* --- STRONGER/DIFFERENT GLOW --- */
-    text-shadow: 0 0 5px #fff, /* Inner white sharp glow */
-                 0 0 10px var(--accent-cyan), /* Cyan mid glow */
-                 0 0 18px var(--accent-cyan), /* Wider cyan glow */
-                 0 0 30px var(--accent-electric-blue); /* Faint outer electric blue */
+    color: var(--text-headings);
+    text-align: left;
+    margin-bottom: 20px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--accent-aqua);
 }
 
 .container-fluid { max-width: 1700px; }
 
 .chart-container {
-    background-color: rgba(24, 30, 40, 0.8);
-    border: 1px solid var(--border-subtle);
-    border-radius: 6px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 3px solid var(--panel-border);
+    border-radius: 8px;
     padding: 25px;
     margin-bottom: 30px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 5px 15px var(--panel-shadow), 0 0 10px var(--panel-border-glow);
     position: relative;
-    overflow: hidden;
-    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+    overflow: visible;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.chart-container::before {
-    content: ''; 
-    position: absolute; 
-    top: -2px; 
-    left: -2px; 
-    right: -2px; 
-    bottom: -2px;
-    border: 2px solid transparent; 
-    border-radius: 8px;
-    background: linear-gradient(to bottom right, var(--accent-cyan), var(--accent-magenta)) border-box;
-    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude; 
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out; 
-    mask-composite: destination-out;
-    opacity: 0; 
-    transition: opacity var(--transition-medium);
-    pointer-events: none; 
-    z-index: -1;
-}
-.chart-container:hover::before { opacity: 0.7; }
 .chart-container:hover {
-    transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--panel-shadow), 0 0 20px var(--panel-border-glow);
 }
 
 .filter-section {
-    background-color: transparent; 
+    background-color: transparent;
     border: none;
-    border-bottom: 1px dashed var(--border-subtle);
-    border-radius: 0; 
-    padding: 15px 0; 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    padding: 15px 0;
     margin-bottom: 25px;
 }
 
 label {
-    margin-right: 10px;
-    font-size: 0.9em;
-    color: var(--accent-yellow); /* Changed from text-secondary */
-    font-weight: 400;
+    margin-right: 8px;
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    font-weight: 600;
     transition: color var(--transition-fast);
-    text-shadow: 0 0 3px rgba(255, 255, 0, 0.4); /* Subtle yellow glow */
+    text-shadow: none;
 }
 
 /* --- Control Styling --- */
 select.form-select,
 input[type=range].form-range,
 button.btn {
-    background-color: var(--bg-panel-1); 
+    background-color: rgba(255, 255, 255, 0.3);
     color: var(--text-primary);
-    border: 1px solid var(--border-subtle); 
+    border: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 0.9em;
-    border-radius: 4px; 
+    border-radius: 4px;
     transition: all var(--transition-medium);
-    padding: 0.3rem 0.6rem; 
+    padding: 0.3rem 0.6rem;
     font-family: var(--font-body);
 }
 
 /* --- SELECT (Dropdown) Styling --- */
 select.form-select {
-    appearance: none; 
-    -webkit-appearance: none; 
+    appearance: none;
+    -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2300ffff'%3E%3Cpath fill-rule='evenodd' d='M7.21 10.79a.75.75 0 0 1 .05-1.06L9.43 8 7.26 6.27a.75.75 0 1 1 1.01-1.1l2.75 2.5c.33.3.33.8 0 1.1l-2.75 2.5a.75.75 0 0 1-1.06-.03Z' clip-rule='evenodd' transform='rotate(90 8 8)'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333333'%3E%3Cpath fill-rule='evenodd' d='M7.21 10.79a.75.75 0 0 1 .05-1.06L9.43 8 7.26 6.27a.75.75 0 1 1 1.01-1.1l2.75 2.5c.33.3.33.8 0 1.1l-2.75 2.5a.75.75 0 0 1-1.06-.03Z' clip-rule='evenodd' transform='rotate(90 8 8)'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
     background-position: right 0.5rem center;
-    background-size: 16px 16px; 
+    background-size: 16px 16px;
     padding-right: 2rem;
 }
-select.form-select:hover { 
-    border-color: var(--accent-cyan); 
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); 
+select.form-select:hover {
+    border-color: var(--accent-lime);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 select.form-select:focus {
-    background-color: var(--bg-panel-2);
-    border-color: var(--accent-magenta); /* Changed from cyan */
-    box-shadow: 0 0 8px var(--accent-magenta); /* Changed glow */
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: var(--accent-lime);
+    box-shadow: 0 0 6px var(--accent-lime);
     outline: none;
-    transform: scale(1.02);
+    transform: none;
 }
 
 /* --- RANGE SLIDER Styling --- */
 input[type=range].form-range {
-    appearance: none; 
-    -webkit-appearance: none; 
-    width: 100%; 
-    height: 8px;
-    background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
-    border-radius: 4px; 
-    outline: none; 
-    padding: 0; 
-    border: none; 
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(to right, var(--accent-blue), var(--accent-magenta), var(--accent-orange));
+    border-radius: 3px;
+    outline: none;
+    padding: 0;
+    border: none;
     cursor: pointer;
 }
 input[type=range].form-range::-webkit-slider-thumb {
-    appearance: none; 
-    -webkit-appearance: none; 
-    width: 18px; 
-    height: 18px;
-    background: var(--bg-panel-1); 
-    border: 2px solid var(--accent-cyan);
-    border-radius: 50%; 
-    cursor: pointer; 
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--text-primary);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
     margin-top: -5px;
-    transition: background-color var(--transition-fast), border-color var(--transition-fast);
-    box-shadow: 0 0 5px var(--border-glow);
+    transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 input[type=range].form-range::-moz-range-thumb {
-    width: 18px; 
-    height: 18px; 
-    background: var(--bg-panel-1);
-    border: 2px solid var(--accent-cyan); 
+    width: 16px;
+    height: 16px;
+    background: var(--text-primary);
+    border: none;
     border-radius: 50%;
-    cursor: pointer; 
-    box-shadow: 0 0 5px var(--border-glow);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 input[type=range].form-range:active::-webkit-slider-thumb,
 input[type=range].form-range:focus::-webkit-slider-thumb {
-    background: var(--accent-lime); /* Changed from cyan */
-    border-color: var(--accent-yellow); /* Changed from lime */
+    background: var(--accent-yellow);
+    box-shadow: 0 0 8px var(--accent-yellow);
 }
 input[type=range].form-range:active::-moz-range-thumb,
 input[type=range].form-range:focus::-moz-range-thumb {
-    background: var(--accent-lime);
-    border-color: var(--accent-yellow);
+    background: var(--accent-yellow);
+    box-shadow: 0 0 8px var(--accent-yellow);
 }
-input[type=range].form-range::-webkit-slider-runnable-track { 
-    background: transparent; 
+input[type=range].form-range::-webkit-slider-runnable-track {
+    background: transparent;
 }
-input[type=range].form-range:focus { 
-    transform: scale(1.02); 
+input[type=range].form-range:focus {
+    transform: none;
 }
 
 /* --- BUTTON Styling --- */
 button.btn-secondary {
-    background-color: transparent; 
-    border: 1px solid var(--border-glow);
-    color: var(--accent-cyan); 
-    padding: 0.3rem 0.8rem; 
-    font-weight: 400;
-    text-transform: uppercase; 
-    letter-spacing: 0.5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
+    padding: 0.3rem 0.8rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    transition: all var(--transition-fast);
 }
 button.btn-secondary:hover {
-    background-color: var(--accent-lime); /* Changed from border-glow (cyan) */
+    background-color: var(--accent-lime);
     border-color: var(--accent-lime);
-    color: var(--bg-deep-space);
-    transform: scale(1.05) translateY(-1px);
-    box-shadow: 0 0 12px var(--accent-lime);
+    color: var(--text-dark);
+    transform: scale(1.03) translateY(-1px);
+    box-shadow: 0 3px 8px rgba(170, 255, 0, 0.4);
 }
 
-/* --- Tooltip Styling --- */
+/* --- Tooltip Styling (Enhanced) --- */
 .tooltip {
-    position: absolute; 
-    padding: 10px 15px; 
-    font: 12px var(--font-body);
-    background: rgba(13, 16, 24, 0.95); 
-    border: 1px solid var(--accent-cyan);
-    border-radius: 4px; 
-    pointer-events: none; 
+    position: fixed;
+    padding: 8px 12px;
+    font: 11px var(--font-body);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    pointer-events: none;
     opacity: 0;
-    color: var(--text-primary); 
-    box-shadow: 0 0 10px var(--border-glow);
-    transition: opacity 0.2s ease-in-out; 
+    color: var(--text-primary);
+    box-shadow: 0 3px 8px var(--panel-shadow);
+    transition: opacity 0.2s ease-in-out;
     max-width: 280px;
-    line-height: 1.5; 
-    z-index: 10;
+    line-height: 1.4;
+    z-index: 1000;
+    /* Ensure visibility */
+    display: block;
 }
 .tooltip b {
     font-weight: 700;
@@ -263,189 +255,187 @@ button.btn-secondary:hover {
 }
 
 /* --- Word Cloud Specific --- */
-#word-cloud-chart svg { 
-    background-color: transparent; 
-    display: block; 
-    margin: auto; 
+#word-cloud-chart svg {
+    background-color: transparent;
+    display: block;
+    margin: auto;
 }
 #word-cloud-chart {
-    min-height: 720px; /* Adjust as needed to match the increased SVG height */
+    min-height: 520px;
 }
-.node text { 
-    font-weight: 400; 
-    cursor: pointer; 
-    transition: opacity var(--transition-fast), transform var(--transition-fast), fill var(--transition-fast), filter var(--transition-fast); 
-    fill: var(--text-secondary); 
+.node text {
+    font-weight: 400;
+    cursor: pointer;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), fill var(--transition-fast);
+    fill: var(--text-secondary);
 }
-.node:hover text { 
-    opacity: 1; 
-    transform: scale(1.15); 
-    fill: var(--text-primary); 
-    filter: brightness(1.2); 
+.node:hover text {
+    opacity: 1;
+    transform: scale(1.1);
+    fill: var(--text-primary);
+    filter: none;
 }
-.selected-word text { 
-    text-shadow: 0 0 8px var(--accent-yellow), 0 0 10px var(--accent-yellow); 
-    fill: var(--accent-yellow); 
-    font-weight: 700; 
-    opacity: 1; 
+.selected-word text {
+    text-shadow: none;
+    fill: var(--accent-yellow);
+    font-weight: 700;
+    opacity: 1;
 }
 
 /* --- Heatmap Specific --- */
-.heatmap-cell { 
-    stroke: rgba(13, 16, 24, 0.5); 
-    stroke-width: 1px; 
-    transition: filter var(--transition-medium), stroke var(--transition-medium), transform var(--transition-medium), opacity var(--transition-medium); 
-    cursor: pointer; 
-    rx: 2; 
+.heatmap-cell {
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-width: 1px;
+    rx: 0;
+    cursor: pointer;
+    transition: filter var(--transition-fast), stroke var(--transition-fast), transform var(--transition-fast);
 }
-.heatmap-cell:hover { 
-    stroke: var(--accent-yellow); 
-    stroke-width: 2px; 
-    filter: brightness(1.5); 
-    transform: scale(1.08); 
-    transform-origin: center center; 
-    z-index: 5; 
-    position: relative; 
+.heatmap-cell:hover {
+    stroke: var(--accent-yellow);
+    stroke-width: 1.5px;
+    filter: brightness(1.25);
+    transform: scale(1.04);
+    transform-origin: center center;
+    z-index: 5;
+    position: relative;
 }
 
 /* --- Domain Chart Specific --- */
-.bar { 
-    transition: fill var(--transition-medium), filter var(--transition-medium), transform var(--transition-medium), box-shadow var(--transition-medium); 
-    cursor: pointer; 
-    rx: 1; 
+.bar {
+    rx: 0;
+    cursor: pointer;
+    transition: fill var(--transition-medium), filter var(--transition-fast), transform var(--transition-fast);
 }
-.bar:hover { 
-    fill: var(--accent-magenta); 
-    filter: brightness(1.4); 
-    transform: scale(1.03, 1.06); 
-    transform-origin: bottom; 
-    box-shadow: 0 -2px 8px rgba(255, 0, 255, 0.5); 
+.bar:hover {
+    fill: var(--accent-orange);
+    filter: brightness(1.2);
+    transform: scale(1.01, 1.03);
+    transform-origin: bottom;
+    box-shadow: none;
 }
 
 /* --- Axis Styling --- */
-.axis-label { 
-    fill: var(--text-secondary); 
-    font-family: var(--font-body); 
-    font-size: 0.8rem; 
-    text-transform: uppercase; 
-    letter-spacing: 0.5px; 
+.axis-label {
+    fill: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
 }
-.axis .tick text { 
-    fill: var(--text-secondary); 
-    font-family: var(--font-body); 
-    font-size: 11px; 
+.axis .tick text {
+    fill: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 10px;
 }
-.axis .domain { 
-    stroke: var(--border-subtle); 
-    stroke-width: 1px; 
-    stroke-opacity: 0.5; 
+.axis .domain {
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-width: 1px;
+    stroke-opacity: 0.8;
 }
-.axis .tick line { 
-    stroke: var(--border-subtle); 
-    stroke-dasharray: 2,2; 
-    stroke-opacity: 0.5; 
+.axis .tick line {
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-dasharray: none;
+    stroke-opacity: 0.3;
 }
-#domain-chart .x-axis .tick text { 
-    transform: translate(-10,5)rotate(-45); 
-    font-size: 10px; 
+#domain-chart .x-axis .tick text {
+    transform: translate(-8px, 4px) rotate(-45);
+    font-size: 9px;
 }
 
 /* --- Bubble Chart Specific --- */
-#bubble-chart-chart svg { 
-    background-color: transparent; 
-    display: block; 
-    margin: auto; 
-    cursor: default; 
+#bubble-chart-chart svg {
+    background-color: transparent;
+    display: block;
+    margin: auto;
+    cursor: default;
 }
-.bubble { 
-    stroke: var(--border-subtle); 
-    stroke-width: 0.5px; 
-    transition: transform var(--transition-medium), filter var(--transition-fast), stroke var(--transition-fast); 
+.bubble {
+    stroke: none;
+    transition: transform var(--transition-fast), filter var(--transition-fast);
 }
-.bubble:hover { 
-    stroke: var(--accent-yellow); 
-    stroke-width: 1.5px; 
-    filter: brightness(1.2); 
-    transform: scale(1.03); 
+.bubble:hover {
+    filter: brightness(1.15);
+    transform: scale(1.02);
+    stroke: var(--accent-yellow);
+    stroke-width: 1px;
 }
-.bubble-text { 
-    fill: var(--text-primary); /* Keep light fill */
+.bubble-text {
+    fill: var(--text-primary);
     font-size: 10px;
     font-weight: 400;
     text-anchor: middle;
     dominant-baseline: central;
     pointer-events: none;
-    opacity: 0.8;
-    /* --- ADD STROKE FOR CONTRAST --- */
-    stroke: var(--bg-deep-space); /* Use dark background color for stroke */
-    stroke-width: 0.5px;        /* Adjust thickness as needed */
-    paint-order: stroke;        /* Draw stroke UNDER the fill */
-    stroke-linejoin: round;     /* Optional: round corners */
-    stroke-linecap: round;      /* Optional: round ends */
+    opacity: 0.9;
+    stroke: rgba(0, 0, 0, 0.2);
+    stroke-width: 0.5px;
+    paint-order: stroke;
 }
-.bubble-text.large { font-size: 12px; }
+.bubble-text.large {
+    font-size: 12px;
+}
 
 /* --- Filter Info & Details Panel --- */
-.badge { 
-    font-size: 0.9em; 
-    vertical-align: middle; 
-    padding: 0.3em 0.6em; 
-    border-radius: 3px; 
+.badge {
+    font-size: 0.8em;
+    vertical-align: middle;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
 }
 .badge.bg-warning {
     background-color: var(--accent-yellow) !important;
-    color: var(--bg-deep-space) !important;
-    font-weight: 700;
-    text-shadow: none; /* Remove any inherited shadow */
+    color: var(--text-dark) !important;
+    font-weight: 600;
 }
-#selected-word-info { 
-    min-height: 250px; /* Increased from 150px */
-    padding: 15px; 
-    background-color: rgba(13, 16, 24, 0.5); 
-    border-radius: 4px; 
-    border: 1px solid var(--border-subtle); 
-    color: var(--text-secondary); 
-    font-size: 0.9em; 
-    line-height: 1.6; 
+#selected-word-info {
+    min-height: 150px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    line-height: 1.6;
 }
 #selected-word-info strong {
-    color: var(--accent-cyan);
+    color: var(--text-primary);
     margin-right: 8px;
-    font-weight: 400;
+    font-weight: 600;
     display: inline-block;
-    min-width: 120px;
+    min-width: 110px;
 }
-#heatmap-filter-info, #domain-filter-info { 
-    min-height: 25px; 
-    padding-top: 10px; 
-    color: var(--text-secondary); 
-    font-size: 0.85em; 
-    font-style: italic; 
+#heatmap-filter-info, #domain-filter-info {
+    min-height: 25px;
+    padding-top: 10px;
+    color: var(--text-secondary);
+    font-size: 0.8em;
+    font-style: normal;
 }
 
 /* --- Loading indicators --- */
-.loading-placeholder { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    min-height: 250px; 
-    color: var(--text-secondary); 
-    font-family: var(--font-headings); 
-    font-size: 1.2rem; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    animation: pulse 1.5s infinite ease-in-out; 
+.loading-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    color: var(--text-secondary);
+    font-family: var(--font-headings);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: pulse 1.8s infinite ease-in-out;
 }
-@keyframes pulse { 
-    0%, 100% { opacity: 0.6; } 
-    50% { opacity: 1; } 
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
 /* --- Slider Value Display --- */
 #word-min-freq-value, #domain-min-articles-value {
     margin-left: 10px;
-    color: var(--accent-cyan);
-    font-weight: 700;
+    color: var(--text-primary);
+    font-weight: 600;
     display: inline-block;
     min-width: 20px;
     text-align: right;
@@ -453,7 +443,7 @@ button.btn-secondary:hover {
 
 /* --- Error Message Styling --- */
 .error-message {
-    color: var(--accent-magenta);
+    color: var(--accent-red);
     text-align: center;
     padding: 40px 20px;
     font-family: var(--font-headings);
