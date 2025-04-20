@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Selena Gomez Noun Bubble Chart</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f4f4f9; /* Light neutral background */
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #444;
+      margin-top: 20px;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for the heading */
+      font-weight: bold;
+    }
+
+    .bubble {
+      cursor: pointer;
+      stroke: #fff;
+      stroke-width: 1px;
+    }
+
+    .tooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+      color: white;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+      pointer-events: none;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    }
+
+    #histogramContainer, #urlContainer {
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for containers */
+      background: #fff;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    #bubbleChart {
+      display: block;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for the bubble chart */
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h2>Explore Selena Gomez's World</h2>
+  <svg id="bubbleChart" width="100%" height="100%"></svg>
+  
+  <div class="tooltip" style="opacity:0;"></div>
+  
+  <div id="histogramContainer">
+    <h3>Histogram</h3>
+    <svg id="histogram" width="800" height="400"></svg>
+  </div>
+  
+  <div id="urlContainer" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; background: #f9f9f9;">
+    <!-- URLs will be dynamically added here -->
+  </div>
+  
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
