@@ -162,13 +162,11 @@ function updateWordCloud(data) {
     const extentFreq = d3.extent(data, d => d.total_freq);
     const extentRatio = d3.extent(data, d => d.log2_ratio);
 
-    // --- RESTORED Word Cloud Color Scale (Ratio Based) ---
     const colorScale = d3.scaleSequential(d3.interpolateRdBu)
         .domain([
             extentRatio[0] === extentRatio[1] ? (extentRatio[0] || 0) - 0.1 : (extentRatio[0] || 0),
             extentRatio[0] === extentRatio[1] ? (extentRatio[1] || 0) + 0.1 : (extentRatio[1] || 0)
         ]);
-    // --- END RESTORED Color Scale ---
 
     const sizeScale = d3.scaleSqrt()
         .domain([Math.max(1, extentFreq[0] || 1), Math.max(1, extentFreq[1] || 1)])
@@ -216,13 +214,13 @@ function updateWordCloud(data) {
         .style("cursor", "pointer")
         .text(d => d.text)
         .on("mouseover", (event, d) => {
-            if (wordCloudTooltip) {
+            if (wordCloudTooltip && wordCloudTooltip.node()) {
                 wordCloudTooltip.style("opacity", 1)
                     .html(`<b>${d.text}</b><br>Total: ${d.total_freq}<br>Fake: ${d.fake_freq}<br>Real: ${d.real_freq}<br>Ratio: ${d.log2_ratio.toFixed(2)}`)
-                    .style("left", (event.pageX + 10) + "px")
-                    .style("top", (event.pageY - 28) + "px");
+                    .style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 15) + "px");
             } else {
-                console.error("wordCloudTooltip is not defined!");
+                console.error("wordCloudTooltip is not defined or not a node!");
             }
         })
         .on("mouseout", () => {
@@ -275,46 +273,31 @@ function updateWordCloud(data) {
 }
 
 /** Heatmap Update Function */
-function updateHeatmap(data) {
-    const container = document.getElementById('heatmap-chart');
-    container.innerHTML = '';
-    if (!data || !data.length) {
-        container.innerHTML = '<p class="loading-placeholder">No heatmap data available.</p>';
-        return;
-    }
-    data = data.map(d => ({
-        ...d,
-        year: +d.year,
-        month: +d.month,
-        fake: +d.fake || 0,
-        real: +d.real || 0
-    }));
-
+function updateHeatmap(data, tooltip) {
+    const container = document.getElementById('heatmap-chart'); container.innerHTML = '';
+    if (!data || !data.length) { container.innerHTML = '<p class="loading-placeholder">No heatmap data available.</p>'; return; }
+    data = data.map(d => ({ ...d, year: +d.year, month: +d.month, fake: +d.fake || 0, real: +d.real || 0 }));
     const width = container.clientWidth > 0 ? container.clientWidth : 600;
-    const legendHeight = 40;
-    const height = 400 + legendHeight;
+    const legendHeight = 40; const height = 400 + legendHeight;
     const margin = { top: 30, right: 30, bottom: 50 + legendHeight, left: 60 };
-    const chartWidth = width - margin.left - margin.right;
-    const chartHeight = height - margin.top - margin.bottom;
-
-    const svg = d3.select(container).append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    const years = [...new Set(data.map(d => d.year))].sort(d3.ascending);
-    const months = d3.range(1, 13);
-    const maxCount = d3.max(data, d => d.fake + d.real) || 1;
+    const chartWidth = width - margin.left - margin.right; const chartHeight = height - margin.top - margin.bottom;
+    const svg = d3.select(container).append("svg").attr("width", width).attr("height", height).append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const years = [...new Set(data.map(d => d.year))].sort(d3.ascending); const months = d3.range(1, 13);
+    const counts = data.map(d => d.fake + d.real); // Get all counts
+    const maxCount = d3.max(counts) || 1;
+    const minCount = 0; // Assume minimum is 0
 
     const x = d3.scaleBand().domain(years).range([0, chartWidth]).padding(0.05);
     const y = d3.scaleBand().domain(months).range([chartHeight, 0]).padding(0.05);
 
-    // --- RESTORED Heatmap Color Scale ---
-    const color = d3.scaleSequential(d3.interpolateCool)
-        .domain([0, maxCount])
-        .nice();
-    // --- END RESTORED Color Scale ---
+    const numberOfSteps = 7; // Number of distinct color steps (adjust as needed)
+    const colorInterpolator = d3.interpolateViridis; // Keep Viridis or change (e.g., interpolatePlasma)
+
+    const colorRange = d3.range(numberOfSteps).map(i => colorInterpolator(i / (numberOfSteps - 1)));
+
+    const color = d3.scaleQuantize()
+        .domain([minCount, maxCount]) // Input domain (min to max count)
+        .range(colorRange);          // Output range (discrete colors)
 
     const cells = svg.selectAll(".heatmap-cell")
         .data(data, d => `${d.year}-${d.month}`)
@@ -325,9 +308,8 @@ function updateHeatmap(data) {
                 .attr("y", d => y(d.month))
                 .attr("width", x.bandwidth())
                 .attr("height", y.bandwidth())
-                .attr("fill", d => color(d.fake + d.real))
                 .style("opacity", 0)
-                .call(enter => enter.transition().duration(750).ease(d3.easeCubicOut).style("opacity", 1)),
+                .call(enter => enter.transition().duration(750).ease(d3.easeCubicOut).style("opacity", 1).attr("fill", d => color(d.fake + d.real))),
             update => update.call(update => update.transition().duration(750).ease(d3.easeCubicOut)
                 .attr("x", d => x(d.year))
                 .attr("y", d => y(d.month))
@@ -338,60 +320,88 @@ function updateHeatmap(data) {
         )
         .on("mouseover", (event, d) => {
             console.log("Heatmap mouseover fired for:", d);
-            if (heatmapTooltip) {
-                const ttNode = heatmapTooltip.node();
-                if (!ttNode) {
-                    console.error("Heatmap tooltip node not found!");
-                    return;
-                }
-                heatmapTooltip.style("opacity", 1)
+            if (tooltip && tooltip.node()) {
+                tooltip.style("opacity", 1)
                     .html(`<b>Year: ${d.year} / Month: ${new Date(2000, d.month - 1).toLocaleString('default', { month: 'long' })}</b><br>Fake: ${d.fake}<br>Real: ${d.real}<br>Total: ${d.fake + d.real}`)
-                    .style("left", (event.pageX + 10) + "px")
-                    .style("top", (event.pageY - 28) + "px");
-                d3.select(event.currentTarget)
-                    .raise()
-                    .style("stroke", "var(--accent-yellow)")
-                    .style("stroke-width", 1.5);
-            } else {
-                console.error("heatmapTooltip is not defined!");
-            }
+                    .style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 15) + "px");
+                d3.select(event.currentTarget).raise().style("stroke", "var(--accent-yellow)").style("stroke-width", 1.5);
+            } else { console.error("Invalid tooltip passed to updateHeatmap!"); }
         })
         .on("mouseout", (event) => {
-            if (heatmapTooltip) heatmapTooltip.style("opacity", 0);
+            if (tooltip) tooltip.style("opacity", 0);
             d3.select(event.currentTarget).style("stroke", null).style("stroke-width", null);
         });
 
-    svg.append("g")
-        .attr("class", "x-axis axis")
+    svg.selectAll(".x-axis").remove(); svg.selectAll(".y-axis").remove();
+    svg.append("g").attr("class", "x-axis axis")
         .attr("transform", `translate(0, ${chartHeight})`)
         .call(d3.axisBottom(x).tickFormat(d3.format("d")).tickSizeOuter(0))
         .selectAll("text")
         .style("text-anchor", "middle");
-
-    svg.append("g")
-        .attr("class", "y-axis axis")
+    svg.append("g").attr("class", "y-axis axis")
         .call(d3.axisLeft(y)
             .tickFormat(d => new Date(2000, d - 1).toLocaleString('default', { month: 'short' }))
             .tickSizeOuter(0));
-
-    svg.append("text")
-        .attr("class", "axis-label")
+    svg.append("text").attr("class", "axis-label")
         .attr("text-anchor", "middle")
         .attr("x", chartWidth / 2)
-        .attr("y", chartHeight + margin.bottom - 10)
+        .attr("y", chartHeight + margin.bottom - legendHeight - 10)
         .text("Year");
-
-    svg.append("text")
-        .attr("class", "axis-label")
+    svg.append("text").attr("class", "axis-label")
         .attr("text-anchor", "middle")
         .attr("transform", "rotate(-90)")
         .attr("x", -chartHeight / 2)
         .attr("y", -margin.left + 15)
         .text("Month");
+
+    const legendWidth = Math.min(chartWidth * 0.8, 300);
+    const legendBarHeight = 8;
+    const legendX = (chartWidth - legendWidth) / 2;
+    const legendY = chartHeight + margin.bottom - legendHeight + 5;
+
+    const legendGroup = svg.append("g")
+        .attr("class", "heatmap-legend")
+        .attr("transform", `translate(${legendX}, ${legendY})`);
+
+    const swatchWidth = legendWidth / numberOfSteps;
+
+    legendGroup.selectAll("rect")
+        .data(colorRange)
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => i * swatchWidth)
+        .attr("y", 0)
+        .attr("width", swatchWidth)
+        .attr("height", legendBarHeight)
+        .attr("fill", d => d);
+
+    const legendScale = d3.scaleLinear()
+        .domain(color.domain())
+        .range([0, legendWidth]);
+
+    const thresholds = [color.domain()[0], ...color.thresholds(), color.domain()[1]];
+
+    const legendAxis = d3.axisBottom(legendScale)
+        .tickValues(thresholds)
+        .tickFormat(d3.format(".0f"))
+        .tickSize(legendBarHeight + 4);
+
+    legendGroup.append("g")
+        .attr("transform", `translate(0, 0)`)
+        .call(legendAxis)
+        .select(".domain").remove();
+
+    legendGroup.append("text")
+        .attr("class", "legend-title")
+        .attr("text-anchor", "middle")
+        .attr("x", legendWidth / 2)
+        .attr("y", -6)
+        .text("Article Count per Month");
 }
 
 /** Domain Chart Update Function */
-function updateDomainChart(data) {
+function updateDomainChart(data, tooltip) {
     const container = document.getElementById('domain-chart');
     container.innerHTML = '';
     if (!data || !data.length) {
@@ -414,15 +424,13 @@ function updateDomainChart(data) {
     const y = d3.scaleLinear().domain([0, d3.max(data, d => d.count) || 1]).range([chartHeight, 0]).nice();
     const domainTypes = [...new Set(data.map(d => d.domain_type || 'other'))];
 
-    // --- ADJUSTED DOMAIN COLOR SCALE ---
-    const colorScale = d3.scaleOrdinal(d3.schemeSet2) // Set2 provides distinct, lighter colors
+    const colorScale = d3.scaleOrdinal(d3.schemeSet2)
                           .domain(domainTypes);
-    // --- END ADJUSTED COLOR SCALE ---
 
     const bars = svg.selectAll(".bar")
         .data(data, d => d.domain)
         .join(
-            enter => enter.append("rect")
+             enter => enter.append("rect")
                 .attr("class", "bar")
                 .attr("x", d => x(d.domain))
                 .attr("y", chartHeight)
@@ -447,23 +455,18 @@ function updateDomainChart(data) {
         )
         .on("mouseover", (event, d) => {
             console.log("Domain mouseover fired for:", d);
-            if (domainTooltip) {
-                const ttNode = domainTooltip.node();
-                if (!ttNode) {
-                    console.error("Domain tooltip node not found!");
-                    return;
-                }
-                domainTooltip.style("opacity", 1)
+            if (tooltip && tooltip.node()) {
+                tooltip.style("opacity", 1)
                     .html(`<b>Domain: ${d.domain}</b><br>Count: ${d.count}<br>Type: ${d.domain_type || 'N/A'}<br>URL: ${d.url || 'N/A'}`)
-                    .style("left", (event.pageX + 10) + "px")
-                    .style("top", (event.pageY - 28) + "px");
+                    .style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 15) + "px");
                 d3.select(event.currentTarget).raise().style("filter", "brightness(1.3)");
             } else {
-                console.error("domainTooltip is not defined!");
+                console.error("Invalid tooltip passed to updateDomainChart!");
             }
         })
         .on("mouseout", (event) => {
-            if (domainTooltip) domainTooltip.style("opacity", 0);
+            if (tooltip) tooltip.style("opacity", 0);
             d3.select(event.currentTarget).style("filter", null);
         })
         .on("click", (event, d) => {
@@ -502,7 +505,7 @@ function updateDomainChart(data) {
 }
 
 /** Bubble Chart Update Function */
-function updateBubbleChart(data) {
+function updateBubbleChart(data, tooltip) {
     const container = document.getElementById('bubble-chart-chart');
     container.innerHTML = '';
     if (!data || !data.length) {
@@ -512,8 +515,7 @@ function updateBubbleChart(data) {
     const width = container.clientWidth > 0 ? container.clientWidth : 800;
     const height = 500;
     const margin = 10;
-    
-    // --- Data Prep & Pack Layout ---
+
     const root = d3.hierarchy({ children: data })
         .sum(d => Math.max(1, +d.total_freq || 1))
         .sort((a, b) => b.value - a.value);
@@ -521,84 +523,67 @@ function updateBubbleChart(data) {
         .size([width - margin * 2, height - margin * 2])
         .padding(3);
     const packedRoot = packLayout(root);
-    
-    // --- Store Original Positions/Radii ---
+
     packedRoot.descendants().forEach(d => {
         d.originalX = d.x;
         d.originalY = d.y;
         d.originalR = d.r;
     });
-    
-    // --- SVG Setup ---
+
     const svg = d3.select(container).append("svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", `0 0 ${width} ${height}`)
         .style("max-width", "100%")
         .attr("preserveAspectRatio", "xMidYMid meet");
-    
-    // --- ADJUSTED BUBBLE COLOR SCALE ---
+
     const wordTexts = data.map(d => d.text);
-    const colorScale = d3.scaleOrdinal(d3.schemeSet3) // Set3 offers more pastel/lighter options
+    const colorScale = d3.scaleOrdinal(d3.schemeSet3)
                           .domain(wordTexts);
-    // --- END ADJUSTED BUBBLE COLOR SCALE ---
-    
-    // --- Fisheye Instance ---
-    const fisheyeRadius = Math.min(width, height) / 3; // Adjust radius as needed
-    const fisheyeDistortion = 3; // Adjust distortion factor
+
+    const fisheyeRadius = Math.min(width, height) / 3;
+    const fisheyeDistortion = 3;
     const fisheye = createFisheye(fisheyeRadius, fisheyeDistortion);
-    
-    // --- Draw Bubbles (Nodes) ---
+
     const nodeGroups = svg.selectAll("g.node-bubble")
         .data(packedRoot.descendants().slice(1))
         .join("g")
             .attr("class", "node-bubble")
-            // Use original positions initially
             .attr("transform", d => `translate(${d.originalX + margin},${d.originalY + margin})`)
             .style("opacity", 0)
             .call(enter => enter.transition().duration(1000)
                 .ease(d3.easeCubicOut)
                 .delay((d, i) => i * 5)
                 .style("opacity", 1));
-    
-    // Append circles
+
     const circles = nodeGroups.append("circle")
         .attr("class", "bubble")
         .attr("r", d => d.originalR)
         .attr("fill", d => colorScale(d.data.text))
-        .attr("fill-opacity", 0.85) // Slightly less transparent
+        .attr("fill-opacity", 0.85)
         .on("mouseover", (event, d) => {
-            // Tooltip Logic (Keep this)
-            if (bubbleChartTooltip) {
-                bubbleChartTooltip.style("opacity", 1)
+            if (tooltip && tooltip.node()) {
+                tooltip.style("opacity", 1)
                     .html(`<b>${d.data.text}</b><br>Freq: ${d.data.total_freq}<br>Ratio: ${d.data.log2_ratio.toFixed(2)}`)
-                    .style("left", (event.pageX + 10) + "px")
-                    .style("top", (event.pageY - 28) + "px");
+                    .style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 15) + "px");
             } else {
-                console.error("bubbleChartTooltip is not defined!");
+                console.error("Invalid tooltip passed to updateBubbleChart!");
             }
-            
-            // Details Panel Update Logic
             if (selectedWordInfoDiv) {
-                // --- Added debug log ---
-                console.log("Attempting to update details panel for bubble:", d.data.text);
-                // --- End debug log ---
-                selectedWordInfoDiv.innerHTML = `
+                 console.log("Attempting to update details panel for bubble:", d.data.text);
+                 selectedWordInfoDiv.innerHTML = `
                     <strong>Word (Hover):</strong> ${d.data.text}<br>
                     <strong>Total Frequency:</strong> ${d.data.total_freq}<br>
                     <strong>Fake Frequency:</strong> ${d.data.fake_freq}<br>
                     <strong>Real Frequency:</strong> ${d.data.real_freq}<br>
                     <strong>Log2 Ratio:</strong> ${d.data.log2_ratio.toFixed(2)}
                 `;
-            } else {
-                console.warn("selectedWordInfoDiv not found, cannot update details.");
-            }
-            
-            // Apply hover style directly to the circle
+            } else { console.warn("selectedWordInfoDiv not found, cannot update details."); }
             d3.select(event.currentTarget).raise().style("filter", "brightness(1.3)");
         })
         .on("mouseout", (event) => {
-            if (bubbleChartTooltip) bubbleChartTooltip.style("opacity", 0);
+            if (tooltip) tooltip.style("opacity", 0);
             if (selectedWordInfoDiv && !currentFilters.selectedWord) {
                 selectedWordInfoDiv.innerHTML = 'Selected Word: None';
             } else if (selectedWordInfoDiv && currentFilters.selectedWord) {
@@ -617,8 +602,7 @@ function updateBubbleChart(data) {
             }
             d3.select(event.currentTarget).style("filter", null);
         });
-    
-    // Append text labels
+
     const texts = nodeGroups.append("text")
         .attr("class", "bubble-text")
         .filter(d => d.originalR > 5)
@@ -630,13 +614,11 @@ function updateBubbleChart(data) {
         .attr("x", 0)
         .attr("y", (d, i, lines) => `${i - lines.length / 2 + 0.8}em`)
         .text(d => d);
-    
-    // --- Fisheye Interaction Listeners ---
+
     svg.on("mousemove", function(event) {
         const [mouseX, mouseY] = d3.pointer(event);
         const fisheyeFocus = fisheye.focus([mouseX - margin, mouseY - margin]);
 
-        // Update node groups (position)
         nodeGroups.each(function(d) {
             const distorted = fisheyeFocus(d.originalX, d.originalY);
             d.distortedX = distorted.x;
@@ -645,16 +627,12 @@ function updateBubbleChart(data) {
         })
         .attr("transform", d => `translate(${d.distortedX + margin},${d.distortedY + margin})`);
 
-        // Update circles (radius)
         circles.attr("r", d => d.originalR * d.scale);
 
-        // --- UPDATE TEXT SIZE AND CLIP PATH DYNAMICALLY ---
         texts.attr("clip-path", d => `circle(${(d.originalR * d.scale) * 0.9})`)
              .style("font-size", d => `${Math.max(6, Math.min(14, (d.originalR * d.scale) / 2.5))}px`);
-        // --- END TEXT UPDATE ---
 
     }).on("mouseleave", function() {
-        // Reset node positions and radii smoothly
         nodeGroups.transition().duration(500).ease(d3.easeCubicOut)
             .attr("transform", d => `translate(${d.originalX + margin},${d.originalY + margin})`);
         circles.transition().duration(500).ease(d3.easeCubicOut)
@@ -781,7 +759,7 @@ async function refreshWordCloud() { // Refreshes Word Cloud AND Bubble Chart
         currentWordData = await fetchData('/word-data', params);
         console.log('Word data received, count:', currentWordData.length);
         updateWordCloud(currentWordData);
-        updateBubbleChart(currentWordData);
+        updateBubbleChart(currentWordData, bubbleChartTooltip);
     } catch (error) {
         console.error("Failed to refresh Word Cloud/Bubble Chart:", error);
         const errorHtml = `<p class="error-message">Error loading word data: ${error.message}</p>`;
@@ -801,12 +779,11 @@ async function refreshHeatmap() {
             type: currentFilters.wordType,
             selected_word: currentFilters.selectedWord,
             month: currentFilters.heatmapMonth,
-            // Year range not adjustable via slider; using static values provided by backend via HTML.
         };
         console.log('Refreshing Heatmap with params:', params);
         currentHeatmapData = await fetchData('/heatmap-data', params);
         console.log('Heatmap data received, count:', currentHeatmapData.length);
-        updateHeatmap(currentHeatmapData);
+        updateHeatmap(currentHeatmapData, heatmapTooltip);
     } catch (error) {
         console.error("Failed to refresh Heatmap:", error);
         container.innerHTML = `<p class="error-message">Error loading heatmap data: ${error.message}</p>`;
@@ -834,7 +811,7 @@ async function refreshDomainChart() {
         } else {
             currentDomainData.sort((a, b) => d3.descending(+a.count || 0, +b.count || 0));
         }
-        updateDomainChart(currentDomainData);
+        updateDomainChart(currentDomainData, domainTooltip);
     } catch (error) {
         console.error("Failed to refresh Domain Chart:", error);
         container.innerHTML = `<p class="error-message">Error loading domain data: ${error.message}</p>`;
@@ -879,7 +856,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded - Initializing Dashboard");
 
     if (typeof d3 !== 'undefined') {
-        // Dynamically create tooltips if not found
         const createTooltip = (id) => {
             let tooltip = d3.select(`#${id}`);
             if (!tooltip.node()) {
@@ -908,11 +884,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Initialize slider values
     if (wordMinFreqValueSpan && wordMinFreqSlider) wordMinFreqValueSpan.textContent = wordMinFreqSlider.value;
     if (domainMinArticlesValueSpan && domainMinArticlesSlider) domainMinArticlesValueSpan.textContent = domainMinArticlesSlider.value;
 
-    // Add event listeners and refresh charts
     addEventListeners();
     refreshAllCharts();
 
