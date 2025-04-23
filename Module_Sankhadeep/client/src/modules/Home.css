@@ -1,0 +1,165 @@
+/* === GLOBAL RESET & LAYOUT === */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: url('/fakeNews.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.home-container {
+  background-color: rgba(199, 201, 200, 0.88);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 960px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* === HERO SECTION === */
+.home-hero {
+  margin-bottom: 2rem;
+}
+
+.home-hero h1 {
+  font-size: 3rem;
+  color: #0e3a3a;
+}
+
+.home-hero p {
+  font-size: 1.4rem;
+  color: #312f2f;
+}
+
+/* === MODULE NAVIGATION === */
+.home-navigation {
+  margin-top: 2.5rem;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.nav-button {
+
+  background: #47986aeb;
+  color: rgba(13, 12, 12, 0.692);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 6px rgba(6, 18, 16, 0.623);
+  transition: transform 0.2s ease, background 0.2s ease;
+  min-width: 120px;
+}
+
+.nav-button:hover {
+  transform: translateY(-4px);
+  background: #131415bc;
+  color: rgba(255, 255, 255, 0.833);
+}
+
+/* === TEAM SECTION === */
+.home-team {
+  margin-top: 2.5rem;
+}
+
+.team-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: #1c2e2e;
+  color: rgba(255, 255, 255, 0.709);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 3px 6px rgba(15, 42, 40, 0.623);
+  transition: transform 0.2s ease, background 0.2s ease;
+  min-width: 120px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background: #437287;
+}
+
+/* === DARK MODE OVERRIDE === */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: url('/fakeNews.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+    color: rgba(13, 12, 12, 0.692) !important;
+  }
+
+  .home-container {
+    background-color: rgba(199, 201, 200, 0.88) !important;
+    color: #111111 !important;
+  }
+
+  .home-hero h1 {
+    color: #0e3a3a !important;
+  }
+
+  .home-hero p {
+    color: #312f2f !important;
+  }
+
+  .home-navigation h2,
+  .home-team h2 {
+    color: #111111 !important;
+  }
+
+  .card {
+    background: #1c2e2e !important;
+    color: rgba(255, 255, 255, 0.709) !important;
+    box-shadow: 0 3px 6px rgba(15, 42, 40, 0.623) !important;
+  }
+
+  .card:hover {
+    background: #437287 !important;
+  }
+
+  .nav-button {
+    background: #47986aeb !important;
+    color: rgba(13, 12, 12, 0.692) !important;
+    box-shadow: 0 4px 6px rgba(6, 18, 16, 0.623) !important;
+  }
+
+  .nav-button:hover {
+    background: #131415bc !important;
+    color: rgba(255, 255, 255, 0.833) !important;
+  }
+}
