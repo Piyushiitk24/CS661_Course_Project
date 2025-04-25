@@ -41,6 +41,7 @@ export default function TopFakeNewsPlot() {
         const sorted = withTweetCount
           .sort((a, b) => b.tweet_count - a.tweet_count)
           .slice(0, topN);
+          const tweetCounts = sorted.map(d => d.tweet_count);
 
         const shortTitles = sorted.map(d => d.title.split(' ').slice(0, 4).join(' '));
         const fullTitles = sorted.map(d => d.title);
@@ -57,25 +58,26 @@ export default function TopFakeNewsPlot() {
 
         setPlotData([{
           x: shortTitles,
-          y: times,
-          customdata: formattedTimes,
-          text: fullTitles,
-          type: 'scatter',
-          mode: connectPoints ? 'lines+markers' : 'markers',
-          marker: {
-            size: 12,
-            color: sentiments,
-            colorscale: 'Viridis',
-            showscale: true,
-            colorbar: {
-              title: 'Sentiment',
-              titleside: 'right'
-            }
-          },
-          hovertemplate:
-            '<b>%{text}</b><br>' +
-            'Time of Day: %{customdata}<br>' +
-            'Domain: %{text}<extra></extra>'
+  y: times,
+  customdata: formattedTimes.map((time, idx) => [time, tweetCounts[idx]]),
+  text: fullTitles,
+  type: 'scatter',
+  mode: connectPoints ? 'lines+markers' : 'markers',
+  marker: {
+    size: 12,
+    color: sentiments,
+    colorscale: 'Viridis',
+    showscale: true,
+    colorbar: {
+      title: 'Sentiment',
+      titleside: 'right'
+    }
+  },
+  hovertemplate:
+    '<b>%{text}</b><br>' +
+    'Time of Day: %{customdata[0]}<br>' +
+    'Tweet Count: %{customdata[1]}<br>' +
+    'Domain: %{text}<extra></extra>'
         }]);
       });
   }, [source, type, topN, connectPoints]);
@@ -120,16 +122,6 @@ export default function TopFakeNewsPlot() {
             />
             <span className="slider-value">{topN}</span>
           </div>
-        </div>
-
-        <div className="checkbox-group">
-          <input
-            type="checkbox"
-            id="curveToggle"
-            checked={connectPoints}
-            onChange={() => setConnectPoints(!connectPoints)}
-          />
-          <label htmlFor="curveToggle">Connect by Lines (Not useful)</label>
         </div>
       </div>
 

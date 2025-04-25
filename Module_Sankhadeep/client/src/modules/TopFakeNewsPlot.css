@@ -65,15 +65,45 @@ input[type="range"] {
   transform: translate(0px, -4px);
 }
 
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
+/* ========== TOP FAKE NEWS PAGE STYLING ========== */
+.top-news-root {
+  background-color: #102434;  /* Same as homepage */
+  color: #e2e2e2;              /* Light text for visibility */
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-.checkbox-group label {
-  font-weight: bold;
-  margin-left: 0.2rem;
-  white-space: nowrap;
+/* Optional: style headers inside the module */
+.top-news-root h2 {
+  color: #22f3e3;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ========== DARK MODE OVERRIDE ========== */
+@media (prefers-color-scheme: dark) {
+  .top-news-root {
+    background-color: #102434 !important;
+    color: #e2e2e2 !important;
+  }
+
+  .top-news-root h2 {
+    color: #22f3e3 !important;
+  }
+
+  .control-panel label span,
+  .slider-label,
+  .slider-value {
+    color: #e2e2e2 !important;
+  }
+
+  select,
+  input[type="range"],
+  input[type="checkbox"] {
+    background-color: #e2e2e2;
+    color: #080808;
+    border: 1px solid #444;
+  }
 }

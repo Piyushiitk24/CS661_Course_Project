@@ -1,3 +1,4 @@
+import Slideshow from './Slideshow';
 import './Home.css';
 import { useEffect } from 'react';
 
@@ -6,79 +7,79 @@ export default function Home() {
     document.title = "fakeNewsStory | Home";
   }, []);
 
-  // Click handler for team member cards
-  function handleCardClick(e) {
-    const url = e.currentTarget.getAttribute('data-url');
-    if (url) window.open(url, '_blank');
-  }
-
-  // ✅ Team members array
   const teamMembers = [
     { name: "Akriti", url: "" },
     { name: "Ananya", url: "" },
-    { name: "Arpita", url: "" },
+    { name: "Arpita", url: "https://www.linkedin.com/in/arpita-santra" },
     { name: "Disha", url: "" },
     { name: "Piyush", url: "" },
     { name: "Ravi", url: "" },
     { name: "Sankhadeep", url: "https://www.linkedin.com/in/sankha14" }
   ];
 
+  const modules = [
+    { name: "Top Fake News", url: "/top-news" },
+    { name: "Clustering", url: "/cluster" },
+    { name: "Spread Network", url: "/network" },
+    { name: "Sentiment Flow", url: "/sentiment" },
+    { name: "Source Timeline", url: "/timeline" },
+    { name: "Geo Spread", url: "/geo" },
+    { name: "Engagement Graph", url: "/engagement" }
+  ];
+
   return (
-    <main className="home-root">
-      <section className="home-container">
-
-        <header className="home-hero">
-          <h1>Fake News Story</h1>
-          <p>Discover how fake news spreads across platforms with interactive data visualizations.</p>
-        </header>
-
-        <section className="home-navigation">
-          <h2>Explore Modules</h2>
-          <div className="button-row">
-            <button className="nav-button" onClick={() => window.open('/top-news', '_blank')}>Top Fake News</button>
-            <button className="nav-button" onClick={() => window.open('/cluster', '_blank')}>Clustering</button>
-            <button className="nav-button" onClick={() => window.open('/network', '_blank')}>Spread Network</button>
-            <button className="nav-button" onClick={() => window.open('/sentiment', '_blank')}>Sentiment Flow</button>
-          </div>
-          <div className="button-row">
-            <button className="nav-button" onClick={() => window.open('/timeline', '_blank')}>Source Timeline</button>
-            <button className="nav-button" onClick={() => window.open('/geo', '_blank')}>Geo Spread</button>
-            <button className="nav-button" onClick={() => window.open('/engagement', '_blank')}>Engagement Graph</button>
-          </div>
-        </section>
-
-        <section className="home-team">
-          <h2>Meet the Team</h2>
-
-          {/* 1st row: 5 members */}
-          <div className="team-row">
-            {teamMembers.slice(0, 5).map(member => (
-              <button
-                key={member.name}
-                className="card"
-                data-url={member.url}
-                onClick={handleCardClick}
-              >
-                {member.name}
-              </button>
-            ))}
-          </div>
-
-          {/* 2nd row: 2 members */}
-          <div className="team-row">
-            {teamMembers.slice(5).map(member => (
-              <button
-                key={member.name}
-                className="card"
-                data-url={member.url}
-                onClick={handleCardClick}
-              >
-                {member.name}
-              </button>
-            ))}
-          </div>
-        </section>
+    <div className="home-root">
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-text">
+          <h1 className="hero-title">Fake News Story</h1>
+          <p className="hero-subtitle">
+            Discover how fake news spreads across platforms with interactive data visualizations.
+          </p>
+        </div>
+        <div className="hero-slideshow">
+          <Slideshow />
+        </div>
       </section>
-    </main>
+
+      {/* Modules Section */}
+      <section className="modules-section">
+        <h2 className="section-heading_M">Explore Modules</h2>
+        <div className="module-grid">
+          {modules.map(module => (
+            <button
+              key={module.name}
+              className="module-card"
+              onClick={() => window.open(module.url, '_blank')}
+            >
+              {module.name}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Team Section */}
+<section className="team-section">
+  {/* ✅ Logos now outside the inner container */}
+  <img src="/logo_iitk.png" alt="IIT Kanpur" className="team-logo left" />
+  <img src="/logo_iitk.png" alt="IIT Kanpur" className="team-logo right" />
+
+  <div className="team-content">
+    <h2 className="section-heading_T">Meet the Dev Team</h2>
+    <div className="team-grid">
+      {teamMembers.map(member => (
+        <button
+          key={member.name}
+          className="team-card"
+          onClick={() => member.url && window.open(member.url, '_blank')}
+        >
+          {member.name}
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+</div>
   );
 }
