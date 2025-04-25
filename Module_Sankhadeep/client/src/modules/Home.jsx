@@ -26,6 +26,7 @@ export default function Home() {
   return (
     <main className="home-root">
       <section className="home-container">
+
         <header className="home-hero">
           <h1>Fake News Story</h1>
           <p>Discover how fake news spreads across platforms with interactive data visualizations.</p>

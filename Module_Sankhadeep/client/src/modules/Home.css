@@ -17,10 +17,12 @@ body {
 
 .home-root {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  justify-content: center; /* Horizontally center the container */
+  align-items: flex-start; /* Align to the top */
+  height: 100vh;
   width: 100%;
+  padding-top: 40px; /* control top distance */
+  box-sizing: border-box;
 }
 
 .home-container {
@@ -31,6 +33,23 @@ body {
   max-width: 960px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
+  position: relative; /* ✅ So you can position it further using margin or transform */
+}
+
+.home-container.move-up {
+  margin-top: -20px;
+}
+
+.home-container.move-down {
+  margin-top: 100px;
+}
+
+.home-container.move-left {
+  transform: translateX(-50px);
+}
+
+.home-container.move-right {
+  transform: translateX(50px);
 }
 
 /* === HERO SECTION === */
