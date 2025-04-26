@@ -26,7 +26,7 @@ This README provides guidance on both the development workflow and how to run th
     cd CS661_Course_Project
     ```
 2.  **Install Prerequisites**:
-    *   Ensure you have **Node.js** installed (check with `node -v`). Download from [nodejs.org](https://nodejs.org/) if needed (includes npm).
+    *   Ensure you have **Node.js** installed (check with `node -v`). Download from [nodejs.org](https://nodejs.org/) if needed (includes npm). Use the LTS version recommended for the React project if known.
     *   Ensure you have **Python 3** installed (check with `python3 -V`).
     *   Ensure you have **Git** installed.
 
@@ -50,7 +50,7 @@ Always work on your own branch to isolate your changes. Replace `yourname_featur
 
 ### Step 3: Work on Your Module
 -   Make changes **only** within your assigned module's folder (e.g., `Module_Piyush_Ravi/` or `Module_Ananya_Arpita/Celeb_news/`).
--   For Flask modules, manage dependencies using a virtual environment *inside your module folder* (see Presentation Setup below for details). Update your module's `requirements.txt` if you add packages.
+-   For Flask modules, manage dependencies using a virtual environment *inside your module folder* (see Presentation Setup below for details). Update your module's `requirements.txt` if you add packages (`pip freeze > requirements.txt`).
 -   **Do NOT modify other team members' module folders or the React Homepage code unless coordinated.**
 
 ### Step 4: Save and Share Your Work
@@ -93,150 +93,168 @@ Resolve any merge conflicts that arise (ask for help if needed).
 ---
 ---
 
-## Running the Integrated Demo for Presentation
+## Running the Integrated Demo for Presentation (Checklist)
 
-This section details how to set up and run the **entire project** (React Homepage + all Flask modules) on a single Mac for the final presentation using the **Hyperlink integration method**.
+This section details how to set up and run the **entire project** (React Homepage + all Flask modules) on a single Mac for the final presentation using the **Hyperlink integration method**. Follow these steps precisely on the chosen presentation Mac.
 
-### Step 1: Prerequisites Check
-Ensure the following are installed on the **presentation Mac**:
-1.  **Node.js & npm:** Check with `node -v`.
-2.  **Python 3 & pip:** Check with `python3 -V`.
-3.  **Git:** Check with `git --version`.
-4.  **VS Code (Recommended):** Useful for managing multiple terminals easily.
+### ✅ Step 1: Prerequisites Check
+Ensure the following are installed and working on the **presentation Mac**:
+1.  [ ] **Node.js & npm:** Check with `node -v` in Terminal. (Install from [nodejs.org](https://nodejs.org/) if needed).
+2.  [ ] **Python 3 & pip:** Check with `python3 -V` in Terminal. (Should be pre-installed on macOS).
+3.  [ ] **Git:** Check with `git --version`. (Should be pre-installed on macOS).
+4.  [ ] **VS Code (Recommended):** For easily managing multiple terminals.
 
-### Step 2: Setup Project on Presentation Mac
-1.  **Clone ALL Repositories:** If not already done, clone the main project repository containing all modules.
+### ✅ Step 2: Setup Project Folder & Code
+1.  [ ] **Clone/Locate Project:** Ensure the main project folder (`CS661_Course_Project`) exists on the presentation Mac (e.g., `~/Desktop/CS661_Demo`).
     ```bash
-    # Example: Clone into Desktop/CS661_Demo
-    cd ~/Desktop
-    git clone https://github.com/Piyushiitk24/CS661_Course_Project.git CS661_Demo
-    cd CS661_Demo
+    # Example: Navigate to the project folder
+    cd /path/to/your/CS661_Demo
     ```
-2.  **Verify Project Structure:** Ensure you have the React project (`Module_Sankhadeep/client/`), all Flask module folders (`Module_Piyush_Ravi/`, `Module_Ananya_Arpita/Celeb_news/`, etc.), and the shared `data/` folder at the top level (`CS661_Demo/data/`).
-3.  **Pull Latest Code:** Make sure all project parts are updated.
+2.  [ ] **Verify Structure:** Confirm all module folders (`Module_Sankhadeep`, `Module_Piyush_Ravi`, `Module_Ananya_Arpita`, etc.) and the shared `data/` folder are present inside `CS661_Demo`.
+3.  [ ] **Pull Latest Code:** Get the most recent, integrated version.
     ```bash
-    git checkout main # Or the final integration branch
-    git pull origin main # Or the final integration branch
+    # Ensure you are in the main project directory (e.g., CS661_Demo)
+    git checkout main # Or the final presentation branch name
+    git pull origin main # Or the final presentation branch name
     ```
 
-### Step 3: Install Dependencies (Crucial: Separate Environments!)
+### ✅ Step 3: Install Dependencies (Separate Environments!)
 
-**A. React Homepage Dependencies:**
-1.  Open Terminal (or a pane in VS Code's integrated terminal).
-2.  Navigate to the React **client** directory:
+**(A) React Homepage Dependencies (`Module_Sankhadeep/client/`)**
+1.  [ ] Open Terminal (or a pane in VS Code's integrated terminal).
+2.  [ ] Navigate to the React **client** directory:
     ```bash
-    cd Module_Sankhadeep/client
+    cd /path/to/your/CS661_Demo/Module_Sankhadeep/client
     ```
-3.  Install Node modules:
+3.  [ ] **Troubleshooting:** If `node_modules` exists and you face issues, try removing it first: `rm -rf node_modules package-lock.json` (Use with caution!).
+4.  [ ] Install Node modules:
     ```bash
     npm install
     ```
+    *(Watch for any errors during installation. If errors occur, check Node.js version compatibility or specific package issues and ask the React teammate.)*
 
-**B. Your Flask Module Dependencies (`Module_Piyush_Ravi`):**
-1.  Open a **NEW** Terminal tab/pane.
-2.  Navigate to **your** module directory:
+**(B) Your Flask Module Dependencies (`Module_Piyush_Ravi`)**
+1.  [ ] Open a **NEW** Terminal tab/pane.
+2.  [ ] Navigate to **your** module directory:
     ```bash
-    cd ../Module_Piyush_Ravi # Assuming you are still in Module_Sankhadeep/client
-    # Or use full path: cd /path/to/CS661_Demo/Module_Piyush_Ravi
+    cd /path/to/your/CS661_Demo/Module_Piyush_Ravi
     ```
-3.  Create and activate a **separate** virtual environment for this module:
+3.  [ ] Create/Activate **separate** virtual environment:
     ```bash
     python3 -m venv venv
     source venv/bin/activate
     ```
-    *(Your prompt should show `(venv)`)*
-4.  Install dependencies:
+    *(Prompt should show `(venv)`)*
+4.  [ ] Install dependencies:
     ```bash
     pip install -r requirements.txt
     ```
 
-**C. Ananya/Arpita Flask Module Dependencies (`Celeb_news`):**
-1.  Open a **NEW** Terminal tab/pane.
-2.  Navigate to **their** module directory:
+**(C) Ananya/Arpita Flask Module Dependencies (`Celeb_news`)**
+1.  [ ] Open a **NEW** Terminal tab/pane.
+2.  [ ] Navigate to **their** module directory:
     ```bash
-    cd ../Module_Ananya_Arpita/Celeb_news
-    # Or use full path: cd /path/to/CS661_Demo/Module_Ananya_Arpita/Celeb_news
+    cd /path/to/your/CS661_Demo/Module_Ananya_Arpita/Celeb_news
     ```
-3.  Create and activate a **separate** virtual environment for this module:
+3.  [ ] Create/Activate **separate** virtual environment:
     ```bash
-    python3 -m venv venv2 # Using a different name like venv2 is fine
+    python3 -m venv venv2 # Or any unique name
     source venv2/bin/activate
     ```
-    *(Your prompt should show `(venv2)`)*
-4.  Install dependencies (assuming they have `requirements.txt`):
+    *(Prompt should show `(venv2)`)*
+4.  [ ] Install dependencies:
     ```bash
-    pip install -r requirements.txt
+    pip install -r requirements.txt # Assuming they have one
+    # If no requirements.txt, install manually: pip install Flask Flask-Cors pandas spacy
     ```
-5.  **Install SpaCy Model (Specific to this module):**
+5.  [ ] **Install SpaCy Model:**
     ```bash
     python -m spacy download en_core_web_sm
     ```
 
-**D. Other Flask Modules:**
-*   Repeat steps C.1-C.4 for **each** additional Flask module, creating a unique virtual environment (e.g., `venv3`, `venv4`) inside each module's directory and installing its specific dependencies.
+**(D) Other Flask Modules:**
+1.  [ ] Repeat steps C.1-C.4 for **each** additional Flask module. Use a unique virtual environment name (e.g., `venv3`, `venv4`) inside each module's directory. Install dependencies via `requirements.txt` or manually.
 
-### Step 4: Verify Port Assignments & React Links
-1.  **Confirm Ports:** Ensure each server has a unique port assigned. The standard assignment is:
-    *   React Homepage (`Module_Sankhadeep`): Port `5173` (typical for Vite) or `3000`. Check its startup message.
-    *   Your Module (`Module_Piyush_Ravi`): Port `5001`.
-    *   Ananya/Arpita Module (`Celeb_news`): Port `5002`.
+### ✅ Step 4: Verify Port Assignments & React Links
+1.  [ ] **Confirm Ports:** Ensure each server has a unique port. Default plan:
+    *   React Homepage: Port `5173` (Vite default) or `3000`. **Check its startup message.**
+    *   Your Module: Port `5001`.
+    *   Ananya/Arpita Module: Port `5002`.
     *   Other Flask Modules: Ports `5003`, `5004`, etc.
-2.  **Verify React Links:** Double-check the React Homepage code (`Module_Sankhadeep/client/src/modules/Home.jsx` or similar) where the module buttons/links are defined. Ensure the `onClick` or `href` for each **Flask module** points to the correct `http://127.0.0.1:<AssignedPort>` and uses `target="_blank"` (for hyperlinks/`window.open`). URLs for routes handled *within* React should remain relative (e.g., `/timeline`).
+2.  [ ] **Verify React Links:** Confirm the React Homepage code (`Module_Sankhadeep/client/src/modules/Home.jsx` or similar) has the correct `http://127.0.0.1:<PORT>` URLs in the `onClick={() => window.open(module.url, '_blank')}` or `<a href="..." target="_blank">` for each **Flask module**. Internal React routes should use relative paths (e.g., `/timeline`).
 
-### Step 5: Run All Servers Simultaneously (Checklist)
+### ✅ Step 5: Run All Servers Simultaneously (The Demo!)
 
-Open one terminal tab/pane **per server** (VS Code's integrated terminal is recommended). Keep them all running.
+Open one terminal tab/pane **per server**. Use VS Code's integrated terminal for easier management. Keep all panes running.
 
 *   **Pane 1: React Homepage**
-    ```bash
-    cd /path/to/CS661_Demo/Module_Sankhadeep/client
-    npm run dev
-    # Note the URL printed, e.g., http://localhost:5173
-    ```
+    1.  Navigate:
+        ```bash
+        cd /path/to/your/CS661_Demo/Module_Sankhadeep/client
+        ```
+    2.  Run (check `package.json` for the exact script name):
+        ```bash
+        npm run dev
+        ```
+    3.  **Note the URL printed (e.g., `http://localhost:5173`)**
 
 *   **Pane 2: Your Flask Module (Port 5001)**
-    ```bash
-    cd /path/to/CS661_Demo/Module_Piyush_Ravi
-    source venv/bin/activate
-    flask run --port=5001
-    ```
+    1.  Navigate:
+        ```bash
+        cd /path/to/your/CS661_Demo/Module_Piyush_Ravi
+        ```
+    2.  Activate venv:
+        ```bash
+        source venv/bin/activate
+        ```
+    3.  Run Flask:
+        ```bash
+        flask run --port=5001
+        ```
 
 *   **Pane 3: Ananya/Arpita Module (Port 5002)**
-    ```bash
-    cd /path/to/CS661_Demo/Module_Ananya_Arpita/Celeb_news
-    source venv2/bin/activate # Use the venv name you created for them
-    # Run using --app flag since we might not be in the parent dir of the venv
-    flask --app app_combine.py run
-    # This will run on port 5002 as hardcoded in their app.py
-    ```
+    1.  Navigate:
+        ```bash
+        cd /path/to/your/CS661_Demo/Module_Ananya_Arpita/Celeb_news
+        ```
+    2.  Activate venv:
+        ```bash
+        source venv2/bin/activate # Use their venv name
+        ```
+    3.  Run Flask (using explicit app path):
+        ```bash
+        flask --app app_combine.py run
+        ```
+        *(This will use Port 5002 as defined in their `app.py`)*
 
 *   **Pane 4, 5, etc.: Other Flask Modules (Ports 5003, 5004...)**
-    ```bash
-    # Example for Port 5003
-    cd /path/to/CS661_Demo/Module_TeamMate3
-    source venv3/bin/activate # Activate their specific venv
-    flask run --port=5003
-    ```
-    *(Repeat for all other Flask modules, using their correct directory, venv, and assigned port)*
+    1.  Navigate to the specific module directory.
+    2.  Activate its specific virtual environment (`source venvX/bin/activate`).
+    3.  Run Flask on its assigned port:
+        ```bash
+        # Example for Port 5003
+        flask run --port=5003
+        ```
+    *(Repeat for all other Flask modules)*
 
-### Step 6: Test the Integrated Demo
-1.  Open a web browser (Chrome, Safari, Firefox).
-2.  Navigate to the **React Homepage URL** noted in Pane 1 (e.g., `http://localhost:5173`).
-3.  Click the link/button corresponding to **your module**. Verify it opens in a new tab at `http://127.0.0.1:5001` and functions correctly.
-4.  Go back to the React Homepage tab. Click the link for **Ananya/Arpita's module**. Verify it opens in a new tab at `http://127.0.0.1:5002` and functions correctly.
-5.  Test links for **all other Flask modules**, ensuring they open at their assigned ports.
-6.  Test links for any **internal React routes** (like `/timeline`) - they should navigate within the main React app tab.
+### ✅ Step 6: Test the Integrated Demo
+1.  [ ] Open a web browser.
+2.  [ ] Go to the **React Homepage URL** from Pane 1 (e.g., `http://localhost:5173`).
+3.  [ ] Click the link/button for **your module**. Verify it opens in a new tab at `http://127.0.0.1:5001` and works.
+4.  [ ] Go back to the React Homepage tab. Click the link for **Ananya/Arpita's module**. Verify it opens at `http://127.0.0.1:5002` and works.
+5.  [ ] Test links for **all other Flask modules**.
+6.  [ ] Test links for any **internal React routes**.
 
-### Step 7: Presentation
-1.  Before starting, run all servers using the commands in Step 5.
+### ✅ Step 7: Presentation Execution
+1.  Before starting, run all servers using the commands in Step 5. **Ensure no errors.**
 2.  Open the React Homepage URL in the browser.
-3.  Navigate the presentation by clicking links, which will open Flask modules in new tabs.
-4.  Switch between the homepage tab and module tabs as needed.
-5.  **Remember to keep all terminal windows/panes running throughout the demo!**
+3.  Click links to open Flask modules in new tabs.
+4.  Switch between tabs to demo.
+5.  **Keep all terminal windows/panes running!**
 
 ---
 
-## How We’ll Combine Work Later (Final Integration)
+## Final Integration (Post-Demo / Code Merge)
 -   (Keep existing section - This describes merging PRs for the final codebase merge, separate from the demo setup)
 -   Each person’s branch (e.g., `Ananya_Arpita_feature`, `piyush_feature`) will be reviewed via Pull Requests.
 -   Once everyone’s work is ready, we’ll merge all branches into `main`.
