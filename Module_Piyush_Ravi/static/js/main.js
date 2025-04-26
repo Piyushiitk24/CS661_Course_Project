@@ -151,6 +151,7 @@ function updateWordCloud(data) {
         .style("max-width", "100%")
         .attr("preserveAspectRatio", "xMidYMid meet");
 
+    // Prepare data (ensure numeric types)
     data = data.map(d => ({
         ...d,
         total_freq: +d.total_freq || 0,
@@ -159,61 +160,88 @@ function updateWordCloud(data) {
         log2_ratio: +d.log2_ratio || 0
     }));
 
+    // --- COLOR LOGIC START ---
+    let colorScale; // For 'both' type
+    const fakeColor = "var(--accent-red)"; // Use theme color for fake
+    const realColor = "var(--accent-blue)"; // Use theme color for real
+
+    if (currentFilters.wordType === 'both') {
+        const extentRatio = d3.extent(data, d => d.log2_ratio);
+        // Ensure the extent has a range before creating the scale
+        if (extentRatio[0] !== undefined && extentRatio[1] !== undefined && extentRatio[0] !== extentRatio[1]) {
+            colorScale = d3.scaleSequential(d3.interpolateRdBu)
+                           .domain(extentRatio); // Use RdBu for ratio visualization
+        } else {
+            // Fallback if all ratios are identical (unlikely for 'both', but safe)
+            console.warn("Ratio extent is invalid or single value for 'both' filter. Using default grey.");
+            // Assign a function that returns grey, mimicking a scale
+            colorScale = () => "var(--text-secondary)";
+        }
+    }
+    // --- COLOR LOGIC END ---
+
+    // Size Scale (remains the same)
     const extentFreq = d3.extent(data, d => d.total_freq);
-    const extentRatio = d3.extent(data, d => d.log2_ratio);
-
-    const colorScale = d3.scaleSequential(d3.interpolateRdBu)
-        .domain([
-            extentRatio[0] === extentRatio[1] ? (extentRatio[0] || 0) - 0.1 : (extentRatio[0] || 0),
-            extentRatio[0] === extentRatio[1] ? (extentRatio[1] || 0) + 0.1 : (extentRatio[1] || 0)
-        ]);
-
     const sizeScale = d3.scaleSqrt()
         .domain([Math.max(1, extentFreq[0] || 1), Math.max(1, extentFreq[1] || 1)])
-        .range([12, 45])
+        .range([12, 45]) // Adjust range if needed
         .clamp(true);
 
-    const nodes = data.map(d => ({
-        ...d,
-        radius: sizeScale(d.total_freq) / 1.5 + 5,
-        color: colorScale(d.log2_ratio)
-    }));
+    // Map data to nodes, applying the conditional color
+    const nodes = data.map(d => {
+        let nodeColor;
+        if (currentFilters.wordType === 'fake') {
+            nodeColor = fakeColor;
+        } else if (currentFilters.wordType === 'real') {
+            nodeColor = realColor;
+        } else { // 'both'
+            nodeColor = colorScale ? colorScale(d.log2_ratio) : "var(--text-secondary)"; // Use scale if valid
+        }
+        return {
+            ...d,
+            radius: sizeScale(d.total_freq) / 1.5 + 5, // Adjust radius calculation if needed
+            color: nodeColor // Assign the determined color
+        };
+    });
 
+    // Simulation setup (remains the same)
     if (wordSimulation) {
         wordSimulation.stop();
     }
-
     wordSimulation = d3.forceSimulation(nodes)
-        .force("charge", d3.forceManyBody().strength(-20))
+        .force("charge", d3.forceManyBody().strength(-20)) // Adjust strength if needed
         .force("collide", d3.forceCollide().radius(d => d.radius).strength(0.8))
         .force("center", d3.forceCenter().strength(0.02))
         .force("x", d3.forceX().strength(0.01))
         .force("y", d3.forceY().strength(0.01))
         .on("tick", ticked);
 
+    // Node rendering (main change is the fill source)
     const node = svg.selectAll("g.node")
         .data(nodes, d => d.text)
         .join(
             enter => enter.append("g")
                 .attr("class", "node")
-                .attr("transform", `translate(${Math.random() * 10 - 5}, ${Math.random() * 10 - 5})`)
+                .attr("transform", `translate(${Math.random() * 10 - 5}, ${Math.random() * 10 - 5})`) // Initial random position
                 .style("opacity", 0)
                 .call(enter => enter.transition().duration(1000).ease(d3.easeCubicOut).style("opacity", 1)),
             update => update,
             exit => exit.transition().duration(400).ease(d3.easeCubicIn).style("opacity", 0).remove()
         )
         .classed("selected-word", d => d.text === currentFilters.selectedWord)
-        .call(drag(wordSimulation));
+        .call(drag(wordSimulation)); // Apply drag behavior
 
-    node.selectAll("text").remove();
+    // Append text to nodes
+    node.selectAll("text").remove(); // Clear previous text first
     node.append("text")
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "central")
         .style("font-size", d => `${sizeScale(d.total_freq)}px`)
-        .style("fill", d => d.color)
+        .style("fill", d => d.color) // *** Use the pre-calculated d.color ***
         .style("cursor", "pointer")
         .text(d => d.text)
         .on("mouseover", (event, d) => {
+            // Tooltip logic (remains the same)
             if (wordCloudTooltip && wordCloudTooltip.node()) {
                 wordCloudTooltip.style("opacity", 1)
                     .html(`<b>${d.text}</b><br>Total: ${d.total_freq}<br>Fake: ${d.fake_freq}<br>Real: ${d.real_freq}<br>Ratio: ${d.log2_ratio.toFixed(2)}`)
@@ -224,51 +252,32 @@ function updateWordCloud(data) {
             }
         })
         .on("mouseout", () => {
+            // Tooltip logic (remains the same)
             if (wordCloudTooltip) wordCloudTooltip.style("opacity", 0);
         })
-        .on("click", handleWordClick);
+        .on("click", handleWordClick); // Word selection logic (remains the same)
 
+    // Ticked function (remains the same)
     function ticked() {
         node.attr("transform", d => `translate(${d.x || 0},${d.y || 0})`);
     }
 
+    // Drag functions (remain the same)
     function drag(simulation) {
-        function dragstarted(event, d) {
-            if (!event.active) simulation.alphaTarget(0.3).restart();
-            d.fx = d.x;
-            d.fy = d.y;
-        }
-
-        function dragged(event, d) {
-            d.fx = event.x;
-            d.fy = event.y;
-        }
-
-        function dragended(event, d) {
-            if (!event.active) simulation.alphaTarget(0);
-            d.fx = null;
-            d.fy = null;
-        }
-
-        return d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended);
+        // ... dragstarted, dragged, dragended functions ...
+        function dragstarted(event, d) { if (!event.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; }
+        function dragged(event, d) { d.fx = event.x; d.fy = event.y; }
+        function dragended(event, d) { if (!event.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }
+        return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
     }
 
+    // SVG background click handler (remains the same)
     svg.on("click", (event) => {
-        if (event.target === svg.node()) {
-            if (currentFilters.selectedWord) {
-                const prev = currentFilters.selectedWord;
-                currentFilters.selectedWord = null;
-                if (selectedWordInfoDiv) selectedWordInfoDiv.innerHTML = 'Selected Word: None';
-                console.log("Word selection cleared");
-                svg.selectAll("g.node").classed("selected-word", false);
-                if (prev !== currentFilters.selectedWord) { refreshHeatmap(); refreshDomainChart(); }
-            }
-        }
+        // ... logic to clear selection ...
+         if (event.target === svg.node()) { if (currentFilters.selectedWord) { const prev = currentFilters.selectedWord; currentFilters.selectedWord = null; if (selectedWordInfoDiv) selectedWordInfoDiv.innerHTML = 'Selected Word: None'; console.log("Word selection cleared"); svg.selectAll("g.node").classed("selected-word", false); if (prev !== currentFilters.selectedWord) { refreshHeatmap(); refreshDomainChart(); } } }
     });
 
+    // Restart simulation
     wordSimulation.nodes(nodes).alpha(0.6).restart();
 }
 
