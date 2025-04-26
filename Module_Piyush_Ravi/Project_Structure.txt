@@ -14,3 +14,7 @@ fake-news-d3/
 │   └── index.html
 ├── app.py
 └── helpers.py
+
+venv - Mine
+venv1 - Nodejs
+venv2 - Ananya
