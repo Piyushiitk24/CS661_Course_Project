@@ -21,8 +21,8 @@ export default function Home() {
     { name: "Time of the Day", url: "/top-news" },
     { name: "Virality Analysis", url: "http://127.0.0.1:5001" },
     { name: "Celeb News", url: "http://127.0.0.1:5002" },
+    { name: "Clustering", url: "/clustering" },
     { name: "Sentiment Flow", url: "/sentiment" },
-    { name: "Source Timeline", url: "/timeline" },
     { name: "Geo Spread", url: "/geo" },
     { name: "Engagement Graph", url: "/engagement" }
   ];
