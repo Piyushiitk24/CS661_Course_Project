@@ -7,7 +7,8 @@ export default function TopFakeNewsPlot() {
   const [type, setType] = useState('fake');
   const [topN, setTopN] = useState(10);
   const [connectPoints, setConnectPoints] = useState(false);
-  const [plotData, setPlotData] = useState([]);
+  const [scatterData, setScatterData] = useState([]);
+  const [heatmapData, setHeatmapData] = useState([]);
 
   useEffect(() => {
     fetch('/combined_data_processed.csv')
@@ -41,14 +42,15 @@ export default function TopFakeNewsPlot() {
         const sorted = withTweetCount
           .sort((a, b) => b.tweet_count - a.tweet_count)
           .slice(0, topN);
-          const tweetCounts = sorted.map(d => d.tweet_count);
 
+        // Prepare scatter plot data
         const shortTitles = sorted.map(d => d.title.split(' ').slice(0, 4).join(' '));
         const fullTitles = sorted.map(d => d.title);
         const times = sorted.map(d =>
           d.date.getHours() + d.date.getMinutes() / 60 + d.date.getSeconds() / 3600
         );
         const sentiments = sorted.map(d => d.sentiment);
+        const tweetCounts = sorted.map(d => d.tweet_ids.split('\t').length);
         const formattedTimes = sorted.map(d => {
           const h = d.date.getHours().toString().padStart(2, '0');
           const m = d.date.getMinutes().toString().padStart(2, '0');
@@ -56,33 +58,61 @@ export default function TopFakeNewsPlot() {
           return `${h}:${m}:${s}`;
         });
 
-        setPlotData([{
+        setScatterData([{
           x: shortTitles,
-  y: times,
-  customdata: formattedTimes.map((time, idx) => [time, tweetCounts[idx]]),
-  text: fullTitles,
-  type: 'scatter',
-  mode: connectPoints ? 'lines+markers' : 'markers',
-  marker: {
-    size: 12,
-    color: sentiments,
-    colorscale: 'Viridis',
-    showscale: true,
-    colorbar: {
-      title: 'Sentiment',
-      titleside: 'right'
-    }
-  },
-  hovertemplate:
-    '<b>%{text}</b><br>' +
-    'Time of Day: %{customdata[0]}<br>' +
-    'Tweet Count: %{customdata[1]}<br>' +
-    'Domain: %{text}<extra></extra>'
+          y: times,
+          customdata: formattedTimes.map((time, idx) => [time, tweetCounts[idx], sorted[idx].domain]),
+          text: fullTitles,
+          type: 'scatter',
+          mode: connectPoints ? 'lines+markers' : 'markers',
+          marker: {
+            size: 12,
+            color: sentiments,
+            colorscale: 'Viridis',
+            showscale: true,
+            colorbar: {
+              title: {
+                text: 'Sentiment Score',
+                side: 'right'
+              }
+            }
+            
+          },
+          hovertemplate:
+  '<b>%{text}</b><br>' +
+  'Time of Day: %{customdata[0]}<br>' +
+  'Tweet Count: %{customdata[1]}<br>' +
+  'Domain: %{customdata[2]}<extra></extra>'
         }]);
+
+        // Prepare heatmap data
+        const hours = Array(24).fill(0);
+for (const d of sorted) {
+  const hour = d.date.getHours();
+  const tweetCount = d.tweet_ids.split('\t').length; // get actual tweet count
+  hours[hour] += tweetCount; // add tweet count instead of +1
+}
+
+
+        setHeatmapData([{
+          z: [hours],
+          x: Array.from({ length: 24 }, (_, i) => i),
+          y: [''],
+          type: 'heatmap',
+          colorscale: 'Viridis', /* or, YlGnBu or, Plasma */
+          showscale: true,
+          colorbar: {
+            title: {
+              text: 'Tweet Count',
+              side: 'right'
+            }
+          },
+          hovertemplate: 'Hour of the Day: %{x}th<br>Tweet Count: %{z}<extra></extra>'
+        }]);
+        
       });
   }, [source, type, topN, connectPoints]);
 
-  // ✅ Set browser tab title
   useEffect(() => {
     document.title = 'fakeNewsStory | Time-of-the-Day';
   }, []);
@@ -95,8 +125,8 @@ export default function TopFakeNewsPlot() {
         <label>
           <span>Source:</span>
           <select value={source} onChange={e => setSource(e.target.value)}>
-            <option value="politifact">politifact</option>
-            <option value="gossipcop">gossipcop</option>
+            <option value="politifact">Politifact</option>
+            <option value="gossipcop">Gossipcop</option>
             <option value="all">All</option>
           </select>
         </label>
@@ -104,8 +134,8 @@ export default function TopFakeNewsPlot() {
         <label>
           <span>Type:</span>
           <select value={type} onChange={e => setType(e.target.value)}>
-            <option value="fake">fake</option>
-            <option value="real">real</option>
+            <option value="fake">Fake</option>
+            <option value="real">Real</option>
             <option value="all">All</option>
           </select>
         </label>
@@ -116,17 +146,19 @@ export default function TopFakeNewsPlot() {
             <input
               type="range"
               min="1"
-              max="50"
+              max="100"
               value={topN}
               onChange={e => setTopN(Number(e.target.value))}
             />
             <span className="slider-value">{topN}</span>
           </div>
         </div>
+
       </div>
 
+      {/* Scatter Plot */}
       <Plot
-        data={plotData}
+        data={scatterData}
         layout={{
           title: {
             text: '<span style="font-weight: normal; font-size: 14px;">(Decreasing retweet frequency from left to right on the <b>News</b> axis)</span>',
@@ -138,9 +170,7 @@ export default function TopFakeNewsPlot() {
             title: {
               text: 'News',
               font: { size: 16, family: 'Arial Black' },
-              standoff: 50,
-              xanchor: 'left',
-              x: 0
+              standoff: 50
             }
           },
           yaxis: {
@@ -163,6 +193,37 @@ export default function TopFakeNewsPlot() {
         }}
         config={{ displayModeBar: false }}
         style={{ width: '100%', height: '600px' }}
+      />
+
+      {/* Heatmap Plot */}
+      <h3 style={{ marginTop: '3rem', marginBottom: '1rem', textAlign: 'center', color: '#22f3e3' }}>
+        Tweet Distribution by Hour
+      </h3>
+      <Plot
+        data={heatmapData}
+        layout={{
+          title: '',
+  xaxis: {
+    title: {
+      text: 'Hour of the Day',
+      font: { size: 16, family: 'Arial Black' }
+    },
+    tickmode: 'linear',
+    tick0: 0,
+    dtick: 1
+  },
+  yaxis: {
+    title: {
+      text: '',
+      font: { size: 16, family: 'Arial Black' }
+    }
+  },
+          margin: { t: 30 },
+          hovermode: 'closest',
+          responsive: true
+        }}
+        config={{ displayModeBar: false }}
+        style={{ width: '100%', height: '300px' }}
       />
     </div>
   );

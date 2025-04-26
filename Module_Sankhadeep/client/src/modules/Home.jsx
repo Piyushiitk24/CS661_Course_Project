@@ -18,7 +18,7 @@ export default function Home() {
   ];
 
   const modules = [
-    { name: "Top Fake News", url: "/top-news" },
+    { name: "Time of the Day", url: "/top-news" },
     { name: "Clustering", url: "/cluster" },
     { name: "Spread Network", url: "/network" },
     { name: "Sentiment Flow", url: "/sentiment" },
