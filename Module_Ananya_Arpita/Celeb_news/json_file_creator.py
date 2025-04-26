@@ -1,7 +1,7 @@
 import pandas as pd
 from collections import defaultdict
 import json
-import os
+import os # Make sure os is imported at the top
 import spacy
 
 # Load SpaCy model
@@ -12,11 +12,18 @@ except OSError:
     raise
 
 # Load dataset
+# Delete the old df = pd.read_csv(...) line
+
+# Add these lines:
+base_dir_script = os.path.dirname(__file__)
+# Go up from Celeb_news -> Module_Ananya_Arpita -> CS661_Course_Project -> then into data
+data_path_script = os.path.join(base_dir_script, "..", "..", "data", "master_dataset.csv")
 try:
-    df = pd.read_csv(r"C:\Users\user\CS661_Course_Project\data\master_dataset.csv")
-    print("Dataset loaded successfully.")
+    df = pd.read_csv(data_path_script)
+    print("Dataset loaded successfully in json_file_creator.")
 except FileNotFoundError:
-    raise FileNotFoundError("The dataset file 'master_dataset.csv' was not found. Please check the file path.")
+     print(f"Error: Could not find master_dataset.csv at expected path: {data_path_script}")
+     raise # Stop the script if data isn't found
 
 # Check required columns
 required_columns = ['clean_title', 'tweet_count', 'news_url', 'source', 'type']
@@ -61,7 +68,8 @@ def process_celebrity_data(df, celeb_name, output_filename):
     ]
 
     # Save to JSON
-    output_dir = os.path.join(os.getcwd(), "celeb_json")
+    # Save within the Celeb_news directory in a celeb_json subfolder
+    output_dir = os.path.join(base_dir_script, "celeb_json")
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, output_filename)
 
@@ -73,9 +81,21 @@ def process_celebrity_data(df, celeb_name, output_filename):
         print(f"Error writing to file {output_path}: {e}")
 
     # Preview a few
-    for entry in noun_data[:10]:
-        print(f"{entry['noun']}: {entry['count']} URLs: {entry['urls']}")
+    # print("Preview of generated data:")
+    # for entry in noun_data[:5]:
+    #     print(f"  Noun: {entry['noun']}, Count: {entry['count']}, URLs: {len(entry['urls'])}")
 
-# Run for Kylie Jenner
+# List of celebrities to process
+celebrities = [
+    "selena gomez", "kylie jenner", "kim kardashian", "taylor swift",
+    "donald trump", "joe biden", "barack obama", "michelle obama",
+    "elon musk", "jeff bezos"
+]
 
-process_celebrity_data(df, "michael obama", "michael_obama.json")
+# Process each celebrity
+for celeb in celebrities:
+    filename = f"{celeb.replace(' ', '_')}.json"
+    print(f"\nProcessing {celeb.title()}...")
+    process_celebrity_data(df, celeb, filename)
+
+print("\nJSON file creation process completed.")
