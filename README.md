@@ -190,22 +190,30 @@ Open one terminal tab/pane **per server**. Use VS Code's integrated terminal for
 *   **Pane 1: React Homepage**
     1.  Navigate:
         ```bash
-        cd /path/to/your/CS661_Demo/Module_Sankhadeep/client
+            cd /path/to/your/CS661_Course_Project/Module_Sankhadeep/client
         ```
-    2.  Run (check `package.json` for the exact script name):
+
+    2. Run the Node.js server:
         ```bash
-        npm run dev
+            npm run dev
         ```
-    3.  **Note the URL printed (e.g., `http://localhost:5173`)**
+
+    3. **Note the URL printed (e.g., `http://localhost:5173`)**
+
+!!!IMPORTANT!!! Make sure you have the items listed in the requirements.txt installed in the python environment 
+you intend to use (whether the system-wide default python environment, or one created using venv) before 
+proceeding further!!!
 
 *   **Pane 2: Your Flask Module (Port 5001)**
     1.  Navigate:
         ```bash
-        cd /path/to/your/CS661_Demo/Module_Piyush_Ravi
+            cd /path/to/your/CS661_Course_Project/Module_Piyush_Ravi
         ```
-    2.  Activate venv:
+        
+    2.  If you intend to use a venv created virtual environment then activate that (otherwise simply skip this 
+        step):
         ```bash
-        source venv/bin/activate
+        source <path_to_the_virtual_environment>/bin/activate
         ```
     3.  Run Flask:
         ```bash
@@ -215,21 +223,23 @@ Open one terminal tab/pane **per server**. Use VS Code's integrated terminal for
 *   **Pane 3: Ananya/Arpita Module (Port 5002)**
     1.  Navigate:
         ```bash
-        cd /path/to/your/CS661_Demo/Module_Ananya_Arpita/Celeb_news
+            cd /path/to/your/CS661_Course_Project/Module_Ananya_Arpita/Celeb_news
         ```
-    2.  Activate venv:
+        
+    2.  If you intend to use a venv created virtual environment then activate that (otherwise simply skip this 
+        step):
         ```bash
-        source venv2/bin/activate # Use their venv name
+        source <path_to_the_virtual_environment>/bin/activate
         ```
-    3.  Run Flask (using explicit app path):
+    3.  Run Flask:
         ```bash
-        flask --app app_combine.py run
+        flask run --port=5002
         ```
-        *(This will use Port 5002 as defined in their `app.py`)*
 
 *   **Pane 4, 5, etc.: Other Flask Modules (Ports 5003, 5004...)**
     1.  Navigate to the specific module directory.
-    2.  Activate its specific virtual environment (`source venvX/bin/activate`).
+    2.  Activate its specific virtual environment if your required packaged are installed in one 
+        (`source <path_to_the_virtual_environment>/bin/activate`).
     3.  Run Flask on its assigned port:
         ```bash
         # Example for Port 5003
