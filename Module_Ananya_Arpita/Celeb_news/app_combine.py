@@ -21,7 +21,7 @@ def data():
         data = json.load(f)
     return jsonify(data)
 
-
+#msjnjfinjnojjsnnoi
 
   
 
