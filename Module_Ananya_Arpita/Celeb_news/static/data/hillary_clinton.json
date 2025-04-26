@@ -1,0 +1,919 @@
+[
+  {
+    "noun": "killer",
+    "count": 374,
+    "urls": [
+      {
+        "url": "www.brainstain.co.uk/2017/12/13/mike-tyson-hillary-clinton-americas-prolific-serial-killer/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "member",
+    "count": 81,
+    "urls": [
+      {
+        "url": "yournewswire.com/cannibal-club-perry-streep-clinton/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.washingtonpost.com/news/reliable-source/wp/2017/12/16/an-snl-cast-member-got-a-hillary-clinton-tattoo-on-his-leg-she-says-shes-honored/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "closing",
+    "count": 141,
+    "urls": [
+      {
+        "url": "variety.com/2016/biz/news/morgan-freeman-hillary-clinton-1201900706/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "campaign",
+    "count": 551,
+    "urls": [
+      {
+        "url": "variety.com/2016/biz/news/morgan-freeman-hillary-clinton-1201900706/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.puppetstringnews.com/blog/clinton-campaign-official-arrested-by-fbi-on-child-rapetrafficking-charges",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://time.com/3920332/transcript-full-text-hillary-clinton-campaign-launch/",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "https://www.washingtonpost.com/news/fact-checker/wp/2016/05/18/clinton-campaigns-claim-that-trump-would-force-schools-to-allow-guns-in-classrooms/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "ad",
+    "count": 141,
+    "urls": [
+      {
+        "url": "variety.com/2016/biz/news/morgan-freeman-hillary-clinton-1201900706/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "birth",
+    "count": 131,
+    "urls": [
+      {
+        "url": "https://www.today.com/parents/lady-antebellum-s-hillary-scott-gives-birth-twins-thank-you-t121900",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.today.com/parents/lady-antebellum-s-hillary-scott-gives-birth-twins-thank-you-t121900",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "twin",
+    "count": 237,
+    "urls": [
+      {
+        "url": "https://www.today.com/parents/lady-antebellum-s-hillary-scott-gives-birth-twins-thank-you-t121900",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.longroom.com/discussion/978680/lady-antebellums-hillary-scott-returns-to-the-stage-2-months-after-welcoming-twins",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.today.com/parents/lady-antebellum-s-hillary-scott-gives-birth-twins-thank-you-t121900",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.etonline.com/hillary-scott-reveals-gender-her-twins-cutest-pic-we-are-overjoyed-87228",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "detail",
+    "count": 53,
+    "urls": [
+      {
+        "url": "https://www.nytimes.com/2017/07/27/books/hillary-clinton-memoir-what-happened.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "show",
+    "count": 141,
+    "urls": [
+      {
+        "url": "https://www.cbs.com/shows/the-late-show-with-stephen-colbert/news/1007536/stephen-colbert-welcomes-hillary-clinton-back-to-the-late-show-on-tuesday-sept-19/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.etonline.com/miley-cyrus-cries-thanking-hillary-clinton-female-tonight-show-writers-share-their-thank-you-notes",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "audition",
+    "count": 57,
+    "urls": [
+      {
+        "url": "https://www.billboard.com/articles/news/grammys/8096785/hillary-clinton-fire-and-fury-grammys-2018",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "fury",
+    "count": 57,
+    "urls": [
+      {
+        "url": "https://www.billboard.com/articles/news/grammys/8096785/hillary-clinton-fire-and-fury-grammys-2018",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "grammy",
+    "count": 57,
+    "urls": [
+      {
+        "url": "https://www.billboard.com/articles/news/grammys/8096785/hillary-clinton-fire-and-fury-grammys-2018",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "leg",
+    "count": 74,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/reliable-source/wp/2017/12/16/an-snl-cast-member-got-a-hillary-clinton-tattoo-on-his-leg-she-says-shes-honored/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "cry",
+    "count": 75,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/miley-cyrus-cries-thanking-hillary-clinton-female-tonight-show-writers-share-their-thank-you-notes",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "female",
+    "count": 75,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/miley-cyrus-cries-thanking-hillary-clinton-female-tonight-show-writers-share-their-thank-you-notes",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "tonight",
+    "count": 75,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/miley-cyrus-cries-thanking-hillary-clinton-female-tonight-show-writers-share-their-thank-you-notes",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "writer",
+    "count": 75,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/miley-cyrus-cries-thanking-hillary-clinton-female-tonight-show-writers-share-their-thank-you-notes",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "note",
+    "count": 75,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/miley-cyrus-cries-thanking-hillary-clinton-female-tonight-show-writers-share-their-thank-you-notes",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "story",
+    "count": 100,
+    "urls": [
+      {
+        "url": "https://www.hollywoodreporter.com/live-feed/american-horror-story-cult-finale-explained-1058035",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.theguardian.com/us-news/2016/oct/18/hillary-clinton-why-hate-unlikeable-us-election",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "cult",
+    "count": 68,
+    "urls": [
+      {
+        "url": "https://www.hollywoodreporter.com/live-feed/american-horror-story-cult-finale-explained-1058035",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "trump",
+    "count": 202,
+    "urls": [
+      {
+        "url": "https://www.hollywoodreporter.com/live-feed/american-horror-story-cult-finale-explained-1058035",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "me.me/i/actress-sandra-bullock-to-hillary-clinton-if-you-dont-like-19509139",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20170616171149/https://www.federalisttribune.com/2017/05/10/trump-gives-chaffetz-thumbs-investigating-hillary-clintons-email-server/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.washingtonpost.com/news/fact-checker/wp/2016/05/18/clinton-campaigns-claim-that-trump-would-force-schools-to-allow-guns-in-classrooms/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "selfie",
+    "count": 69,
+    "urls": [
+      {
+        "url": "https://www.nbcwashington.com/news/sports/Golfer-Phil-Mickelson-Takes-Epic-Selfie-With-Obama-Bush-Clinton-448641353.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "gender",
+    "count": 61,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/hillary-scott-reveals-gender-her-twins-cutest-pic-we-are-overjoyed-87228",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "pic",
+    "count": 61,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/hillary-scott-reveals-gender-her-twins-cutest-pic-we-are-overjoyed-87228",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "woman",
+    "count": 530,
+    "urls": [
+      {
+        "url": "me.me/i/actress-sandra-bullock-to-hillary-clinton-if-you-dont-like-19509139",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "www.smoaky.com/forum/index.php?/topic/161489-barrels-removed-from-clinton-property-contain-parts-from-3-missing-women/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://thegoldwater.com/news/30915-Clinton-Body-Count-Series-5-Woman-Set-to-Testify-Against-Clintons-Blown-Up-in-Home-Explosion",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "child",
+    "count": 113,
+    "urls": [
+      {
+        "url": "https://www.puppetstringnews.com/blog/clinton-campaign-official-arrested-by-fbi-on-child-rapetrafficking-charges",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://yournewswire.com/senate-report-clinton-children-human/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "email",
+    "count": 2017,
+    "urls": [
+      {
+        "url": "http://yournewswire.com/clinton-email-we-must-destroy-syria-for-israel/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20170616171149/https://www.federalisttribune.com/2017/05/10/trump-gives-chaffetz-thumbs-investigating-hillary-clintons-email-server/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.nytimes.com/2015/07/24/us/politics/inquiry-is-sought-in-hillary-clinton-email-account.html",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "https://web.archive.org/web/20150816005009/http://www.hillaryclinton.com:80/briefing/factsheets/2015/07/13/email-facts/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "barrel",
+    "count": 220,
+    "urls": [
+      {
+        "url": "www.smoaky.com/forum/index.php?/topic/161489-barrels-removed-from-clinton-property-contain-parts-from-3-missing-women/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "property",
+    "count": 220,
+    "urls": [
+      {
+        "url": "www.smoaky.com/forum/index.php?/topic/161489-barrels-removed-from-clinton-property-contain-parts-from-3-missing-women/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "part",
+    "count": 220,
+    "urls": [
+      {
+        "url": "www.smoaky.com/forum/index.php?/topic/161489-barrels-removed-from-clinton-property-contain-parts-from-3-missing-women/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "intelligence",
+    "count": 386,
+    "urls": [
+      {
+        "url": "http://nrtonline.info/breaking-british-intelligence-seizes-clinton-foundation-warehouse-400-million-in-cash/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "warehouse",
+    "count": 386,
+    "urls": [
+      {
+        "url": "http://nrtonline.info/breaking-british-intelligence-seizes-clinton-foundation-warehouse-400-million-in-cash/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "cash",
+    "count": 386,
+    "urls": [
+      {
+        "url": "http://nrtonline.info/breaking-british-intelligence-seizes-clinton-foundation-warehouse-400-million-in-cash/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "nrtonline",
+    "count": 386,
+    "urls": [
+      {
+        "url": "http://nrtonline.info/breaking-british-intelligence-seizes-clinton-foundation-warehouse-400-million-in-cash/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "foundation",
+    "count": 949,
+    "urls": [
+      {
+        "url": "our.news/2017/09/10/breaking-clinton-foundations-sends-water-to-houstonfor-7-a-bottle/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20170515100952/http://dailyusaupdate.com:80/breaking-clinton-foundation-cargo-ship-raided-port-baltimore-reveals-sick-secret",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "cargo",
+    "count": 912,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20170515100952/http://dailyusaupdate.com:80/breaking-clinton-foundation-cargo-ship-raided-port-baltimore-reveals-sick-secret",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "ship",
+    "count": 912,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20170515100952/http://dailyusaupdate.com:80/breaking-clinton-foundation-cargo-ship-raided-port-baltimore-reveals-sick-secret",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "port",
+    "count": 912,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20170515100952/http://dailyusaupdate.com:80/breaking-clinton-foundation-cargo-ship-raided-port-baltimore-reveals-sick-secret",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "baltimore",
+    "count": 912,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20170515100952/http://dailyusaupdate.com:80/breaking-clinton-foundation-cargo-ship-raided-port-baltimore-reveals-sick-secret",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "secret",
+    "count": 912,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20170515100952/http://dailyusaupdate.com:80/breaking-clinton-foundation-cargo-ship-raided-port-baltimore-reveals-sick-secret",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "way",
+    "count": 335,
+    "urls": [
+      {
+        "url": "http://usleader.net/index.php/2017/05/05/breaking-ken-starrs-plane-just-disappeared-way-dc-testify-hillary/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20171101100601/http://www.snapusanews.com:80/morgan-freeman-jailing-hillary-best-way-to-restore-public-faith-in-govt/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "charity",
+    "count": 291,
+    "urls": [
+      {
+        "url": "https://usawatchdog.com/clinton-foundation-largest-unprosecuted-charity-fraud-in-history-charles-ortel/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "fraud",
+    "count": 291,
+    "urls": [
+      {
+        "url": "https://usawatchdog.com/clinton-foundation-largest-unprosecuted-charity-fraud-in-history-charles-ortel/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "historycharle",
+    "count": 291,
+    "urls": [
+      {
+        "url": "https://usawatchdog.com/clinton-foundation-largest-unprosecuted-charity-fraud-in-history-charles-ortel/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "ortel",
+    "count": 291,
+    "urls": [
+      {
+        "url": "https://usawatchdog.com/clinton-foundation-largest-unprosecuted-charity-fraud-in-history-charles-ortel/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "faith",
+    "count": 303,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20171101100601/http://www.snapusanews.com:80/morgan-freeman-jailing-hillary-best-way-to-restore-public-faith-in-govt/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "govt",
+    "count": 303,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20171101100601/http://www.snapusanews.com:80/morgan-freeman-jailing-hillary-best-way-to-restore-public-faith-in-govt/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "investigator",
+    "count": 152,
+    "urls": [
+      {
+        "url": "https://yournewswire.com/anthony-bourdain-killed-clinton-operatives/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "operative",
+    "count": 152,
+    "urls": [
+      {
+        "url": "https://yournewswire.com/anthony-bourdain-killed-clinton-operatives/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "body",
+    "count": 286,
+    "urls": [
+      {
+        "url": "https://madworldnews.com/hillary-dead-body-huma-abedin/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://thegoldwater.com/news/30915-Clinton-Body-Count-Series-5-Woman-Set-to-Testify-Against-Clintons-Blown-Up-in-Home-Explosion",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "court",
+    "count": 58,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20161213021214/http://usasnich.com:80/breaking-putin-interference-could-give-courts-legal-right-to-make-hillary-president/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20170211071325/http://usanewstoday.org:80/index.php/2017/02/08/breaking-hilary-clinton-filed-divorce-new-york-courts",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "testify",
+    "count": 262,
+    "urls": [
+      {
+        "url": "https://thegoldwater.com/news/30915-Clinton-Body-Count-Series-5-Woman-Set-to-Testify-Against-Clintons-Blown-Up-in-Home-Explosion",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "home",
+    "count": 262,
+    "urls": [
+      {
+        "url": "https://thegoldwater.com/news/30915-Clinton-Body-Count-Series-5-Woman-Set-to-Testify-Against-Clintons-Blown-Up-in-Home-Explosion",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "explosion",
+    "count": 262,
+    "urls": [
+      {
+        "url": "https://thegoldwater.com/news/30915-Clinton-Body-Count-Series-5-Woman-Set-to-Testify-Against-Clintons-Blown-Up-in-Home-Explosion",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "trafficker",
+    "count": 109,
+    "urls": [
+      {
+        "url": "https://yournewswire.com/senate-report-clinton-children-human/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "gun",
+    "count": 96,
+    "urls": [
+      {
+        "url": "http://www.politifact.com/truth-o-meter/statements/2016/mar/15/hillary-clinton/hillary-clinton-says-guns-exceed-next-nine-categor/",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "https://www.washingtonpost.com/news/fact-checker/wp/2016/05/18/clinton-campaigns-claim-that-trump-would-force-schools-to-allow-guns-in-classrooms/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "conference",
+    "count": 263,
+    "urls": [
+      {
+        "url": "http://www.c-span.org/video/?c4546787/hillary-clinton-remarks-national-urban-league-conference",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "transcript",
+    "count": 365,
+    "urls": [
+      {
+        "url": "http://time.com/3920332/transcript-full-text-hillary-clinton-campaign-launch/",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://blogs.wsj.com/washwire/2015/07/13/hillary-clinton-transcript-building-the-growth-and-fairness-economy/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "text",
+    "count": 340,
+    "urls": [
+      {
+        "url": "http://time.com/3920332/transcript-full-text-hillary-clinton-campaign-launch/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "launch",
+    "count": 340,
+    "urls": [
+      {
+        "url": "http://time.com/3920332/transcript-full-text-hillary-clinton-campaign-launch/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "inquiry",
+    "count": 1249,
+    "urls": [
+      {
+        "url": "http://www.nytimes.com/2015/07/24/us/politics/inquiry-is-sought-in-hillary-clinton-email-account.html",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "bill",
+    "count": 107,
+    "urls": [
+      {
+        "url": "missing_url",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "force",
+    "count": 66,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/fact-checker/wp/2016/05/18/clinton-campaigns-claim-that-trump-would-force-schools-to-allow-guns-in-classrooms/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "school",
+    "count": 66,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/fact-checker/wp/2016/05/18/clinton-campaigns-claim-that-trump-would-force-schools-to-allow-guns-in-classrooms/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "classroom",
+    "count": 66,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/fact-checker/wp/2016/05/18/clinton-campaigns-claim-that-trump-would-force-schools-to-allow-guns-in-classrooms/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "remark",
+    "count": 551,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/post-politics/wp/2016/06/13/hillary-clintons-speech-following-the-orlando-shooting/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "shooting",
+    "count": 551,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/post-politics/wp/2016/06/13/hillary-clintons-speech-following-the-orlando-shooting/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "fact",
+    "count": 300,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20150816005009/http://www.hillaryclinton.com:80/briefing/factsheets/2015/07/13/email-facts/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "panel",
+    "count": 138,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20070625210514/http://clinton.senate.gov/news/statements/details.cfm?id=277627",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "labor",
+    "count": 138,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20070625210514/http://clinton.senate.gov/news/statements/details.cfm?id=277627",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "health",
+    "count": 138,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20070625210514/http://clinton.senate.gov/news/statements/details.cfm?id=277627",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "service",
+    "count": 138,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20070625210514/http://clinton.senate.gov/news/statements/details.cfm?id=277627",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  }
+]

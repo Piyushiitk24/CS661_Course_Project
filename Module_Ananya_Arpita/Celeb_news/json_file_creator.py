@@ -18,67 +18,64 @@ try:
 except FileNotFoundError:
     raise FileNotFoundError("The dataset file 'master_dataset.csv' was not found. Please check the file path.")
 
-# Ensure required columns exist
+# Check required columns
 required_columns = ['clean_title', 'tweet_count', 'news_url', 'source', 'type']
 missing_columns = [col for col in required_columns if col not in df.columns]
 if missing_columns:
     raise ValueError(f"The following required columns are missing from the dataset: {missing_columns}")
 
 # Drop rows with missing values in required columns
-df = df.dropna(subset=['clean_title', 'tweet_count', 'news_url', 'source', 'type'])
+df = df.dropna(subset=required_columns)
 if df.empty:
     raise ValueError("The dataset is empty after filtering. Please check the data.")
 
-# Filter rows containing 'selena gomez', 'selena', or 'gomez'
-selena_df = df[df['clean_title'].str.contains(r'\b(selena gomez|selena|gomez)\b', case=False, na=False, regex=True)]
-print(f"Number of rows after filtering for Selena Gomez: {len(selena_df)}")
+# Function to extract and save noun-based JSON for a celebrity
+def process_celebrity_data(df, celeb_name, output_filename):
+    # Regex-safe filtering
+    celeb_pattern = rf'\b({celeb_name.lower().replace(" ", "|")})\b'
+    filtered_df = df[df['clean_title'].str.contains(celeb_pattern, case=False, na=False, regex=True)]
+    print(f"Number of rows after filtering for {celeb_name.title()}: {len(filtered_df)}")
 
-# Initialize noun tweet count and URL dictionary
-noun_data_dict = defaultdict(lambda: {"count": 0, "urls": []})
+    noun_data_dict = defaultdict(lambda: {"count": 0, "urls": []})
 
-# Iterate and extract nouns
-for _, row in selena_df.iterrows():
-    text = row['clean_title']
-    tweet_count = row['tweet_count'] if not pd.isna(row['tweet_count']) else 0
-    news_url = row['news_url']
-    source = row['source']
-    url_type = row['type']  # Extract the type (e.g., fake/real)
+    for _, row in filtered_df.iterrows():
+        doc = nlp(row['clean_title'])
+        tweet_count = row['tweet_count'] if not pd.isna(row['tweet_count']) else 0
 
-    if pd.isna(text):
-        continue
+        for token in doc:
+            if token.pos_ == "NOUN":
+                noun = token.lemma_.lower()
+                if noun not in celeb_name.lower().split():  # skip parts of celeb name
+                    noun_data_dict[noun]["count"] += tweet_count
+                    noun_data_dict[noun]["urls"].append({
+                        "url": row['news_url'],
+                        "source": row['source'],
+                        "type": row['type']
+                    })
 
-    doc = nlp(text)
+    # Serialize nouns with count >= 50
+    noun_data = [
+        {"noun": noun, "count": data["count"], "urls": data["urls"]}
+        for noun, data in noun_data_dict.items()
+        if data["count"] >= 50
+    ]
 
-    for token in doc:
-        if token.pos_ == "NOUN":
-            noun = token.lemma_.lower()
-            if noun not in {"selena", "gomez"}:  # Skip target name
-                noun_data_dict[noun]["count"] += tweet_count
-                # Add URL, source, and type as a dictionary
-                noun_data_dict[noun]["urls"].append({
-                    "url": news_url,
-                    "source": source,
-                    "type": url_type
-                })
+    # Save to JSON
+    output_dir = os.path.join(os.getcwd(), "celeb_json")
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, output_filename)
 
-# Convert data to JSON serializable format, excluding nouns with count < 50
-noun_data = [
-    {"noun": noun, "count": data["count"], "urls": data["urls"]}
-    for noun, data in noun_data_dict.items()
-    if data["count"] >= 50  # Only include nouns with count >= 50
-]
+    try:
+        with open(output_path, "w") as f:
+            json.dump(noun_data, f, indent=2)
+        print(f"Output saved to {output_path}")
+    except IOError as e:
+        print(f"Error writing to file {output_path}: {e}")
 
-output_dir = os.path.join(os.getcwd(), "celeb_json")
-os.makedirs(output_dir, exist_ok=True)
-output_file = os.path.join(output_dir, "selena.json")
+    # Preview a few
+    for entry in noun_data[:10]:
+        print(f"{entry['noun']}: {entry['count']} URLs: {entry['urls']}")
 
-try:
-    with open(output_file, "w") as f:
-        json.dump(noun_data, f, indent=2)
-    print(f"Output saved to {output_file}")
-except IOError as e:
-    print(f"Error writing to file {output_file}: {e}")
+# Run for Kylie Jenner
 
-# Preview a few
-for noun_entry in noun_data[:10]:
-    print(f"{noun_entry['noun']}: {noun_entry['count']} URLs: {noun_entry['urls']}")
+process_celebrity_data(df, "michael obama", "michael_obama.json")

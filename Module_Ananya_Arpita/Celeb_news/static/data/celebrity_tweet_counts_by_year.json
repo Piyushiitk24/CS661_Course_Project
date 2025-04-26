@@ -1,0 +1,462 @@
+{
+    "Hillary Clinton": {
+        "2010": {
+            "real": 10,
+            "fake": 0,
+            "overall": 10
+        },
+        "2011": {
+            "real": 22,
+            "fake": 0,
+            "overall": 22
+        },
+        "2012": {
+            "real": 13,
+            "fake": 0,
+            "overall": 13
+        },
+        "2013": {
+            "real": 7,
+            "fake": 0,
+            "overall": 7
+        },
+        "2014": {
+            "real": 5,
+            "fake": 0,
+            "overall": 5
+        },
+        "2015": {
+            "real": 1927,
+            "fake": 0,
+            "overall": 1927
+        },
+        "2016": {
+            "real": 837,
+            "fake": 83,
+            "overall": 920
+        },
+        "2017": {
+            "real": 368,
+            "fake": 450,
+            "overall": 818
+        },
+        "2018": {
+            "real": 75,
+            "fake": 125,
+            "overall": 200
+        }
+    },
+    "Barack Obama": {
+        "2010": {
+            "real": 61,
+            "fake": 2,
+            "overall": 63
+        },
+        "2011": {
+            "real": 32,
+            "fake": 0,
+            "overall": 32
+        },
+        "2012": {
+            "real": 73,
+            "fake": 0,
+            "overall": 73
+        },
+        "2013": {
+            "real": 2,
+            "fake": 2,
+            "overall": 4
+        },
+        "2014": {
+            "real": 14,
+            "fake": 0,
+            "overall": 14
+        },
+        "2015": {
+            "real": 806,
+            "fake": 0,
+            "overall": 806
+        },
+        "2016": {
+            "real": 315,
+            "fake": 0,
+            "overall": 315
+        },
+        "2017": {
+            "real": 1165,
+            "fake": 120,
+            "overall": 1285
+        },
+        "2018": {
+            "real": 9174,
+            "fake": 1021,
+            "overall": 10195
+        }
+    },
+    "Donald Trump": {
+        "2010": {
+            "real": 0,
+            "fake": 2,
+            "overall": 2
+        },
+        "2011": {
+            "real": 0,
+            "fake": 9,
+            "overall": 9
+        },
+        "2012": {
+            "real": 0,
+            "fake": 5,
+            "overall": 5
+        },
+        "2013": {
+            "real": 0,
+            "fake": 1,
+            "overall": 1
+        },
+        "2016": {
+            "real": 1705,
+            "fake": 2233,
+            "overall": 3938
+        },
+        "2017": {
+            "real": 979,
+            "fake": 2379,
+            "overall": 3358
+        },
+        "2018": {
+            "real": 1711,
+            "fake": 5822,
+            "overall": 7533
+        }
+    },
+    "Kim Kardashian": {
+        "2010": {
+            "real": 0,
+            "fake": 131,
+            "overall": 131
+        },
+        "2011": {
+            "real": 0,
+            "fake": 415,
+            "overall": 415
+        },
+        "2012": {
+            "real": 0,
+            "fake": 1017,
+            "overall": 1017
+        },
+        "2013": {
+            "real": 0,
+            "fake": 846,
+            "overall": 846
+        },
+        "2014": {
+            "real": 1,
+            "fake": 1389,
+            "overall": 1390
+        },
+        "2015": {
+            "real": 38,
+            "fake": 2479,
+            "overall": 2517
+        },
+        "2016": {
+            "real": 64,
+            "fake": 4039,
+            "overall": 4103
+        },
+        "2017": {
+            "real": 5957,
+            "fake": 5231,
+            "overall": 11188
+        },
+        "2018": {
+            "real": 5192,
+            "fake": 16614,
+            "overall": 21806
+        }
+    },
+    "Taylor Swift": {
+        "2010": {
+            "real": 0,
+            "fake": 13,
+            "overall": 13
+        },
+        "2011": {
+            "real": 0,
+            "fake": 260,
+            "overall": 260
+        },
+        "2012": {
+            "real": 0,
+            "fake": 273,
+            "overall": 273
+        },
+        "2013": {
+            "real": 0,
+            "fake": 264,
+            "overall": 264
+        },
+        "2014": {
+            "real": 2,
+            "fake": 43,
+            "overall": 45
+        },
+        "2015": {
+            "real": 2,
+            "fake": 865,
+            "overall": 867
+        },
+        "2016": {
+            "real": 0,
+            "fake": 353,
+            "overall": 353
+        },
+        "2017": {
+            "real": 10228,
+            "fake": 3720,
+            "overall": 13948
+        },
+        "2018": {
+            "real": 3894,
+            "fake": 7795,
+            "overall": 11689
+        }
+    },
+    "Kylie Jenner": {
+        "2010": {
+            "real": 0,
+            "fake": 4,
+            "overall": 4
+        },
+        "2011": {
+            "real": 0,
+            "fake": 62,
+            "overall": 62
+        },
+        "2012": {
+            "real": 0,
+            "fake": 147,
+            "overall": 147
+        },
+        "2013": {
+            "real": 0,
+            "fake": 83,
+            "overall": 83
+        },
+        "2014": {
+            "real": 1,
+            "fake": 435,
+            "overall": 436
+        },
+        "2015": {
+            "real": 57,
+            "fake": 2341,
+            "overall": 2398
+        },
+        "2016": {
+            "real": 38,
+            "fake": 2134,
+            "overall": 2172
+        },
+        "2017": {
+            "real": 5041,
+            "fake": 4757,
+            "overall": 9798
+        },
+        "2018": {
+            "real": 4004,
+            "fake": 11068,
+            "overall": 15072
+        }
+    },
+    "Jennifer Aniston": {
+        "2010": {
+            "real": 0,
+            "fake": 744,
+            "overall": 744
+        },
+        "2011": {
+            "real": 0,
+            "fake": 259,
+            "overall": 259
+        },
+        "2012": {
+            "real": 0,
+            "fake": 476,
+            "overall": 476
+        },
+        "2013": {
+            "real": 1,
+            "fake": 612,
+            "overall": 613
+        },
+        "2014": {
+            "real": 1,
+            "fake": 1046,
+            "overall": 1047
+        },
+        "2015": {
+            "real": 0,
+            "fake": 702,
+            "overall": 702
+        },
+        "2016": {
+            "real": 13,
+            "fake": 691,
+            "overall": 704
+        },
+        "2017": {
+            "real": 761,
+            "fake": 1857,
+            "overall": 2618
+        },
+        "2018": {
+            "real": 2699,
+            "fake": 7114,
+            "overall": 9813
+        }
+    },
+    "Angelina Jolie": {
+        "2010": {
+            "real": 0,
+            "fake": 564,
+            "overall": 564
+        },
+        "2011": {
+            "real": 0,
+            "fake": 269,
+            "overall": 269
+        },
+        "2012": {
+            "real": 0,
+            "fake": 534,
+            "overall": 534
+        },
+        "2013": {
+            "real": 0,
+            "fake": 494,
+            "overall": 494
+        },
+        "2014": {
+            "real": 0,
+            "fake": 839,
+            "overall": 839
+        },
+        "2015": {
+            "real": 0,
+            "fake": 612,
+            "overall": 612
+        },
+        "2016": {
+            "real": 0,
+            "fake": 2516,
+            "overall": 2516
+        },
+        "2017": {
+            "real": 1619,
+            "fake": 6082,
+            "overall": 7701
+        },
+        "2018": {
+            "real": 1054,
+            "fake": 8915,
+            "overall": 9969
+        }
+    },
+    "Brad Pitt": {
+        "2010": {
+            "real": 0,
+            "fake": 391,
+            "overall": 391
+        },
+        "2011": {
+            "real": 0,
+            "fake": 1028,
+            "overall": 1028
+        },
+        "2012": {
+            "real": 0,
+            "fake": 878,
+            "overall": 878
+        },
+        "2013": {
+            "real": 0,
+            "fake": 1069,
+            "overall": 1069
+        },
+        "2014": {
+            "real": 0,
+            "fake": 2238,
+            "overall": 2238
+        },
+        "2015": {
+            "real": 0,
+            "fake": 1158,
+            "overall": 1158
+        },
+        "2016": {
+            "real": 0,
+            "fake": 4451,
+            "overall": 4451
+        },
+        "2017": {
+            "real": 1513,
+            "fake": 4296,
+            "overall": 5809
+        },
+        "2018": {
+            "real": 664,
+            "fake": 9436,
+            "overall": 10100
+        }
+    },
+    "Selena Gomez": {
+        "2010": {
+            "real": 0,
+            "fake": 9,
+            "overall": 9
+        },
+        "2011": {
+            "real": 1,
+            "fake": 393,
+            "overall": 394
+        },
+        "2012": {
+            "real": 0,
+            "fake": 591,
+            "overall": 591
+        },
+        "2013": {
+            "real": 17,
+            "fake": 745,
+            "overall": 762
+        },
+        "2014": {
+            "real": 0,
+            "fake": 1177,
+            "overall": 1177
+        },
+        "2015": {
+            "real": 1,
+            "fake": 1679,
+            "overall": 1680
+        },
+        "2016": {
+            "real": 140,
+            "fake": 1544,
+            "overall": 1684
+        },
+        "2017": {
+            "real": 6813,
+            "fake": 7029,
+            "overall": 13842
+        },
+        "2018": {
+            "real": 4604,
+            "fake": 14839,
+            "overall": 19443
+        }
+    }
+}
