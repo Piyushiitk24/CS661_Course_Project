@@ -1,0 +1,108 @@
+/* ========== FONT & BASE STYLING ========== */
+.top-news-root {
+  padding: 2rem;
+  padding-bottom: 4rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #102434; /* Dark background */
+  color: #e2e2e2; /* Light text */
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: auto; /* ✅ Enable horizontal scroll if needed */
+  overflow-y: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #22f3e3;
+  font-size: 3rem;
+}
+
+/* ========== CONTROL PANEL ========== */
+.control-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.control-panel label span {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.control-panel select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+
+.slider-label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  transform: translate(-6px, -7px);
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slider-value {
+  font-weight: bold;
+  transform: translate(0px, -4px);
+}
+
+input[type="range"] {
+  width: 180px;
+  accent-color: #3b82f6;
+  transform: translate(0px, -4px);
+}
+
+/* ========== HEATMAP HEADER ========== */
+.top-news-root h3 {
+  color: #22f3e3;
+  font-size: 1.8rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* ========== DARK MODE SUPPORT ========== */
+@media (prefers-color-scheme: dark) {
+  .top-news-root {
+    background-color: #102434 !important;
+    color: #e2e2e2 !important;
+  }
+
+  .top-news-root h2,
+  .top-news-root h3 {
+    color: #22f3e3 !important;
+  }
+
+  .control-panel label span,
+  .slider-label,
+  .slider-value {
+    color: #e2e2e2 !important;
+  }
+
+  select,
+  input[type="range"],
+  input[type="checkbox"] {
+    background-color: #e2e2e2;
+    color: #080808;
+    border: 1px solid #444;
+  }
+}
