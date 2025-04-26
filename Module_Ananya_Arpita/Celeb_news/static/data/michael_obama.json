@@ -1,0 +1,3211 @@
+[
+  {
+    "noun": "trump",
+    "count": 1677,
+    "urls": [
+      {
+        "url": "www.infowars.com/report-obama-pleads-with-jay-z-to-prevent-other-hip-hop-artists-meeting-with-trump/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "www.theguardian.com/us-news/2017/mar/04/donald-trump-accuses-obama-of-wire-tapping-his-office-before-election",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "www.newsweek.com/tom-arnold-trump-tapes-michael-cohen-viceland-apprentice-plea-deal-flipping-1084088",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.thedailybeast.com/sarah-silverman-and-michael-sheen-broke-up-because-of-trump-and-brexit",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "usaconservativereport.com/2017/08/breaking-leaked-picture-obama-dragged-judge-handcuffs-wiretapping-trump/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://portalstate.com/index.php/2017/05/08/obama-canceled-it-trump-reinstated-it-a-very-sacred-day-is-back/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.thegatewaypundit.com/2018/06/trump-approval-rating-better-than-obama-and-reagan-at-same-point-in-their-presidencies/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "our.news/2017/09/05/trump-orders-13-obama-deep-state-operatives-arrested-for-treason/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://usbreakingnews.net/bombshell-obama-paid-fbi-informant-over-1-million-to-do-it-to-trump-even-after-the-election/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "www.newsweek.com/obama-not-trump-may-be-invited-royal-wedding-prince-harry-and-meghan-markle-722899",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.americanproud.info/2018/01/22/singer-dolly-parton-trump-in-one-year-is-already-better-than-16-years-of-bush-obama-put-together-this-stupid-liberals-doing-everything-to-impeach-him-but-we-stan/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "office",
+    "count": 151,
+    "urls": [
+      {
+        "url": "www.theguardian.com/us-news/2017/mar/04/donald-trump-accuses-obama-of-wire-tapping-his-office-before-election",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.newscats.org/?p=11110",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "election",
+    "count": 61,
+    "urls": [
+      {
+        "url": "www.theguardian.com/us-news/2017/mar/04/donald-trump-accuses-obama-of-wire-tapping-his-office-before-election",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "http://usbreakingnews.net/bombshell-obama-paid-fbi-informant-over-1-million-to-do-it-to-trump-even-after-the-election/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "deal",
+    "count": 196,
+    "urls": [
+      {
+        "url": "www.newsweek.com/tom-arnold-trump-tapes-michael-cohen-viceland-apprentice-plea-deal-flipping-1084088",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://money.cnn.com/2018/03/08/media/barack-obama-netflix/index.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "thehill.com/policy/national-security/355749-fbi-uncovered-russian-bribery-plot-before-obama-administration",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://diamondandsilk.americandailynews.org/2018/07/02/iranian-official-drops-bombshell-obama-secretly-gave-citizenship-to-2500-iranians-as-part-of-nuke-deal/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "speech",
+    "count": 81,
+    "urls": [
+      {
+        "url": "www.washingtonpost.com/video/national/in-final-speech-michelle-obama-tells-young-people-dont-be-afraid/2017/01/06/057e265a-d435-11e6-9651-54a0154cf5b3_video.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "people",
+    "count": 371,
+    "urls": [
+      {
+        "url": "www.washingtonpost.com/video/national/in-final-speech-michelle-obama-tells-young-people-dont-be-afraid/2017/01/06/057e265a-d435-11e6-9651-54a0154cf5b3_video.html",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "www.businessinsider.com/clint-eastwood-president-obama-hoax-2012-9",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.thewrap.com/michael-douglas-accuser-susan-braudy-sexual-misconduct-today-video/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://worldnews.easybranches.com/entertainment/celebrity/michael-vartan-teases-major-conflict-for-season-2-of-the-arrangement-no-one-wants-to-watch-people-have-a-great-life-713014",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "vikander",
+    "count": 587,
+    "urls": [
+      {
+        "url": "www.digitalspy.com/showbiz/news/a840769/michael-fassbender-alicia-vikander-married/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "hollywoodlife.com/2015/09/17/alicia-vikander-michael-fassbender-break-up-split-relationship/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://people.com/movies/alicia-vikander-michael-fassbender-honeymoon-in-italy/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/movies/alicia-vikander-michael-fassbender-married-life/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "celebrity",
+    "count": 101,
+    "urls": [
+      {
+        "url": "ew.com/news/2017/01/10/barack-obama-farewell-address-celebrities-react/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "klou.iheart.com/content/2017-01-20-celebrities-thank-barack-obama-on-last-day-as-president/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "people.com/celebrity/celebrity-aprils-fool-day-jokes-2017/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "day",
+    "count": 1287,
+    "urls": [
+      {
+        "url": "klou.iheart.com/content/2017-01-20-celebrities-thank-barack-obama-on-last-day-as-president/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "people.com/celebrity/celebrity-aprils-fool-day-jokes-2017/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "en.wikipedia.org/wiki/Barack_Obama_Day",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://people.com/parents/chad-michael-murray-first-image-daughter-wife-sarah-roemer-mothers-day/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://portalstate.com/index.php/2017/05/08/obama-canceled-it-trump-reinstated-it-a-very-sacred-day-is-back/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "president",
+    "count": 912,
+    "urls": [
+      {
+        "url": "klou.iheart.com/content/2017-01-20-celebrities-thank-barack-obama-on-last-day-as-president/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "www.aol.com/article/news/2017/01/16/barack-obama-michelle-obama-wishes-she-didnt-have-to-be-married-to-me-while-im-president/21655805/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.essence.com/celebrity/barack-obama-birthday-swag-photos/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://abcnews.go.com/Politics/full-interview-transcript-president-barack-obama/story?id=35203825",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.whitehouse.gov/the-press-office/2012/06/23/op-ed-president-obama-president-obama-reflects-impact-title-ix",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.politifact.com/truth-o-meter/statements/2014/jan/24/patrick-kennedy/has-potency-pot-changed-president-obama-was-high-s/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "sneak",
+    "count": 112,
+    "urls": [
+      {
+        "url": "www.inquisitr.com/4661415/michelle-obama-didnt-try-to-sneak-a-spot-on-prince-harry-and-meghan-markles-wedding-guest-list-debunked/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.longroom.com/discussion/931686/will-and-grace-sneak-peek-will-and-michael-back-together-after-20-years",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "spot",
+    "count": 61,
+    "urls": [
+      {
+        "url": "www.inquisitr.com/4661415/michelle-obama-didnt-try-to-sneak-a-spot-on-prince-harry-and-meghan-markles-wedding-guest-list-debunked/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "wedding",
+    "count": 227,
+    "urls": [
+      {
+        "url": "www.inquisitr.com/4661415/michelle-obama-didnt-try-to-sneak-a-spot-on-prince-harry-and-meghan-markles-wedding-guest-list-debunked/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "http://time.com/5286900/bishop-michael-curry-good-morning-america/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.etonline.com/michael-fassbender-and-alicia-vikander-honeymoon-italy-after-secret-wedding-89835",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/movies/alicia-vikander-wedding-ring/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/movies/alicia-vikander-michael-fassbender-honeymoon-in-italy/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "www.newsweek.com/obama-not-trump-may-be-invited-royal-wedding-prince-harry-and-meghan-markle-722899",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "guest",
+    "count": 61,
+    "urls": [
+      {
+        "url": "www.inquisitr.com/4661415/michelle-obama-didnt-try-to-sneak-a-spot-on-prince-harry-and-meghan-markles-wedding-guest-list-debunked/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "list",
+    "count": 61,
+    "urls": [
+      {
+        "url": "www.inquisitr.com/4661415/michelle-obama-didnt-try-to-sneak-a-spot-on-prince-harry-and-meghan-markles-wedding-guest-list-debunked/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "haine",
+    "count": 3058,
+    "urls": [
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "www.latimes.com/business/hollywood/la-fi-ct-gma-strahan-haines-20180723-story.html",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "gma",
+    "count": 2451,
+    "urls": [
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.thewrap.com/wonder-why-michael-strahan-wasnt-on-gma-yesterday-he-lost-a-little-bit-of-his-pinky/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "hour",
+    "count": 3058,
+    "urls": [
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "www.latimes.com/business/hollywood/la-fi-ct-gma-strahan-haines-20180723-story.html",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "variety.com/2018/tv/news/michael-strahan-sara-haines-good-morning-america-1202880388/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "gift",
+    "count": 115,
+    "urls": [
+      {
+        "url": "www.imdb.com/news/ni61487393",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.etonline.com/michelle-obama-gets-surprise-gift-bruno-mars-concert-see-pics-88363",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/home/michael-strahan-gift-guide-men/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "dailyfeed.news/russian-mansions-obama-seized-were-meant-to-be-illegal-gifts-to-sasha-and-malia/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "video",
+    "count": 1547,
+    "urls": [
+      {
+        "url": "www.newsweek.com/video-barack-and-michelle-obama-cut-loose-beyonce-and-jay-z-concert-1047800",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.motherjones.com/politics/2012/09/secret-video-romney-private-fundraiser",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "rating",
+    "count": 1052,
+    "urls": [
+      {
+        "url": "www.celebdirtylaundry.com/2017/kelly-ripa-jealous-of-michael-strahans-ratings-success-on-the-100000-pyramid-game-show/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.thegatewaypundit.com/2018/06/trump-approval-rating-better-than-obama-and-reagan-at-same-point-in-their-presidencies/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "success",
+    "count": 104,
+    "urls": [
+      {
+        "url": "www.celebdirtylaundry.com/2017/kelly-ripa-jealous-of-michael-strahans-ratings-success-on-the-100000-pyramid-game-show/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://parade.com/667210/paulettecohn/michael-vartan-talks-the-dark-side-of-the-arrangement-and-to-what-lengths-terence-will-go-for-success/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.msn.com/en-ca/entertainment/celebrity/michael-douglas-praises-wife-catherine-zeta-jones-for-earning-her-success/ar-AAzgpuC",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "show",
+    "count": 206,
+    "urls": [
+      {
+        "url": "www.celebdirtylaundry.com/2017/kelly-ripa-jealous-of-michael-strahans-ratings-success-on-the-100000-pyramid-game-show/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.hindustantimes.com/world-news/do-i-need-a-british-accent-asks-barack-obama-as-prince-harry-interviews-him-for-radio-show/story-aWKJqVU9gwEI1VpHOCCPiI.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.dailymail.co.uk/tvshowbiz/article-6162063/Gigi-Hadid-rocks-dramatic-cut-black-gown-Michael-Kors-NYFW-sister-Bella.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "tv",
+    "count": 143,
+    "urls": [
+      {
+        "url": "radaronline.com/exclusives/2018/07/michael-strahan-furious-alex-rodriguez-stole-tv-spotlight/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.washingtonpost.com/news/arts-and-entertainment/wp/2017/07/24/michael-phelps-didnt-actually-race-a-real-shark-on-tv-and-viewers-arent-happy/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.washingtonpost.com/news/arts-and-entertainment/wp/2017/07/24/michael-phelps-didnt-actually-race-a-real-shark-on-tv-and-viewers-arent-happy/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "replace",
+    "count": 72,
+    "urls": [
+      {
+        "url": "celebrityinsider.org/alex-rodriguez-is-reportedly-gunning-to-replace-michael-strahan-at-gma-173104/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "http://celebrityinsider.org/alex-rodriguez-is-reportedly-gunning-to-replace-michael-strahan-at-gma-173104/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "joke",
+    "count": 53,
+    "urls": [
+      {
+        "url": "people.com/celebrity/celebrity-aprils-fool-day-jokes-2017/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.reuters.com/article/us-usa-obama-portrait/obama-unveils-official-portraits-jokes-about-wifes-hotness-idUSKBN1FW250",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "feud",
+    "count": 78,
+    "urls": [
+      {
+        "url": "www.dailymail.co.uk/news/article-4237602/Robin-Roberts-Michael-Strahan-spark-feud-rumors.html",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "www.dailymail.co.uk/news/article-4237602/Robin-Roberts-Michael-Strahan-spark-feud-rumors.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "rumor",
+    "count": 78,
+    "urls": [
+      {
+        "url": "www.dailymail.co.uk/news/article-4237602/Robin-Roberts-Michael-Strahan-spark-feud-rumors.html",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "www.dailymail.co.uk/news/article-4237602/Robin-Roberts-Michael-Strahan-spark-feud-rumors.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "year",
+    "count": 429,
+    "urls": [
+      {
+        "url": "time.com/5302043/ben-rhodes-obama-white-house/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.oversixty.com.au/lifestyle/relationships/the-truth-about-michael-j-fox-and-tracy-pollans-inspiring-30-year-love-story",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.independent.ie/entertainment/music/michael-buble-returns-with-new-album-two-years-after-sons-cancer-diagnosis-37362367.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.longroom.com/discussion/931686/will-and-grace-sneak-peek-will-and-michael-back-together-after-20-years",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.hollywoodreporter.com/news/anthony-michael-hall-sentenced-three-years-probation-assault-1041733",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://www.newsdonaldtrumps.com/robert-redford-says-michelle-and-barack-obama-should-get-five-years-in-prison/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://maxipolitics.com/fbi-raids-obama-find-massive-secret-that-was-hidden-for-years/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.americanproud.info/2018/01/22/singer-dolly-parton-trump-in-one-year-is-already-better-than-16-years-of-bush-obama-put-together-this-stupid-liberals-doing-everything-to-impeach-him-but-we-stan/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.americanproud.info/2018/01/22/singer-dolly-parton-trump-in-one-year-is-already-better-than-16-years-of-bush-obama-put-together-this-stupid-liberals-doing-everything-to-impeach-him-but-we-stan/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.politifact.com/truth-o-meter/statements/2011/mar/15/barack-obama/barack-obama-says-us-oil-production-last-year-was-/",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.politifact.com/truth-o-meter/statements/2011/mar/15/barack-obama/barack-obama-says-us-oil-production-last-year-was-/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "chelsea",
+    "count": 156,
+    "urls": [
+      {
+        "url": "www.washingtonpost.com/world/national-security/obama-largely-commutes-sentence-of-chelsea-manning-us-soldier-convicted-for-leaking-classified-information/2017/01/17/f3205a1a-dcf8-11e6-ad42-f3375f271c9c_story.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "soldier",
+    "count": 156,
+    "urls": [
+      {
+        "url": "www.washingtonpost.com/world/national-security/obama-largely-commutes-sentence-of-chelsea-manning-us-soldier-convicted-for-leaking-classified-information/2017/01/17/f3205a1a-dcf8-11e6-ad42-f3375f271c9c_story.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "information",
+    "count": 156,
+    "urls": [
+      {
+        "url": "www.washingtonpost.com/world/national-security/obama-largely-commutes-sentence-of-chelsea-manning-us-soldier-convicted-for-leaking-classified-information/2017/01/17/f3205a1a-dcf8-11e6-ad42-f3375f271c9c_story.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "racism",
+    "count": 314,
+    "urls": [
+      {
+        "url": "caffertyfile.blogs.cnn.com/2011/09/27/has-president-obama-made-racism-worse/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.bbc.com/news/av/entertainment-arts-24934979/oprah-winfrey-the-butler-racism-and-obama",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "cover",
+    "count": 92,
+    "urls": [
+      {
+        "url": "okmagazine.com/news/michelle-obama-naked-topless-cover-spanish-lifestyle-magazine/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://article.wn.com/view/2018/05/18/Michael_B_Jordan_Calls_Out_the_Real_Hero_Behind_His_Shirtles/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "midday",
+    "count": 632,
+    "urls": [
+      {
+        "url": "www.latimes.com/business/hollywood/la-fi-ct-gma-strahan-haines-20180723-story.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "morning",
+    "count": 632,
+    "urls": [
+      {
+        "url": "www.latimes.com/business/hollywood/la-fi-ct-gma-strahan-haines-20180723-story.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "worth",
+    "count": 215,
+    "urls": [
+      {
+        "url": "www.bankrate.com/lifestyle/celebrity-money/michael-strahan-net-worth/",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "love",
+    "count": 54,
+    "urls": [
+      {
+        "url": "www.imdb.com/news/ni61311486",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.oversixty.com.au/lifestyle/relationships/the-truth-about-michael-j-fox-and-tracy-pollans-inspiring-30-year-love-story",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "slavery",
+    "count": 1208,
+    "urls": [
+      {
+        "url": "www.nytimes.com/2018/05/01/arts/music/kanye-west-charlamagne-interview-tmz.html",
+        "source": "gossipcop",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "interview",
+    "count": 2015,
+    "urls": [
+      {
+        "url": "www.nytimes.com/2018/05/01/arts/music/kanye-west-charlamagne-interview-tmz.html",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.pinknews.co.uk/2017/10/11/george-michael-said-he-felt-picked-on-by-god-in-last-ever-interview/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://abcnews.go.com/Politics/full-interview-transcript-president-barack-obama/story?id=35203825",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "romance",
+    "count": 81,
+    "urls": [
+      {
+        "url": "hollywoodlife.com/2017/10/19/chris-pratt-anna-faris-dating-michael-barrett-sad-relationship/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://zig.com/eonline/photos/rachel-mcadams-relationship-history-relive-her-1675195",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "death",
+    "count": 51,
+    "urls": [
+      {
+        "url": "www.mediaite.com/print/the-national-enquirer-published-a-fake-death-photo-of-george-michael/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.billboard.com/articles/news/8460004/anthony-bourdain-death-reactions-chrissy-teigen-busy-philipps-gordon-ramsay",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.dailystar.co.uk/news/latest-news/684361/michael-jackson-truth-LaToya-death-cause-message-psychic-tyler-henry-grave-king-of-pop",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "photo",
+    "count": 65,
+    "urls": [
+      {
+        "url": "www.mediaite.com/print/the-national-enquirer-published-a-fake-death-photo-of-george-michael/",
+        "source": "gossipcop",
+        "type": "fake"
+      },
+      {
+        "url": "https://www.thewrap.com/the-end-of-live-with-kelly-and-michael-a-timeline-photos/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "wife",
+    "count": 315,
+    "urls": [
+      {
+        "url": "https://www.usmagazine.com/celebrity-moms/news/michael-buble-wife-luisana-lopilato-welcome-baby-no-3/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/style/chad-michael-murray-prom-wife-cinderella-story/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.usmagazine.com/celebrity-moms/news/michael-buble-wife-luisana-lopilato-expecting-baby-number-three/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.reuters.com/article/us-usa-obama-portrait/obama-unveils-official-portraits-jokes-about-wifes-hotness-idUSKBN1FW250",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/parents/chad-michael-murray-first-image-daughter-wife-sarah-roemer-mothers-day/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "baby",
+    "count": 281,
+    "urls": [
+      {
+        "url": "https://www.usmagazine.com/celebrity-moms/news/michael-buble-wife-luisana-lopilato-welcome-baby-no-3/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.usmagazine.com/celebrity-moms/news/michael-buble-wife-luisana-lopilato-expecting-baby-number-three/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://celebritybabyscoop.com/2018/07/07/michael-buble-reveals-the-sex-of-baby-no-3-and-its-a/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/parents/chad-michael-murray-first-image-daughter-wife-sarah-roemer-mothers-day/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "brexit",
+    "count": 65,
+    "urls": [
+      {
+        "url": "https://www.thedailybeast.com/sarah-silverman-and-michael-sheen-broke-up-because-of-trump-and-brexit",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "radio",
+    "count": 1744,
+    "urls": [
+      {
+        "url": "https://www.hindustantimes.com/world-news/do-i-need-a-british-accent-asks-barack-obama-as-prince-harry-interviews-him-for-radio-show/story-aWKJqVU9gwEI1VpHOCCPiI.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://www.youtube.com/watch?v=xcfkmklTgDs",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "role",
+    "count": 55,
+    "urls": [
+      {
+        "url": "https://variety.com/2018/tv/news/michael-b-jordan-issa-rae-white-roles-actors-on-actors-1202829948/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.etonline.com/prince-harry-calls-princess-diana-my-ideal-role-model-obama-foundation-summit-90275",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "man",
+    "count": 411,
+    "urls": [
+      {
+        "url": "https://variety.com/2018/tv/news/michael-b-jordan-issa-rae-white-roles-actors-on-actors-1202829948/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.huffpost.com/entry/beth-behrs-wedding-michael-gladis_n_5b576959e4b0de86f4912af7",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/home/michael-strahan-gift-guide-men/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://pix11.com/2017/01/24/man-pardoned-by-obama-shot-and-killed-by-masked-men-at-halfway-house/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://pix11.com/2017/01/24/man-pardoned-by-obama-shot-and-killed-by-masked-men-at-halfway-house/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "friend",
+    "count": 52,
+    "urls": [
+      {
+        "url": "https://www.usmagazine.com/celebrity-news/news/anna-faris-friends-approve-of-new-boyfriend-michael-barrett/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "boyfriend",
+    "count": 207,
+    "urls": [
+      {
+        "url": "https://www.usmagazine.com/celebrity-news/news/anna-faris-friends-approve-of-new-boyfriend-michael-barrett/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.tmz.com/2017/12/05/anna-faris-michael-barrett-house-hunting-venice-photos/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://meaww.com/anna-farris-gushes-as-she-talks-about-date-nights-with-boyfriend-michael-barrett",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.yourtango.com/2018318606/who-is-michael-barrett-new-details-anna-fariss-boyfriend",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "brief",
+    "count": 54,
+    "urls": [
+      {
+        "url": "https://www.theguardian.com/uk-news/2017/dec/27/boxers-or-briefs-prince-harrys-quickfire-questions-for-obama",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "question",
+    "count": 54,
+    "urls": [
+      {
+        "url": "https://www.theguardian.com/uk-news/2017/dec/27/boxers-or-briefs-prince-harrys-quickfire-questions-for-obama",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "arrangement",
+    "count": 54,
+    "urls": [
+      {
+        "url": "https://worldnews.easybranches.com/entertainment/celebrity/michael-vartan-teases-major-conflict-for-season-2-of-the-arrangement-no-one-wants-to-watch-people-have-a-great-life-713014",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://parade.com/667210/paulettecohn/michael-vartan-talks-the-dark-side-of-the-arrangement-and-to-what-lengths-terence-will-go-for-success/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "life",
+    "count": 582,
+    "urls": [
+      {
+        "url": "https://worldnews.easybranches.com/entertainment/celebrity/michael-vartan-teases-major-conflict-for-season-2-of-the-arrangement-no-one-wants-to-watch-people-have-a-great-life-713014",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.bet.com/style/living/2018/02/08/michael-b--jordan-social-life.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/movies/alicia-vikander-michael-fassbender-married-life/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "portrait",
+    "count": 68,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/local/wp/2018/03/06/michelle-obama-meets-the-2-year-old-girl-who-was-captivated-by-her-portrait/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.reuters.com/article/us-usa-obama-portrait/obama-unveils-official-portraits-jokes-about-wifes-hotness-idUSKBN1FW250",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "broadway",
+    "count": 301,
+    "urls": [
+      {
+        "url": "https://www.bbc.com/news/entertainment-arts-44534266",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "hero",
+    "count": 62,
+    "urls": [
+      {
+        "url": "https://article.wn.com/view/2018/05/18/Michael_B_Jordan_Calls_Out_the_Real_Hero_Behind_His_Shirtles/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "shirtless",
+    "count": 182,
+    "urls": [
+      {
+        "url": "https://article.wn.com/view/2018/05/18/Michael_B_Jordan_Calls_Out_the_Real_Hero_Behind_His_Shirtles/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.longroom.com/discussion/538419/michael-phelps-deserves-a-gold-medal-for-his-shirtless-selfie-with-son-boomer",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.nydailynews.com/entertainment/movies/michael-b-jordan-fan-broke-retainer-shirtless-article-1.3861033",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "essence",
+    "count": 62,
+    "urls": [
+      {
+        "url": "https://article.wn.com/view/2018/05/18/Michael_B_Jordan_Calls_Out_the_Real_Hero_Behind_His_Shirtles/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "music",
+    "count": 95,
+    "urls": [
+      {
+        "url": "https://www.dailymail.co.uk/tvshowbiz/article-6272425/Michael-Buble-QUITS-music-following-son-Noahs-life-changing-cancer-battle.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/tv/kim-kardashian-halloween-music-icons-costumes-madonna-aaliyah-kourtney-kardashian-michael-jackson/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "house",
+    "count": 210,
+    "urls": [
+      {
+        "url": "https://www.tmz.com/2017/12/05/anna-faris-michael-barrett-house-hunting-venice-photos/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://pix11.com/2017/01/24/man-pardoned-by-obama-shot-and-killed-by-masked-men-at-halfway-house/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "hunting",
+    "count": 54,
+    "urls": [
+      {
+        "url": "https://www.tmz.com/2017/12/05/anna-faris-michael-barrett-house-hunting-venice-photos/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "harassment",
+    "count": 52,
+    "urls": [
+      {
+        "url": "https://www.indiewire.com/2018/01/catherine-zeta-jones-michael-douglas-sexual-harassment-1201917639/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "denial",
+    "count": 52,
+    "urls": [
+      {
+        "url": "https://www.indiewire.com/2018/01/catherine-zeta-jones-michael-douglas-sexual-harassment-1201917639/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "way",
+    "count": 148,
+    "urls": [
+      {
+        "url": "https://www.indiewire.com/2018/01/catherine-zeta-jones-michael-douglas-sexual-harassment-1201917639/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://perezhilton.com/joe-jackson-compares-grandson-blanket-to-son-michael-jackson-youtube-video/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.rollingstone.com/culture/culture-sports/michael-phelps-defends-shark-race-how-we-did-it-was-the-best-way-252991/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://web.archive.org/web/20080126233643/http://www.chicagotribune.com:80/news/local/chi-070403obama-ballot,0,1843097.story?page=1",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "fire",
+    "count": 70,
+    "urls": [
+      {
+        "url": "https://www.usmagazine.com/celebrity-news/news/katy-perry-under-fire-for-comparing-black-hair-to-barack-obama-w479647/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "hair",
+    "count": 70,
+    "urls": [
+      {
+        "url": "https://www.usmagazine.com/celebrity-news/news/katy-perry-under-fire-for-comparing-black-hair-to-barack-obama-w479647/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "judge",
+    "count": 148,
+    "urls": [
+      {
+        "url": "https://people.com/music/wade-robson-michael-jackson-lawsuit-dismissed/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "usaconservativereport.com/2017/08/breaking-leaked-picture-obama-dragged-judge-handcuffs-wiretapping-trump/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "robson",
+    "count": 55,
+    "urls": [
+      {
+        "url": "https://people.com/music/wade-robson-michael-jackson-lawsuit-dismissed/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "abuse",
+    "count": 55,
+    "urls": [
+      {
+        "url": "https://people.com/music/wade-robson-michael-jackson-lawsuit-dismissed/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "lawsuit",
+    "count": 55,
+    "urls": [
+      {
+        "url": "https://people.com/music/wade-robson-michael-jackson-lawsuit-dismissed/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "side",
+    "count": 53,
+    "urls": [
+      {
+        "url": "https://parade.com/667210/paulettecohn/michael-vartan-talks-the-dark-side-of-the-arrangement-and-to-what-lengths-terence-will-go-for-success/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "length",
+    "count": 53,
+    "urls": [
+      {
+        "url": "https://parade.com/667210/paulettecohn/michael-vartan-talks-the-dark-side-of-the-arrangement-and-to-what-lengths-terence-will-go-for-success/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "terence",
+    "count": 53,
+    "urls": [
+      {
+        "url": "https://parade.com/667210/paulettecohn/michael-vartan-talks-the-dark-side-of-the-arrangement-and-to-what-lengths-terence-will-go-for-success/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "grandmother",
+    "count": 73,
+    "urls": [
+      {
+        "url": "https://people.com/tv/chad-michael-murray-grandmother-murder-hollywood-medium/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "family",
+    "count": 284,
+    "urls": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Family_of_Barack_Obama",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.today.com/parents/michael-phelps-family-celebrate-boomer-s-first-birthday-t111244",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.hollywoodreporter.com/live-feed/originals-charles-michael-davis-key-699471",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "birthday",
+    "count": 314,
+    "urls": [
+      {
+        "url": "https://www.elitedaily.com/p/michelle-obama-wished-barack-obama-happy-birthday-with-a-thoughtful-instagram-post-9998543",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.etonline.com/michael-bubles-son-noah-celebrates-4th-birthday-awesome-spider-man-party-see-pics-86234",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.foxnews.com/entertainment/snl-star-michael-che-surprises-scarlett-johansson-colin-jost-with-clown-at-intimate-birthday-dinner",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.today.com/parents/michael-phelps-family-celebrate-boomer-s-first-birthday-t111244",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.amny.com/entertainment/celebrities/paris-jackson-sends-birthday-wishes-to-dad-michael-thanks-for-the-magic-1.14097090",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "trailer",
+    "count": 56,
+    "urls": [
+      {
+        "url": "http://www.justjared.com/2018/09/26/michael-b-jordan-put-his-sculpted-body-on-display-in-creed-ii-trailer-poster-watch-now/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.polygon.com/2018/6/20/17482602/creed-2-trailer",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "talk",
+    "count": 77,
+    "urls": [
+      {
+        "url": "https://money.cnn.com/2018/03/08/media/barack-obama-netflix/index.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "production",
+    "count": 93,
+    "urls": [
+      {
+        "url": "https://money.cnn.com/2018/03/08/media/barack-obama-netflix/index.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://www.politifact.com/truth-o-meter/statements/2011/mar/15/barack-obama/barack-obama-says-us-oil-production-last-year-was-/",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.politifact.com/truth-o-meter/statements/2011/mar/15/barack-obama/barack-obama-says-us-oil-production-last-year-was-/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "cinderella",
+    "count": 50,
+    "urls": [
+      {
+        "url": "https://people.com/style/chad-michael-murray-prom-wife-cinderella-story/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "story",
+    "count": 140,
+    "urls": [
+      {
+        "url": "https://people.com/style/chad-michael-murray-prom-wife-cinderella-story/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.oversixty.com.au/lifestyle/relationships/the-truth-about-michael-j-fox-and-tracy-pollans-inspiring-30-year-love-story",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.thewrap.com/american-horror-story-apocalypse-who-is-michael-langdon-ahs-cody-fern/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "character",
+    "count": 50,
+    "urls": [
+      {
+        "url": "https://people.com/style/chad-michael-murray-prom-wife-cinderella-story/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "prom",
+    "count": 50,
+    "urls": [
+      {
+        "url": "https://people.com/style/chad-michael-murray-prom-wife-cinderella-story/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "relationship",
+    "count": 58,
+    "urls": [
+      {
+        "url": "https://zig.com/eonline/photos/rachel-mcadams-relationship-history-relive-her-1675195",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "history",
+    "count": 58,
+    "urls": [
+      {
+        "url": "https://zig.com/eonline/photos/rachel-mcadams-relationship-history-relive-her-1675195",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "job",
+    "count": 60,
+    "urls": [
+      {
+        "url": "http://www.entertainmentdaily.co.uk/news/how-michael-strahan-congratulated-ryan-seacrest-on-his-live-job/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "move",
+    "count": 94,
+    "urls": [
+      {
+        "url": "https://www.dailymail.co.uk/news/article-4646278/Obama-family-Bali-Java-Indonesia-trip.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "trip",
+    "count": 94,
+    "urls": [
+      {
+        "url": "https://www.dailymail.co.uk/news/article-4646278/Obama-family-Bali-Java-Indonesia-trip.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "truth",
+    "count": 92,
+    "urls": [
+      {
+        "url": "https://www.oversixty.com.au/lifestyle/relationships/the-truth-about-michael-j-fox-and-tracy-pollans-inspiring-30-year-love-story",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.dailystar.co.uk/news/latest-news/684361/michael-jackson-truth-LaToya-death-cause-message-psychic-tyler-henry-grave-king-of-pop",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "pollan",
+    "count": 53,
+    "urls": [
+      {
+        "url": "https://www.oversixty.com.au/lifestyle/relationships/the-truth-about-michael-j-fox-and-tracy-pollans-inspiring-30-year-love-story",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "secret",
+    "count": 96,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/michael-fassbender-and-alicia-vikander-honeymoon-italy-after-secret-wedding-89835",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://maxipolitics.com/fbi-raids-obama-find-massive-secret-that-was-hidden-for-years/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "reunite",
+    "count": 86,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/news/218492_prince_harry_reunites_with_barack_obama_at_kensington_palace_to_discuss_manchester_victims",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "manchester",
+    "count": 86,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/news/218492_prince_harry_reunites_with_barack_obama_at_kensington_palace_to_discuss_manchester_victims",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "victim",
+    "count": 86,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/news/218492_prince_harry_reunites_with_barack_obama_at_kensington_palace_to_discuss_manchester_victims",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "surgery",
+    "count": 139,
+    "urls": [
+      {
+        "url": "https://www.usatoday.com/story/life/people/2018/04/20/michael-j-fox-recovering-spinal-surgery-unrelated-parkinsons/538429002/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.usatoday.com/story/life/people/2017/09/27/president-obama-cried-while-dropping-off-malia-harvard-like-open-heart-surgery/707475001/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "parkinson",
+    "count": 89,
+    "urls": [
+      {
+        "url": "https://www.usatoday.com/story/life/people/2018/04/20/michael-j-fox-recovering-spinal-surgery-unrelated-parkinsons/538429002/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "album",
+    "count": 66,
+    "urls": [
+      {
+        "url": "https://www.independent.ie/entertainment/music/michael-buble-returns-with-new-album-two-years-after-sons-cancer-diagnosis-37362367.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.irishtimes.com/culture/music/drake-new-album-scorpion-features-michael-jackson-and-jay-z-1.3547996",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "son",
+    "count": 150,
+    "urls": [
+      {
+        "url": "https://www.independent.ie/entertainment/music/michael-buble-returns-with-new-album-two-years-after-sons-cancer-diagnosis-37362367.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/music/joe-jackson-private-funeral/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "cancer",
+    "count": 65,
+    "urls": [
+      {
+        "url": "https://www.independent.ie/entertainment/music/michael-buble-returns-with-new-album-two-years-after-sons-cancer-diagnosis-37362367.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "diagnosis",
+    "count": 65,
+    "urls": [
+      {
+        "url": "https://www.independent.ie/entertainment/music/michael-buble-returns-with-new-album-two-years-after-sons-cancer-diagnosis-37362367.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "zetajone",
+    "count": 50,
+    "urls": [
+      {
+        "url": "https://www.msn.com/en-ca/entertainment/celebrity/michael-douglas-praises-wife-catherine-zeta-jones-for-earning-her-success/ar-AAzgpuC",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "date",
+    "count": 94,
+    "urls": [
+      {
+        "url": "https://meaww.com/anna-farris-gushes-as-she-talks-about-date-nights-with-boyfriend-michael-barrett",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "http://celebrityinsider.org/michael-b-jordan-says-la-isnt-the-best-place-to-date-and-hes-technically-single-106536/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "night",
+    "count": 50,
+    "urls": [
+      {
+        "url": "https://meaww.com/anna-farris-gushes-as-she-talks-about-date-nights-with-boyfriend-michael-barrett",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "shark",
+    "count": 169,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/arts-and-entertainment/wp/2017/07/24/michael-phelps-didnt-actually-race-a-real-shark-on-tv-and-viewers-arent-happy/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.rollingstone.com/culture/culture-sports/michael-phelps-defends-shark-race-how-we-did-it-was-the-best-way-252991/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.washingtonpost.com/news/arts-and-entertainment/wp/2017/07/24/michael-phelps-didnt-actually-race-a-real-shark-on-tv-and-viewers-arent-happy/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "viewer",
+    "count": 140,
+    "urls": [
+      {
+        "url": "https://www.washingtonpost.com/news/arts-and-entertainment/wp/2017/07/24/michael-phelps-didnt-actually-race-a-real-shark-on-tv-and-viewers-arent-happy/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.washingtonpost.com/news/arts-and-entertainment/wp/2017/07/24/michael-phelps-didnt-actually-race-a-real-shark-on-tv-and-viewers-arent-happy/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "peek",
+    "count": 51,
+    "urls": [
+      {
+        "url": "https://www.longroom.com/discussion/931686/will-and-grace-sneak-peek-will-and-michael-back-together-after-20-years",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "daughter",
+    "count": 117,
+    "urls": [
+      {
+        "url": "https://www.sacbee.com/article168914192.html",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/parents/chad-michael-murray-first-image-daughter-wife-sarah-roemer-mothers-day/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "probation",
+    "count": 59,
+    "urls": [
+      {
+        "url": "https://www.hollywoodreporter.com/news/anthony-michael-hall-sentenced-three-years-probation-assault-1041733",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "assault",
+    "count": 59,
+    "urls": [
+      {
+        "url": "https://www.hollywoodreporter.com/news/anthony-michael-hall-sentenced-three-years-probation-assault-1041733",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "spiderman",
+    "count": 63,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/michael-bubles-son-noah-celebrates-4th-birthday-awesome-spider-man-party-see-pics-86234",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "party",
+    "count": 63,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/michael-bubles-son-noah-celebrates-4th-birthday-awesome-spider-man-party-see-pics-86234",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "pic",
+    "count": 91,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/michael-bubles-son-noah-celebrates-4th-birthday-awesome-spider-man-party-see-pics-86234",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.etonline.com/michelle-obama-gets-surprise-gift-bruno-mars-concert-see-pics-88363",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "ring",
+    "count": 60,
+    "urls": [
+      {
+        "url": "https://people.com/movies/alicia-vikander-wedding-ring/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://www.polygon.com/2018/6/20/17482602/creed-2-trailer",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "name",
+    "count": 128,
+    "urls": [
+      {
+        "url": "https://people.com/music/paris-jackson-removes-graffiti-michael-jackson-hollywood-walk-fame-star/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "gold",
+    "count": 78,
+    "urls": [
+      {
+        "url": "https://www.longroom.com/discussion/538419/michael-phelps-deserves-a-gold-medal-for-his-shirtless-selfie-with-son-boomer",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "medal",
+    "count": 78,
+    "urls": [
+      {
+        "url": "https://www.longroom.com/discussion/538419/michael-phelps-deserves-a-gold-medal-for-his-shirtless-selfie-with-son-boomer",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "model",
+    "count": 54,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/prince-harry-calls-princess-diana-my-ideal-role-model-obama-foundation-summit-90275",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "summit",
+    "count": 104,
+    "urls": [
+      {
+        "url": "https://www.etonline.com/prince-harry-calls-princess-diana-my-ideal-role-model-obama-foundation-summit-90275",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://web.archive.org/web/20170806200608/https://world-politicus.com/2017/07/08/obama-goes-g20-summit/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20070613045339/http://obama.senate.gov/press/070322-obama_urges_ber/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "class",
+    "count": 56,
+    "urls": [
+      {
+        "url": "https://www.refinery29.com/en-us/2017/08/169302/malia-obama-starts-college-harvard",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "sterling",
+    "count": 74,
+    "urls": [
+      {
+        "url": "https://people.com/tv/eva-marcille-is-engaged/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "share",
+    "count": 133,
+    "urls": [
+      {
+        "url": "https://www.hellomagazine.com/healthandbeauty/health-and-fitness/2017062039987/michelle-obama-fitness-routine-bootcamp/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/parents/chad-michael-murray-first-image-daughter-wife-sarah-roemer-mothers-day/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "detail",
+    "count": 88,
+    "urls": [
+      {
+        "url": "https://www.hellomagazine.com/healthandbeauty/health-and-fitness/2017062039987/michelle-obama-fitness-routine-bootcamp/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "camp",
+    "count": 120,
+    "urls": [
+      {
+        "url": "https://www.hellomagazine.com/healthandbeauty/health-and-fitness/2017062039987/michelle-obama-fitness-routine-bootcamp/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://lidblog.com/illegal-immigrant-mexican-kids/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "fitness",
+    "count": 88,
+    "urls": [
+      {
+        "url": "https://www.hellomagazine.com/healthandbeauty/health-and-fitness/2017062039987/michelle-obama-fitness-routine-bootcamp/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "routine",
+    "count": 88,
+    "urls": [
+      {
+        "url": "https://www.hellomagazine.com/healthandbeauty/health-and-fitness/2017062039987/michelle-obama-fitness-routine-bootcamp/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "boomer",
+    "count": 90,
+    "urls": [
+      {
+        "url": "https://www.today.com/parents/michael-phelps-family-celebrate-boomer-s-first-birthday-t111244",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "sex",
+    "count": 58,
+    "urls": [
+      {
+        "url": "https://celebritybabyscoop.com/2018/07/07/michael-buble-reveals-the-sex-of-baby-no-3-and-its-a/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "king",
+    "count": 61,
+    "urls": [
+      {
+        "url": "https://www.ibtimes.com/who-navi-michael-jackson-impersonator-play-king-pop-lifetime-biopic-2545084",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "pop",
+    "count": 61,
+    "urls": [
+      {
+        "url": "https://www.ibtimes.com/who-navi-michael-jackson-impersonator-play-king-pop-lifetime-biopic-2545084",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "lifetime",
+    "count": 61,
+    "urls": [
+      {
+        "url": "https://www.ibtimes.com/who-navi-michael-jackson-impersonator-play-king-pop-lifetime-biopic-2545084",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "biopic",
+    "count": 61,
+    "urls": [
+      {
+        "url": "https://www.ibtimes.com/who-navi-michael-jackson-impersonator-play-king-pop-lifetime-biopic-2545084",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "drug",
+    "count": 167,
+    "urls": [
+      {
+        "url": "https://people.com/tv/bachelorette-michael-nance-cause-death-multiple-drug-toxicity/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/tv/bachelorette-michael-nance-cause-death-multiple-drug-toxicity/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://web.archive.org/web/20170508145802/http://americanflavor.news:80/2017/05/02/just-barack-obama-arrested-japanese-drug-bust",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "toxicity",
+    "count": 165,
+    "urls": [
+      {
+        "url": "https://people.com/tv/bachelorette-michael-nance-cause-death-multiple-drug-toxicity/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/tv/bachelorette-michael-nance-cause-death-multiple-drug-toxicity/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "autopsy",
+    "count": 165,
+    "urls": [
+      {
+        "url": "https://people.com/tv/bachelorette-michael-nance-cause-death-multiple-drug-toxicity/",
+        "source": "gossipcop",
+        "type": "real"
+      },
+      {
+        "url": "https://people.com/tv/bachelorette-michael-nance-cause-death-multiple-drug-toxicity/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "apologize",
+    "count": 77,
+    "urls": [
+      {
+        "url": "https://www.usatoday.com/story/life/people/2017/12/22/princess-michael-kent-apologizes-wearing-racist-brooch-front-meghan-markle/977796001/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "magic",
+    "count": 77,
+    "urls": [
+      {
+        "url": "https://www.amny.com/entertainment/celebrities/paris-jackson-sends-birthday-wishes-to-dad-michael-thanks-for-the-magic-1.14097090",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "release",
+    "count": 75,
+    "urls": [
+      {
+        "url": "https://www.nashvillenoise.com/geri-horner-single/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "angel",
+    "count": 75,
+    "urls": [
+      {
+        "url": "https://www.nashvillenoise.com/geri-horner-single/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "memory",
+    "count": 75,
+    "urls": [
+      {
+        "url": "https://www.nashvillenoise.com/geri-horner-single/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "selfie",
+    "count": 69,
+    "urls": [
+      {
+        "url": "https://www.nbcwashington.com/news/sports/Golfer-Phil-Mickelson-Takes-Epic-Selfie-With-Obama-Bush-Clinton-448641353.html",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "age",
+    "count": 118,
+    "urls": [
+      {
+        "url": "https://www.bustle.com/p/bachelorette-contestant-michael-nance-dies-at-age-31-61120",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "thing",
+    "count": 58,
+    "urls": [
+      {
+        "url": "http://www.viralthread.com/michelle-obama-reveals-the-one-thing-the-white-house-does-better-than-buckingham-palace/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "original",
+    "count": 62,
+    "urls": [
+      {
+        "url": "https://www.hollywoodreporter.com/live-feed/originals-charles-michael-davis-key-699471",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "flashback",
+    "count": 62,
+    "urls": [
+      {
+        "url": "https://www.hollywoodreporter.com/live-feed/originals-charles-michael-davis-key-699471",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "rift",
+    "count": 62,
+    "urls": [
+      {
+        "url": "https://www.hollywoodreporter.com/live-feed/originals-charles-michael-davis-key-699471",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "rest",
+    "count": 85,
+    "urls": [
+      {
+        "url": "https://people.com/music/joe-jackson-private-funeral/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "cemetery",
+    "count": 85,
+    "urls": [
+      {
+        "url": "https://people.com/music/joe-jackson-private-funeral/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "funeral",
+    "count": 85,
+    "urls": [
+      {
+        "url": "https://people.com/music/joe-jackson-private-funeral/",
+        "source": "gossipcop",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "court",
+    "count": 102,
+    "urls": [
+      {
+        "url": "politics2020.info/index.php/2018/03/13/court-orders-obama-to-pay-400-million-in-restitution/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "order",
+    "count": 422,
+    "urls": [
+      {
+        "url": "politics2020.info/index.php/2018/03/13/court-orders-obama-to-pay-400-million-in-restitution/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "our.news/2017/09/05/trump-orders-13-obama-deep-state-operatives-arrested-for-treason/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://empirenews.net/obama-orders-life-sized-bronze-statute-of-himself-to-be-permanently-installed-in-white-house/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "pay",
+    "count": 102,
+    "urls": [
+      {
+        "url": "politics2020.info/index.php/2018/03/13/court-orders-obama-to-pay-400-million-in-restitution/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "restitution",
+    "count": 102,
+    "urls": [
+      {
+        "url": "politics2020.info/index.php/2018/03/13/court-orders-obama-to-pay-400-million-in-restitution/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "work",
+    "count": 220,
+    "urls": [
+      {
+        "url": "www.nscdscamps.org/blog/category/parenting/467344/update-second-roy-moore-accuser-works-for-michelle-obama-right-now-departed",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "internship",
+    "count": 203,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20170702174006/http://freedomcrossroads.us:80/malia-obama-fired-from-cushy-internship-at-spanish-embassy",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "embassy",
+    "count": 203,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20170702174006/http://freedomcrossroads.us:80/malia-obama-fired-from-cushy-internship-at-spanish-embassy",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "attack",
+    "count": 94,
+    "urls": [
+      {
+        "url": "http://dailyfeed.news/barack-obama-tweets-sick-attack-on-john-mccain-says-he-should-have-died/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.proxywhore.com/invboard/index.php?/topic/345914-update-malia-obama-among-10-arrested-in-racist-antifa-attack/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20180414054648/http://onlypolitics.info:80/breaking-malia-obama-suspended-after-racist-anti-white-attack-goes-viral",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20081202093502/http://afp.google.com:80/article/ALeqM5i2cTbnZTDVHPcifBpEzmkfqOOtlg",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "picture",
+    "count": 93,
+    "urls": [
+      {
+        "url": "usaconservativereport.com/2017/08/breaking-leaked-picture-obama-dragged-judge-handcuffs-wiretapping-trump/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "handcuff",
+    "count": 93,
+    "urls": [
+      {
+        "url": "usaconservativereport.com/2017/08/breaking-leaked-picture-obama-dragged-judge-handcuffs-wiretapping-trump/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "kid",
+    "count": 1345,
+    "urls": [
+      {
+        "url": "https://lidblog.com/illegal-immigrant-mexican-kids/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.youtube.com/watch?v=5zrsl8o4ZPo&feature=player_embedded",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "news",
+    "count": 70,
+    "urls": [
+      {
+        "url": "https://www.nyfoxnews.co/michelle-obama-just-received-life-shattering-news-from-the-doctor/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "doctor",
+    "count": 70,
+    "urls": [
+      {
+        "url": "https://www.nyfoxnews.co/michelle-obama-just-received-life-shattering-news-from-the-doctor/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "exorcist",
+    "count": 70,
+    "urls": [
+      {
+        "url": "http://yournewswire.com/melanic-trump-exorcist-white-house/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "cleanse",
+    "count": 70,
+    "urls": [
+      {
+        "url": "http://yournewswire.com/melanic-trump-exorcist-white-house/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "demon",
+    "count": 70,
+    "urls": [
+      {
+        "url": "http://yournewswire.com/melanic-trump-exorcist-white-house/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "likeness",
+    "count": 57,
+    "urls": [
+      {
+        "url": "https://www.tdtalliance.com/jefferson-davis-statue-replaced-obama-likeness/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "malia",
+    "count": 650,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20170415165124/http://thenewyorkevening.com:80/2017/04/10/breaking-malia-obama-expelled-harvard",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "https://web.archive.org/web/20180414054648/http://onlypolitics.info:80/breaking-malia-obama-suspended-after-racist-anti-white-attack-goes-viral",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "toilet",
+    "count": 688,
+    "urls": [
+      {
+        "url": "https://web.archive.org/web/20171220015138/http://www.usadailyportal.com:80/2017/12/14/julia-roberts-claims-michelle-obama-isnt-fit-clean-melanias-toilet",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "approval",
+    "count": 1051,
+    "urls": [
+      {
+        "url": "https://www.thegatewaypundit.com/2018/06/trump-approval-rating-better-than-obama-and-reagan-at-same-point-in-their-presidencies/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "point",
+    "count": 1051,
+    "urls": [
+      {
+        "url": "https://www.thegatewaypundit.com/2018/06/trump-approval-rating-better-than-obama-and-reagan-at-same-point-in-their-presidencies/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "presidency",
+    "count": 1051,
+    "urls": [
+      {
+        "url": "https://www.thegatewaypundit.com/2018/06/trump-approval-rating-better-than-obama-and-reagan-at-same-point-in-their-presidencies/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "state",
+    "count": 152,
+    "urls": [
+      {
+        "url": "our.news/2017/09/05/trump-orders-13-obama-deep-state-operatives-arrested-for-treason/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "missing_url",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "operative",
+    "count": 151,
+    "urls": [
+      {
+        "url": "our.news/2017/09/05/trump-orders-13-obama-deep-state-operatives-arrested-for-treason/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "treason",
+    "count": 151,
+    "urls": [
+      {
+        "url": "our.news/2017/09/05/trump-orders-13-obama-deep-state-operatives-arrested-for-treason/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "statute",
+    "count": 169,
+    "urls": [
+      {
+        "url": "http://empirenews.net/obama-orders-life-sized-bronze-statute-of-himself-to-be-permanently-installed-in-white-house/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "mar",
+    "count": 280,
+    "urls": [
+      {
+        "url": "https://www.inverse.com/article/21717-leonardo-dicaprio-barack-obama-elon-musk-mars-trio-sxsl",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "meeting",
+    "count": 113,
+    "urls": [
+      {
+        "url": "http://redstatewatcher.com/article.asp?id=128638",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "gang",
+    "count": 241,
+    "urls": [
+      {
+        "url": "http://breaking13news.com/malia-obama-arrested-gang-thugs-chicago/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "thug",
+    "count": 241,
+    "urls": [
+      {
+        "url": "http://breaking13news.com/malia-obama-arrested-gang-thugs-chicago/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "crew",
+    "count": 222,
+    "urls": [
+      {
+        "url": "asnowrose.wordpress.com/2016/12/20/breaking-crew-of-air-force-one-refuses-to-fly-obama-6000-miles-just-to-play-golf-buzzfeedusa/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "air",
+    "count": 222,
+    "urls": [
+      {
+        "url": "asnowrose.wordpress.com/2016/12/20/breaking-crew-of-air-force-one-refuses-to-fly-obama-6000-miles-just-to-play-golf-buzzfeedusa/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "force",
+    "count": 1282,
+    "urls": [
+      {
+        "url": "asnowrose.wordpress.com/2016/12/20/breaking-crew-of-air-force-one-refuses-to-fly-obama-6000-miles-just-to-play-golf-buzzfeedusa/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.someonesbones.com/blog/delta-force-raids-obama-stronghold-in-thailand/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "refuse",
+    "count": 222,
+    "urls": [
+      {
+        "url": "asnowrose.wordpress.com/2016/12/20/breaking-crew-of-air-force-one-refuses-to-fly-obama-6000-miles-just-to-play-golf-buzzfeedusa/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "mile",
+    "count": 222,
+    "urls": [
+      {
+        "url": "asnowrose.wordpress.com/2016/12/20/breaking-crew-of-air-force-one-refuses-to-fly-obama-6000-miles-just-to-play-golf-buzzfeedusa/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "golf",
+    "count": 222,
+    "urls": [
+      {
+        "url": "asnowrose.wordpress.com/2016/12/20/breaking-crew-of-air-force-one-refuses-to-fly-obama-6000-miles-just-to-play-golf-buzzfeedusa/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "buzzfeedusa",
+    "count": 222,
+    "urls": [
+      {
+        "url": "asnowrose.wordpress.com/2016/12/20/breaking-crew-of-air-force-one-refuses-to-fly-obama-6000-miles-just-to-play-golf-buzzfeedusa/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "supremacist",
+    "count": 124,
+    "urls": [
+      {
+        "url": "http://www.newscats.org/?p=11110",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "oval",
+    "count": 124,
+    "urls": [
+      {
+        "url": "http://www.newscats.org/?p=11110",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "allsort",
+    "count": 124,
+    "urls": [
+      {
+        "url": "http://www.newscats.org/?p=11110",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "round",
+    "count": 368,
+    "urls": [
+      {
+        "url": "newsfeedobserver.com/2-million-rounds-of-ammo-that-went-missing-under-obama-turns-up-in-enemy-hands/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "ammo",
+    "count": 368,
+    "urls": [
+      {
+        "url": "newsfeedobserver.com/2-million-rounds-of-ammo-that-went-missing-under-obama-turns-up-in-enemy-hands/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "enemy",
+    "count": 368,
+    "urls": [
+      {
+        "url": "newsfeedobserver.com/2-million-rounds-of-ammo-that-went-missing-under-obama-turns-up-in-enemy-hands/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "hand",
+    "count": 368,
+    "urls": [
+      {
+        "url": "newsfeedobserver.com/2-million-rounds-of-ammo-that-went-missing-under-obama-turns-up-in-enemy-hands/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "raid",
+    "count": 1086,
+    "urls": [
+      {
+        "url": "http://maxipolitics.com/fbi-raids-obama-find-massive-secret-that-was-hidden-for-years/",
+        "source": "politifact",
+        "type": "fake"
+      },
+      {
+        "url": "http://www.someonesbones.com/blog/delta-force-raids-obama-stronghold-in-thailand/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "drop",
+    "count": 95,
+    "urls": [
+      {
+        "url": "https://diamondandsilk.americandailynews.org/2018/07/02/iranian-official-drops-bombshell-obama-secretly-gave-citizenship-to-2500-iranians-as-part-of-nuke-deal/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "citizenship",
+    "count": 95,
+    "urls": [
+      {
+        "url": "https://diamondandsilk.americandailynews.org/2018/07/02/iranian-official-drops-bombshell-obama-secretly-gave-citizenship-to-2500-iranians-as-part-of-nuke-deal/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "iranian",
+    "count": 95,
+    "urls": [
+      {
+        "url": "https://diamondandsilk.americandailynews.org/2018/07/02/iranian-official-drops-bombshell-obama-secretly-gave-citizenship-to-2500-iranians-as-part-of-nuke-deal/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "part",
+    "count": 95,
+    "urls": [
+      {
+        "url": "https://diamondandsilk.americandailynews.org/2018/07/02/iranian-official-drops-bombshell-obama-secretly-gave-citizenship-to-2500-iranians-as-part-of-nuke-deal/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "singer",
+    "count": 60,
+    "urls": [
+      {
+        "url": "http://www.americanproud.info/2018/01/22/singer-dolly-parton-trump-in-one-year-is-already-better-than-16-years-of-bush-obama-put-together-this-stupid-liberals-doing-everything-to-impeach-him-but-we-stan/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "liberal",
+    "count": 60,
+    "urls": [
+      {
+        "url": "http://www.americanproud.info/2018/01/22/singer-dolly-parton-trump-in-one-year-is-already-better-than-16-years-of-bush-obama-put-together-this-stupid-liberals-doing-everything-to-impeach-him-but-we-stan/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "impeach",
+    "count": 60,
+    "urls": [
+      {
+        "url": "http://www.americanproud.info/2018/01/22/singer-dolly-parton-trump-in-one-year-is-already-better-than-16-years-of-bush-obama-put-together-this-stupid-liberals-doing-everything-to-impeach-him-but-we-stan/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "standing",
+    "count": 60,
+    "urls": [
+      {
+        "url": "http://www.americanproud.info/2018/01/22/singer-dolly-parton-trump-in-one-year-is-already-better-than-16-years-of-bush-obama-put-together-this-stupid-liberals-doing-everything-to-impeach-him-but-we-stan/",
+        "source": "politifact",
+        "type": "fake"
+      }
+    ]
+  },
+  {
+    "noun": "campaign",
+    "count": 1564,
+    "urls": [
+      {
+        "url": "http://www.youtube.com/watch?v=xcfkmklTgDs",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "ad",
+    "count": 3874,
+    "urls": [
+      {
+        "url": "http://www.youtube.com/watch?v=xcfkmklTgDs",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.politifact.com/truth-o-meter/statements/2012/jul/12/secure-america-now/ad-says-obama-apologized-showed-weakness-iran/",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.youtube.com/watch?v=Ud3mMj0AZZk",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "transcript",
+    "count": 751,
+    "urls": [
+      {
+        "url": "http://abcnews.go.com/Politics/full-interview-transcript-president-barack-obama/story?id=35203825",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "romney",
+    "count": 1580,
+    "urls": [
+      {
+        "url": "http://www.motherjones.com/politics/2012/09/secret-video-romney-private-fundraiser",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.politifact.com/ohio/statements/2012/aug/23/barack-obama/barack-obama-says-mitt-romney-condemned-coal-fired/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "millionaire",
+    "count": 1542,
+    "urls": [
+      {
+        "url": "http://www.motherjones.com/politics/2012/09/secret-video-romney-private-fundraiser",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "donor",
+    "count": 1542,
+    "urls": [
+      {
+        "url": "http://www.motherjones.com/politics/2012/09/secret-video-romney-private-fundraiser",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "voter",
+    "count": 1542,
+    "urls": [
+      {
+        "url": "http://www.motherjones.com/politics/2012/09/secret-video-romney-private-fundraiser",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "mccain",
+    "count": 547,
+    "urls": [
+      {
+        "url": "http://edition.cnn.com/2008/POLITICS/10/07/presidential.debate.transcript/",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.cnn.com/2008/POLITICS/10/15/debate.transcript/index.html",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "debate",
+    "count": 547,
+    "urls": [
+      {
+        "url": "http://edition.cnn.com/2008/POLITICS/10/07/presidential.debate.transcript/",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.cnn.com/2008/POLITICS/10/15/debate.transcript/index.html",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "school",
+    "count": 1327,
+    "urls": [
+      {
+        "url": "http://www.youtube.com/watch?v=5zrsl8o4ZPo&feature=player_embedded",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.politifact.com/truth-o-meter/statements/2014/jan/24/patrick-kennedy/has-potency-pot-changed-president-obama-was-high-s/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "praise",
+    "count": 1313,
+    "urls": [
+      {
+        "url": "http://www.youtube.com/watch?v=5zrsl8o4ZPo&feature=player_embedded",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "jihadist",
+    "count": 126,
+    "urls": [
+      {
+        "url": "http://sotu.blogs.cnn.com/2014/12/21/obama-gitmo-inspires-jihadists/",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "twitter",
+    "count": 2024,
+    "urls": [
+      {
+        "url": "https://twitter.com/BarackObama/status/347057653089988608",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "head",
+    "count": 1082,
+    "urls": [
+      {
+        "url": "http://www.cnn.com/2008/POLITICS/10/15/debate.transcript/index.html",
+        "source": "politifact",
+        "type": "real"
+      },
+      {
+        "url": "http://www.cnn.com/2008/POLITICS/10/15/debate.transcript/index.html",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "nation",
+    "count": 21182,
+    "urls": [
+      {
+        "url": "http://us3.campaign-archive1.com/?u=468d5dc43334640650b81443f&id=711f7c7ca0&e=6d7cef570b",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  },
+  {
+    "noun": "firm",
+    "count": 2303,
+    "urls": [
+      {
+        "url": "http://www.youtube.com/watch?v=Ud3mMj0AZZk",
+        "source": "politifact",
+        "type": "real"
+      }
+    ]
+  }
+]

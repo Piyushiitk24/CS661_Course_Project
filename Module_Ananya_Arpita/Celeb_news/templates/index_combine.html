@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Celebrity News Visualizations</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_combine.css') }}">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1>Trending Personality Analysis</h1>
+    <ul>
+      <li><a href="#leaderboard-section">Leaderboard</a></li>
+      <li><a href="#bubble-chart-section">Bubble Chart</a></li>
+      <li><a href="#histogram-section">Pie Chart</a></li>
+      <li><a href="#graph-section">Graph</a></li>
+    </ul>
+  </nav>
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='css/bkg_4.jpg') }}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+    }
+  </style>
+  <!-- Section 1: Leaderboard -->
+  <section class="section" id="leaderboard-section">
+    <div class="box-container">
+      <h1 class="heading">Leaderboard</h1>
+      <div class="dropdowns">
+        <label for="type">Type:</label>
+        <select id="type">
+          <option value="both">Both</option>
+          <option value="fake">Fake</option>
+          <option value="real">Real</option>
+        </select>
+
+        <label for="source">Source:</label>
+        <select id="source">
+          <option value="both">Both</option>
+          <option value="gossipcop">Gossipcop</option>
+          <option value="politifact">Politifact</option>
+        </select>
+      </div>
+
+      <div id="chart" class="chart">
+        <svg></svg>
+      </div>
+    </div>
+    <div id="celebrity-circles" class="celebrity-circles">
+      <h2 class="celebrity-heading">Popular Faces</h2>
+    </div>
+  </section>
+
+  <!-- Section 2: Bubble Chart & Slider -->
+  <!-- <section class="section" id="bubble-chart-section">
+    <div id="sliderContainer">
+      <label for="countSlider" id="sliderValue">Minimum Count: 0</label>
+      <input type="range" id="countSlider" min="0" max="100" value="0" />
+    </div>
+    <h3 id="bubble-chart-title">Bubble Chart</h3>
+
+    <svg id="bubbleChart" width="100%" height="600"></svg>
+    <div class="tooltip" style="opacity: 0; position: absolute; background: #fff; border: 1px solid #ccc; padding: 5px;"></div>
+  </section> -->
+
+ <section class="section" id="bubble-chart-section">
+  <div id="bubble-header">
+    <h3 id="bubble-chart-title">Bubble Chart</h3>
+    <div id="sliderContainer">
+      <label for="countSlider" id="sliderValue">Minimum Count: 0</label>
+      <input type="range" id="countSlider" min="0" max="100" value="0" />
+    </div>
+  </div>
+  <svg id="bubbleChart" width="100%" height="600"></svg>
+  <div class="tooltip" style="opacity: 0; position: absolute; background: #fff; border: 1px solid #ccc; padding: 5px;"></div>
+</section> 
+
+  <!-- Section 3: Pie Chart -->
+<section class="section" id="histogram-section">
+  <div class="pie-chart-container">
+    <h3 id="pie-chart-title">Pie Chart</h3> <!-- Dynamic heading -->
+    <svg id="histogram" width="800" height="400"></svg>
+  </div>
+</section> 
+  
+
+
+
+
+
+<!-- Tweet Activity Section -->
+<!-- Section 4: Tweet Activity -->
+<!-- Section 4: Tweet Activity -->
+<section class="section" id="graph-section">
+  <div id="graph-container">
+    <h3 id="graph-title">Tweet Activity</h3>
+    <div id="graph"></div>
+  </div>
+</section>
+  <!-- Scripts -->
+  <script>
+    // Dynamic slider label update
+    document.getElementById('countSlider').addEventListener('input', function () {
+      document.getElementById('sliderValue').textContent = 'Minimum Count: ' + this.value;
+    });
+  </script>
+  <script src="{{ url_for('static', filename='js/main_combine.js') }}"></script>
+</body>
+</html>
