@@ -18,8 +18,8 @@ export default function Home() {
   ];
 
   const modules = [
+    { name: "Time of the Day", url: "/top-news" },
     { name: "Virality Analysis", url: "http://127.0.0.1:5001" },
-    { name: "Clustering", url: "/cluster" },
     { name: "Ananya_Arpita", url: "http://127.0.0.1:5002" },
     { name: "Sentiment Flow", url: "/sentiment" },
     { name: "Source Timeline", url: "/timeline" },
