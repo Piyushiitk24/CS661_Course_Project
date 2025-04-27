@@ -8,7 +8,7 @@ export default function Home() {
   }, []);
 
   const teamMembers = [
-    { name: "Aakriti", url: "" },
+    { name: "Aakriti", url: "https://www.linkedin.com/in/aakriti-sarkar-53b149260" },
     { name: "Ananya", url: "https://www.linkedin.com/in/ananya-chaturvedi-70b24a219/" },
     { name: "Arpita", url: "https://www.linkedin.com/in/arpita-santra" },
     { name: "Disha", url: "" },
