@@ -187,26 +187,40 @@ Ensure the following are installed and working on the **presentation Mac**:
 
 Open one terminal tab/pane **per server**. Use VS Code's integrated terminal for easier management. Keep all panes running.
 
+!!!IMPORTANT!!! Make sure you have Node.js installed in your machine!!!
+
+!!!IMPORTANT!!! Make sure you have the items listed in the requirements.txt installed in the python environment 
+you intend to use (whether the system-wide default python environment, or one created using venv)!!!
+
 *   **Pane 1: React Homepage**
     1.  Navigate:
         ```bash
-        cd /path/to/your/CS661_Demo/Module_Sankhadeep/client
+            cd /path/to/your/CS661_Course_Project/Module_Sankhadeep/client
         ```
-    2.  Run (check `package.json` for the exact script name):
+    2.  Ensure you have the "node_modules" folder in this directory. If not, then (assuming you have Node.js 
+        installed in your system) run:
         ```bash
-        npm run dev
+            npm install
         ```
-    3.  **Note the URL printed (e.g., `http://localhost:5173`)**
+    3. Run the Node.js server:
+        ```bash
+            npm run dev
+        ```
+
+    4. **Note the URL printed (e.g., `http://localhost:5173`)**
 
 *   **Pane 2: Your Flask Module (Port 5001)**
     1.  Navigate:
         ```bash
-        cd /path/to/your/CS661_Demo/Module_Piyush_Ravi
+            cd /path/to/your/CS661_Course_Project/Module_Piyush_Ravi
         ```
-    2.  Activate venv:
+
+    2.  If you intend to use a venv created python virtual environment then activate that (otherwise simply skip 
+        this step):
         ```bash
-        source venv/bin/activate
+        source <path_to_the_virtual_environment>/bin/activate
         ```
+
     3.  Run Flask:
         ```bash
         flask run --port=5001
@@ -215,21 +229,42 @@ Open one terminal tab/pane **per server**. Use VS Code's integrated terminal for
 *   **Pane 3: Ananya/Arpita Module (Port 5002)**
     1.  Navigate:
         ```bash
-        cd /path/to/your/CS661_Demo/Module_Ananya_Arpita/Celeb_news
+            cd /path/to/your/CS661_Course_Project/Module_Ananya_Arpita/Celeb_news
         ```
-    2.  Activate venv:
+        
+    2.  If you intend to use a venv created python virtual environment then activate that (otherwise simply skip 
+        this step):
         ```bash
-        source venv2/bin/activate # Use their venv name
+        source <path_to_the_virtual_environment>/bin/activate
         ```
-    3.  Run Flask (using explicit app path):
-        ```bash
-        flask --app app_combine.py run
-        ```
-        *(This will use Port 5002 as defined in their `app.py`)*
 
-*   **Pane 4, 5, etc.: Other Flask Modules (Ports 5003, 5004...)**
+    3.  Run Flask:
+        ```bash
+        flask run --port=5002
+        ```
+*   **Pane 4: Aakriti Module (npm Port 5174)**
+    1.  Navigate:
+        ```bash
+            cd /path/to/your/CS661_Course_Project/Module_Aakriti
+        ```
+        
+    2.   Ensure you have the "node_modules" folder in this directory. If not, then (assuming you have Node.js 
+        installed in your system) run:
+        ```bash
+            npm install
+        ```
+
+    3.  Run the Node.js server:
+        ```bash
+            npm run dev -- --port=5174
+        ```
+    
+    4. **Note the URL printed (e.g., `http://localhost:5174`)**
+
+*   **Pane 5, etc.: Other Flask Modules (Ports 5003, 5004...)**
     1.  Navigate to the specific module directory.
-    2.  Activate its specific virtual environment (`source venvX/bin/activate`).
+    2.  Activate its specific virtual environment if your required packaged are installed in one 
+        (`source <path_to_the_virtual_environment>/bin/activate`).
     3.  Run Flask on its assigned port:
         ```bash
         # Example for Port 5003
@@ -242,13 +277,14 @@ Open one terminal tab/pane **per server**. Use VS Code's integrated terminal for
 2.  [ ] Go to the **React Homepage URL** from Pane 1 (e.g., `http://localhost:5173`).
 3.  [ ] Click the link/button for **your module**. Verify it opens in a new tab at `http://127.0.0.1:5001` and works.
 4.  [ ] Go back to the React Homepage tab. Click the link for **Ananya/Arpita's module**. Verify it opens at `http://127.0.0.1:5002` and works.
-5.  [ ] Test links for **all other Flask modules**.
-6.  [ ] Test links for any **internal React routes**.
+5. [ ] Go back to the React Homepage tab. Click the link for **Aakriti's module**. Verify it opens at `http://localhost:5174` and works.
+6.  [ ] Test links for **all other Flask modules**.
+7.  [ ] Test links for any **internal React routes**.
 
 ### ✅ Step 7: Presentation Execution
 1.  Before starting, run all servers using the commands in Step 5. **Ensure no errors.**
 2.  Open the React Homepage URL in the browser.
-3.  Click links to open Flask modules in new tabs.
+3.  Click links to open Flask and other React modules in new tabs.
 4.  Switch between tabs to demo.
 5.  **Keep all terminal windows/panes running!**
 

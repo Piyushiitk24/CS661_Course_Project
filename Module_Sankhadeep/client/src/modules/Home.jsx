@@ -8,10 +8,11 @@ export default function Home() {
   }, []);
 
   const teamMembers = [
-    { name: "Akriti", url: "" },
-    { name: "Ananya", url: "" },
+    { name: "Aakriti", url: "https://www.linkedin.com/in/aakriti-sarkar-53b149260" },
+    { name: "Ananya", url: "https://www.linkedin.com/in/ananya-chaturvedi-70b24a219/" },
     { name: "Arpita", url: "https://www.linkedin.com/in/arpita-santra" },
     { name: "Disha", url: "" },
+    { name: "Khusi", url: "" },
     { name: "Piyush", url: "" },
     { name: "Ravi", url: "" },
     { name: "Sankhadeep", url: "https://www.linkedin.com/in/sankha14" }
@@ -20,11 +21,9 @@ export default function Home() {
   const modules = [
     { name: "Time of the Day", url: "/top-news" },
     { name: "Virality Analysis", url: "http://127.0.0.1:5001" },
-    { name: "Ananya_Arpita", url: "http://127.0.0.1:5002" },
-    { name: "Sentiment Flow", url: "/sentiment" },
-    { name: "Source Timeline", url: "/timeline" },
-    { name: "Geo Spread", url: "/geo" },
-    { name: "Engagement Graph", url: "/engagement" }
+    { name: "Top Trending Personalities", url: "http://127.0.0.1:5002" },
+    { name: "Thematic Clustering", url: "http://localhost:5174/" },
+    { name: "Trendy News Analysis", url: "/trendy" },
   ];
 
   return (
