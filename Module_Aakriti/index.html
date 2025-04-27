@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake News Dashboard</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <style>
+    body {
+      background-color: #102434;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin: 40px;
+      color: #ffffff;
+    }
+
+    h1, h2 {
+      color: #22f3e3;
+    }
+
+    #dashboard {
+      display: flex;
+      justify-content: center;
+      gap: 100px;
+      margin-top: 30px;
+      flex-direction: row;
+    }
+
+    .chart {
+      position: relative;
+    }
+
+    .tooltip {
+      position: absolute;
+      background: white;
+      color: black;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      width: 180px;
+    }
+
+    select {
+      font-size: 16px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    /* Swapping the positions of the charts */
+    #chart1 {
+      order: 2;
+    }
+
+    #chart2 {
+      order: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Fake News Analysis Dashboard</h1>
+
+  <label for="domain-select" style="color: #ffffff; font-weight: bold;">Select Domain:</label>
+  <select id="domain-select">
+    <option value="both" selected>Both</option>
+    <option value="gossip">Gossip</option>
+    <option value="political">Political</option>
+  </select>
+
+  <div id="dashboard">
+    <div class="chart" id="chart1">
+      <h2>Thematic Analysis of Fake News</h2>
+      <svg width="400" height="400"></svg>
+      <div class="tooltip" id="tooltip1"></div>
+    </div>
+
+    <div class="chart" id="chart2">
+      <h2>Real vs Fake</h2>
+      <svg width="400" height="400"></svg>
+      <div class="tooltip" id="tooltip2"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+

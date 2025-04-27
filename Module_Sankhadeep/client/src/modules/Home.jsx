@@ -22,7 +22,7 @@ export default function Home() {
     { name: "Time of the Day", url: "/top-news" },
     { name: "Virality Analysis", url: "http://127.0.0.1:5001" },
     { name: "Top Trending Personalities", url: "http://127.0.0.1:5002" },
-    { name: "Thematic Clustering", url: "/clustering" },
+    { name: "Thematic Clustering", url: "http://localhost:5174/" },
     { name: "Trendy News Analysis", url: "/trendy" },
   ];
 
