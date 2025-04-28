@@ -529,6 +529,11 @@ function updateBubbleChart(data, tooltip) {
     const height = 500;
     const margin = 10;
 
+    // Add these near the top of updateBubbleChart
+    const fakeColor = "var(--accent-red)";
+    const realColor = "var(--accent-blue)";
+    const neutralColor = "var(--text-secondary)";
+
     const root = d3.hierarchy({ children: data })
         .sum(d => Math.max(1, +d.total_freq || 1))
         .sort((a, b) => b.value - a.value);
@@ -550,9 +555,9 @@ function updateBubbleChart(data, tooltip) {
         .style("max-width", "100%")
         .attr("preserveAspectRatio", "xMidYMid meet");
 
-    const wordTexts = data.map(d => d.text);
-    const colorScale = d3.scaleOrdinal(d3.schemeSet3)
-                          .domain(wordTexts);
+    // const wordTexts = data.map(d => d.text); // No longer needed for color
+    // const colorScale = d3.scaleOrdinal(d3.schemeSet3) // REMOVE or COMMENT OUT
+    //                       .domain(wordTexts);
 
     const fisheyeRadius = Math.min(width, height) / 3;
     const fisheyeDistortion = 3;
@@ -572,7 +577,13 @@ function updateBubbleChart(data, tooltip) {
     const circles = nodeGroups.append("circle")
         .attr("class", "bubble")
         .attr("r", d => d.originalR)
-        .attr("fill", d => colorScale(d.data.text))
+        // REPLACE it with logic similar to the word cloud:
+        .attr("fill", d => {
+            const ratio = d.data.log2_ratio;
+            if (ratio > 0.75) return fakeColor;
+            if (ratio < -0.75) return realColor;
+            return neutralColor;
+        })
         .attr("fill-opacity", 0.85)
         .on("mouseover", (event, d) => {
             if (tooltip && tooltip.node()) {
