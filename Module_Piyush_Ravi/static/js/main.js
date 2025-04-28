@@ -81,28 +81,28 @@ async function fetchData(endpoint, params = {}) {
  */
 function createFisheye(radius, distortion) {
     let radius2 = radius * radius;
-    
+
     function distort(x, y) {
         const dx = x; // relative to focus [0,0]
         const dy = y;
         const distance2 = dx * dx + dy * dy;
-        
+
         // No distortion outside the fisheye radius
         if (distance2 >= radius2) {
             return { x: x, y: y, scale: 1 };
         }
-        
+
         const distance = Math.sqrt(distance2);
         const distortedDistance = distance * (distortion + 1) / (distortion * (distance / radius) + 1);
-        
+
         if (distortedDistance === 0 || distance === 0) {
             return { x: 0, y: 0, scale: distortion + 1 };
         }
-        
+
         const scale = distortedDistance / distance;
         return { x: dx * scale, y: dy * scale, scale: scale };
     }
-    
+
     // Returns a function that distorts coordinates relative to a provided focus point.
     distort.focus = function(focusPoint) {
         return function(x, y) {
@@ -112,20 +112,20 @@ function createFisheye(radius, distortion) {
             return { x: focusPoint[0] + result.x, y: focusPoint[1] + result.y, scale: result.scale };
         };
     };
-    
-    distort.radius = function(_) { 
-        if (!arguments.length) return radius; 
+
+    distort.radius = function(_) {
+        if (!arguments.length) return radius;
         radius = +_;
         radius2 = radius * radius;
         return distort;
     };
-    
-    distort.distortion = function(_) { 
-        if (!arguments.length) return distortion; 
+
+    distort.distortion = function(_) {
+        if (!arguments.length) return distortion;
         distortion = +_;
         return distort;
     };
-    
+
     return distort;
 }
 
@@ -160,24 +160,13 @@ function updateWordCloud(data) {
         log2_ratio: +d.log2_ratio || 0
     }));
 
-    // --- COLOR LOGIC START ---
-    let colorScale; // For 'both' type
-    const fakeColor = "var(--accent-red)"; // Use theme color for fake
-    const realColor = "var(--accent-blue)"; // Use theme color for real
+    // --- COLOR LOGIC START (REVISED FOR VIBRANCY) ---
+    // Define more vibrant fixed colors
+    const fakeColor = "var(--accent-red)"; // Use theme variable for fake (bright red)
+    const realColor = "var(--accent-blue)"; // Use theme variable for real (bright blue)
+    const neutralColor = "var(--text-secondary)"; // Grey for neutral/balanced
 
-    if (currentFilters.wordType === 'both') {
-        const extentRatio = d3.extent(data, d => d.log2_ratio);
-        // Ensure the extent has a range before creating the scale
-        if (extentRatio[0] !== undefined && extentRatio[1] !== undefined && extentRatio[0] !== extentRatio[1]) {
-            colorScale = d3.scaleSequential(d3.interpolateRdBu)
-                           .domain(extentRatio); // Use RdBu for ratio visualization
-        } else {
-            // Fallback if all ratios are identical (unlikely for 'both', but safe)
-            console.warn("Ratio extent is invalid or single value for 'both' filter. Using default grey.");
-            // Assign a function that returns grey, mimicking a scale
-            colorScale = () => "var(--text-secondary)";
-        }
-    }
+    // No need for a complex scale here if we use ratio thresholds
     // --- COLOR LOGIC END ---
 
     // Size Scale (remains the same)
@@ -190,13 +179,26 @@ function updateWordCloud(data) {
     // Map data to nodes, applying the conditional color
     const nodes = data.map(d => {
         let nodeColor;
+        // Determine color based on wordType filter first
         if (currentFilters.wordType === 'fake') {
             nodeColor = fakeColor;
         } else if (currentFilters.wordType === 'real') {
             nodeColor = realColor;
-        } else { // 'both'
-            nodeColor = colorScale ? colorScale(d.log2_ratio) : "var(--text-secondary)"; // Use scale if valid
+        } else { // 'both' - use log2_ratio
+            const ratio = d.log2_ratio;
+            // Define thresholds for coloring based on ratio
+            if (ratio > 0.75) { // Significantly more fake
+                nodeColor = fakeColor;
+            } else if (ratio < -0.75) { // Significantly more real
+                nodeColor = realColor;
+            } else { // Relatively balanced or neutral
+                // Optional: could add more steps here (e.g., slightly red/blue)
+                nodeColor = neutralColor; // Use the neutral color
+            }
         }
+        // Ensure color is assigned
+        nodeColor = nodeColor || neutralColor; // Fallback
+
         return {
             ...d,
             radius: sizeScale(d.total_freq) / 1.5 + 5, // Adjust radius calculation if needed
@@ -237,19 +239,20 @@ function updateWordCloud(data) {
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "central")
         .style("font-size", d => `${sizeScale(d.total_freq)}px`)
-        .style("fill", d => d.color) // *** Use the pre-calculated d.color ***
+        // *** Use the pre-calculated d.color ***
+        .style("fill", d => d.color) // Set fill directly from calculated node color
         .style("cursor", "pointer")
         .text(d => d.text)
         .on("mouseover", (event, d) => {
             // Tooltip logic (remains the same)
-            if (wordCloudTooltip && wordCloudTooltip.node()) {
-                wordCloudTooltip.style("opacity", 1)
-                    .html(`<b>${d.text}</b><br>Total: ${d.total_freq}<br>Fake: ${d.fake_freq}<br>Real: ${d.real_freq}<br>Ratio: ${d.log2_ratio.toFixed(2)}`)
-                    .style("left", (event.pageX + 15) + "px")
-                    .style("top", (event.pageY - 15) + "px");
-            } else {
-                console.error("wordCloudTooltip is not defined or not a node!");
-            }
+             if (wordCloudTooltip && wordCloudTooltip.node()) {
+                 wordCloudTooltip.style("opacity", 1)
+                     .html(`<b>${d.text}</b><br>Total: ${d.total_freq}<br>Fake: ${d.fake_freq}<br>Real: ${d.real_freq}<br>Ratio: ${d.log2_ratio.toFixed(2)}`)
+                     .style("left", (event.pageX + 15) + "px")
+                     .style("top", (event.pageY - 15) + "px");
+             } else {
+                 console.error("wordCloudTooltip is not defined or not a node!");
+             }
         })
         .on("mouseout", () => {
             // Tooltip logic (remains the same)
@@ -280,6 +283,7 @@ function updateWordCloud(data) {
     // Restart simulation
     wordSimulation.nodes(nodes).alpha(0.6).restart();
 }
+
 
 /** Heatmap Update Function */
 function updateHeatmap(data, tooltip) {
