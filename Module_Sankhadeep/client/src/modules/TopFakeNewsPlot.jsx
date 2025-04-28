@@ -146,7 +146,7 @@ for (const d of sorted) {
             <input
               type="range"
               min="1"
-              max="100"
+              max="200"
               value={topN}
               onChange={e => setTopN(Number(e.target.value))}
             />
@@ -161,7 +161,7 @@ for (const d of sorted) {
         data={scatterData}
         layout={{
           title: {
-            text: '<span style="font-weight: normal; font-size: 14px;">(Decreasing retweet frequency from left to right on the <b>News</b> axis)</span>',
+            text: '<span style="font-weight: normal; font-size: 14px;">(Non-increasing retweet count from left to right on the <b>News</b> axis)</span>',
             x: 0.5,
             xanchor: 'center',
             yanchor: 'top'

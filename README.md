@@ -150,11 +150,11 @@ Ensure the following are installed and working on the **presentation Mac**:
     pip install -r requirements.txt
     ```
 
-**(C) Ananya/Arpita Flask Module Dependencies (`Celeb_news`)**
+**(C) Ananya/Arpita Flask Module Dependencies (`Module_Ananya_Arpita`)**
 1.  [ ] Open a **NEW** Terminal tab/pane.
 2.  [ ] Navigate to **their** module directory:
     ```bash
-    cd /path/to/your/CS661_Demo/Module_Ananya_Arpita/Celeb_news
+    cd /path/to/your/CS661_Demo/Module_Ananya_Arpita
     ```
 3.  [ ] Create/Activate **separate** virtual environment:
     ```bash
@@ -218,31 +218,32 @@ you intend to use (whether the system-wide default python environment, or one cr
     2.  If you intend to use a venv created python virtual environment then activate that (otherwise simply skip 
         this step):
         ```bash
-        source <path_to_the_virtual_environment>/bin/activate
+            source <path_to_the_virtual_environment>/bin/activate
         ```
 
     3.  Run Flask:
         ```bash
-        flask run --port=5001
+            flask run --port=5001
         ```
 
 *   **Pane 3: Ananya/Arpita Module (Port 5002)**
     1.  Navigate:
         ```bash
-            cd /path/to/your/CS661_Course_Project/Module_Ananya_Arpita/Celeb_news
+            cd /path/to/your/CS661_Course_Project/Module_Ananya_Arpita
         ```
         
     2.  If you intend to use a venv created python virtual environment then activate that (otherwise simply skip 
         this step):
         ```bash
-        source <path_to_the_virtual_environment>/bin/activate
+            source <path_to_the_virtual_environment>/bin/activate
         ```
 
     3.  Run Flask:
         ```bash
-        flask run --port=5002
+            flask run --port=5002
         ```
-*   **Pane 4: Aakriti Module (npm Port 5174)**
+
+*   **Pane 4: Aakriti Module (Port 5174)**
     1.  Navigate:
         ```bash
             cd /path/to/your/CS661_Course_Project/Module_Aakriti
@@ -258,28 +259,31 @@ you intend to use (whether the system-wide default python environment, or one cr
         ```bash
             npm run dev -- --port=5174
         ```
-    
-    4. **Note the URL printed (e.g., `http://localhost:5174`)**
 
-*   **Pane 5, etc.: Other Flask Modules (Ports 5003, 5004...)**
-    1.  Navigate to the specific module directory.
-    2.  Activate its specific virtual environment if your required packaged are installed in one 
-        (`source <path_to_the_virtual_environment>/bin/activate`).
-    3.  Run Flask on its assigned port:
+*   **Pane 5: Disha/Khushi Module (Port 5003)**
+    1.  Navigate:
         ```bash
-        # Example for Port 5003
-        flask run --port=5003
+            cd /path/to/your/CS661_Course_Project/Module_Disha_Khushi
         ```
-    *(Repeat for all other Flask modules)*
+        
+    2.  If you intend to use a venv created python virtual environment then activate that (otherwise simply skip 
+        this step):
+        ```bash
+            source <path_to_the_virtual_environment>/bin/activate
+        ```
+
+    3.  Run Flask:
+        ```bash
+            flask run --port=5003
+        ```
 
 ### ✅ Step 6: Test the Integrated Demo
 1.  [ ] Open a web browser.
 2.  [ ] Go to the **React Homepage URL** from Pane 1 (e.g., `http://localhost:5173`).
-3.  [ ] Click the link/button for **your module**. Verify it opens in a new tab at `http://127.0.0.1:5001` and works.
+3.  [ ] Click the link/button for **Piyush/Ravi's Module**. Verify it opens in a new tab at `http://127.0.0.1:5001` and works.
 4.  [ ] Go back to the React Homepage tab. Click the link for **Ananya/Arpita's module**. Verify it opens at `http://127.0.0.1:5002` and works.
-5. [ ] Go back to the React Homepage tab. Click the link for **Aakriti's module**. Verify it opens at `http://localhost:5174` and works.
-6.  [ ] Test links for **all other Flask modules**.
-7.  [ ] Test links for any **internal React routes**.
+5.  [ ] Go back to the React Homepage tab. Click the link for **Aakriti's module**. Verify it opens at `http://localhost:5174` and works.
+6.  [ ] Go back to the React Homepage tab. Click the link for **Disha/Khushi's module**. Verify it opens at `http://127.0.0.1:5003` and works.
 
 ### ✅ Step 7: Presentation Execution
 1.  Before starting, run all servers using the commands in Step 5. **Ensure no errors.**
