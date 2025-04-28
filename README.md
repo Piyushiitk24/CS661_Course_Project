@@ -204,10 +204,8 @@ you intend to use (whether the system-wide default python environment, or one cr
         ```
     3. Run the Node.js server:
         ```bash
-            npm run dev
+            npm run dev -- --port=5173
         ```
-
-    4. **Note the URL printed (e.g., `http://localhost:5173`)**
 
 *   **Pane 2: Your Flask Module (Port 5001)**
     1.  Navigate:
