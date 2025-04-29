@@ -67,17 +67,17 @@ export default function TopFakeNewsPlot() {
           mode: connectPoints ? 'lines+markers' : 'markers',
           marker: {
             size: 12,
-            color: sentiments,
+            color: tweetCounts,
             colorscale: 'Viridis',
             showscale: true,
             colorbar: {
               title: {
-                text: 'Sentiment Score',
+                text: 'Tweet Count',
                 side: 'right'
               }
             }
-            
           },
+                    
           hovertemplate:
   '<b>%{text}</b><br>' +
   'Time of Day: %{customdata[0]}<br>' +
@@ -143,13 +143,15 @@ for (const d of sorted) {
         <div className="slider-group">
           <span className="slider-label">Top N:</span>
           <div className="slider-row">
-            <input
-              type="range"
-              min="1"
-              max="200"
-              value={topN}
-              onChange={e => setTopN(Number(e.target.value))}
-            />
+          <input
+  type="range"
+  min="1"
+  max="300"
+  value={topN}
+  onChange={e => setTopN(Number(e.target.value))}
+  style={{ width: '400px' }} // 👈 You can increase to '500px' or '100%' if needed
+/>
+
             <span className="slider-value">{topN}</span>
           </div>
         </div>
@@ -169,21 +171,27 @@ for (const d of sorted) {
           xaxis: {
             title: {
               text: 'News',
-              font: { size: 16, family: 'Arial Black' },
+              font: { size: 20, family: 'Arial Black' },
               standoff: 50
-            }
+            },
+            showticklabels: false
           },
           yaxis: {
             title: {
               text: 'Time of the Day',
-              font: { size: 16, family: 'Arial Black' },
+              font: { size: 20, family: 'Arial Black' },
               standoff: 20
             },
             range: [0, 24],
             tickvals: [0, 3, 6, 9, 12, 15, 18, 21, 23],
             ticktext: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00', '23:00']
           },
-          margin: { t: 80, b: 150 },
+          hoverlabel: {
+            font: {
+              size: 16
+            }
+          },          
+          margin: { t: 80, b: 100 },
           hovermode: 'closest',
           responsive: true,
           transition: {
@@ -206,7 +214,7 @@ for (const d of sorted) {
   xaxis: {
     title: {
       text: 'Hour of the Day',
-      font: { size: 16, family: 'Arial Black' }
+      font: { size: 20, family: 'Arial Black' }
     },
     tickmode: 'linear',
     tick0: 0,
@@ -215,9 +223,14 @@ for (const d of sorted) {
   yaxis: {
     title: {
       text: '',
-      font: { size: 16, family: 'Arial Black' }
+      font: { size: 20, family: 'Arial Black' }
     }
   },
+  hoverlabel: {
+    font: {
+      size: 16
+    }
+  },  
           margin: { t: 30 },
           hovermode: 'closest',
           responsive: true

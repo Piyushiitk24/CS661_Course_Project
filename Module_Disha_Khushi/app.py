@@ -84,21 +84,6 @@ dash_app.layout = html.Div([
         ).update_layout(xaxis_tickangle=45)
     ),
     
-    html.H2('PCA : Dimensionality Reduction [Scatterplot]', style={'textAlign': 'center', 'fontWeight' : '370', 'fontSize' : 33, 'backgroundColor' : '#FFFFFF'}),
-    
-    dcc.Graph(
-        id='pca-scatter',
-        figure=px.scatter(
-            x=X_pca[:, 0],
-            y=X_pca[:, 1],
-            color=df['source'],
-            labels={'x': 'First Principle Component [PC1]', 'y': 'Second Principle Component [PC2]'},
-            hover_data={'title': df['title'], 'tweet_count': y},
-            title='PCA of News Articles',
-            template='plotly_white'
-        )
-    ),
-    
     html.H2('PCA : Scree Plot [Variance Ratio]', style={'textAlign': 'center', 'fontWeight' : '370', 'fontSize' : 33, 'backgroundColor' : '#FFFFFF'}),
 
     dcc.Graph(
@@ -111,8 +96,23 @@ dash_app.layout = html.Div([
             title='Scree Plot of Principal Components',
             template='plotly_white'
         )
+    ),
+
+    html.H2('PCA : Dimensionality Reduction [Scatterplot]', style={'textAlign': 'center', 'fontWeight' : '370', 'fontSize' : 33, 'backgroundColor' : '#FFFFFF'}),
+    
+    dcc.Graph(
+        id='pca-scatter',
+        figure=px.scatter(
+            x=X_pca[:, 0],
+            y=X_pca[:, 1],
+            color=df['type'],
+            labels={'x': 'First Principle Component [PC1]', 'y': 'Second Principle Component [PC2]'},
+            hover_data={'title': df['title'], 'tweet_count': y},
+            title='PCA of News Articles',
+            template='plotly_white'
+        )
     )
 ])
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5004)
+    app.run(debug=True, port=8080)

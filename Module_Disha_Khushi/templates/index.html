@@ -16,9 +16,9 @@
 
     <div class="text-zinc-50 my-4 bg-zinc-950 px-10 py-2 rounded-full flex justify-between items-center">
         <h1 class="font-semibold text-3xl">Most Viral News</h1>
-        <div class="font-light text-2xl">Khushi Pujara & Disha Suthar
+        <!-- <div class="font-light text-2xl">Khushi Pujara & Disha Suthar -->
             <!-- <div class="font-extralight inline">[XYZ123456]</div> -->
-        </div>
+        <!-- </div> -->
     </div>
 
     <div id="app">
@@ -31,7 +31,7 @@
         >
 
             <div class="mb-4">
-                <h1 class="inline font-medium text-4xl mr-8">01. Database</h1>
+                <h1 class="inline font-medium text-4xl mr-8">Database</h1>
                 <div class="inline font-light text-3xl">Top 
                     <form class="inline">
                         <select v-model="selectedCount" name="" id="dataset-size" class="font-normal bg-zinc-100 border border-zinc-300 rounded-lg px-2 py-1 appearance-none bg-none">
@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        <h1 class="font-medium text-4xl w-full mx-auto text-center my-6">02. Descriptive Analysis</h1>
+        <h1 class="font-medium text-4xl w-full mx-auto text-center my-6">Descriptive Analysis</h1>
 
         <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"> -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -115,7 +115,7 @@
         </div>
 
 
-        <h1 class="font-medium text-4xl w-full mx-auto text-center my-8 mb-6">03. Principal Component Analysis</h1>
+        <h1 class="font-medium text-4xl w-full mx-auto text-center my-8 mb-6">Principal Component Analysis</h1>
 
 
         <div class="text-center my-2">
@@ -154,11 +154,14 @@
                 return {
                     allData: [],
                     countOptions: [0, 5, 10, 25, 50, 100],
-                    selectedCount: 0,
+                    // selectedCount: 0,
+                    selectedCount: 50,
                     sourceOptions: [],
-                    selectedSource: '',
+                    // selectedSource: '',
+                    selectedSource: 'gossipcop',
                     allColumns: [],
-                    visibleColumns: [],
+                    // visibleColumns: [],
+                    visibleColumns: ['type', 'domain', 'domain_type', 'clean_title'],
                     // descriptiveColumns: ['source', 'type', 'domain', 'domain_type', 'clean_title', 'sentiment'],
                     descriptiveColumns: ['type', 'domain', 'domain_type', 'clean_title'],
                     
