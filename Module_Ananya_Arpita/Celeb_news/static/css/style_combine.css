@@ -1,93 +1,55 @@
 /* General styles */
-/* General styles */
+/* === Corrections Start === */
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
+    /* Add padding-top to prevent content from going under fixed navbar */
+    padding-top: 60px; /* Match navbar height */
+    /* Add padding-right to prevent content from going under fixed sidebar */
+    padding-right: 100px; /* Match sidebar width */
     color: #333;
     line-height: 1.6;
-    /*heading-font-color: #22f3e3;
-    Font family: font-family: 'Segoe UI', sans-serif
-    
-    /*background-image: 'C:/Users/user/CS661_Course_Project/Module_Ananya_Arpita/Celeb_news/static/css/bkg.png'; /* Add the background image */
-    /*background color: #102434
-    background-size: cover; /* Ensure the image covers the entire background */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-attachment: fixed; /* Keep the background fixed while scrolling */
-    background-position: center; /* Center the background image */
+    /* Keep background styles if they are uncommented and working */
+    /* Ensure the path is correct relative to the static folder if using url_for */
+   /* background-image: url("{{ url_for('static', filename='css/bkg_4.png') }}"); /* Example using Flask's url_for */
+    background-image: url('../css/bkg_4.png'); /* Assuming bkg_4.jpg is in the css folder */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    box-sizing: border-box; /* Ensure padding doesn't add to total width/height */
 }
-  
-  h2 {
-    text-align: center;
-    color: #22f3e3;
-    margin-top: 20px;
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  }
-  /* General h3 Styles */
-h3 {
-    font-size: 1.5rem; /* Set the font size */
-    font-weight: bold; /* Make the text bold */
-    color: #007bff; /* Set the text color to a professional blue */
-    text-align: center; /* Center the text horizontally */
-    margin-top: 20px; /* Add spacing above the heading */
-    margin-bottom: 15px; /* Add spacing below the heading */
-    margin-right: 200px;
-    text-transform: uppercase; /* Transform text to uppercase */
-    letter-spacing: 1px; /* Add spacing between letters */
-    font-family: 'Arial', sans-serif; /* Set the font family */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-    line-height: 1.4; /* Adjust line height for better readability */
-}
-  
-  /* Loading placeholder */
-  .loading-placeholder {
-    text-align: center;
-    font-style: italic;
-    color: #777;
-  }
-  /*Navbar */
-  .section {
-    padding: 40px 20px;
-    border-bottom: 1px solid #ddd;
-  }
 
-  #bubbleChart {
-    min-height: 500px;
-  }
-
-  svg {
-    display: block;
-    margin: 0 auto;
-  }
-
-  /* Navbar styles */
-  .navbar {
+/* --- Navbar remains the same --- */
+.navbar {
     background-color: #333;
     color: white;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: fixed; /* Use fixed instead of sticky for simplicity here */
     top: 0;
-    z-index: 1000;
+    left: 0; /* Ensure it spans full width */
     width: 100%;
-  }
+    height: 60px; /* Explicit height helps calculations */
+    z-index: 1000;
+    box-sizing: border-box; /* Include padding in width/height */
+}
 
-  .navbar h1 {
+.navbar h1 {
     margin: 0;
     font-size: 1.8rem;
-  }
+}
 
-  .navbar ul {
+.navbar ul {
     list-style: none;
     display: flex; /* Use flexbox for alignment */
     margin: 0;
     padding: 0;
     gap: 20px; /* Set a smaller gap between inline elements */
-    padding-left: 50px /* Shift the inline elements 50px to the left */
+    /* padding-left: 50px /* Remove this if centering or default alignment is okay */
 }
 
 .navbar ul li {
@@ -109,399 +71,96 @@ h3 {
     color: #f4f4f9;
     background-color: rgba(255, 255, 255, 0.1); /* Optional: Add a subtle background on hover */
 }
-  #celebrity-circles {
+
+
+/* --- Right Sidebar remains the same --- */
+#celebrity-circles {
     position: fixed;
-    top: 60px; /* Adjust to match the height of your top navbar */
-    right: 0; /* Move navbar to the right */
-    width: 273px; /* Increased width by 1.3 times (210px * 1.3) */
-    height: calc(100vh - 60px); /* Leave space for the top navbar */
+    top: 60px; /* Position below the fixed navbar */
+    right: 0;
+    width: 270px;
+    height: calc(100vh - 60px); /* Full height below navbar */
     background-color: #f0f0f0;
     box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     padding-top: 20px;
-    z-index: 999; /* Adjust if needed to stack properly */
-}
-  
-  /* Shared card container styles */
-  #bubbleChart,
-  #histogramContainer,
-  #urlContainer {
-    display: block;
-    margin: 20px auto;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 800px;
-  }
-  /* Box Container (Leaderboard Section) */
-  #bubbleChart {
-    display: block;
-    margin: 60px auto 0 350px; /* Align between the vertical navbar and the left side */
-    border-radius: 10px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 70%; /* Take up 70% of the width */
-    max-width: 800px; /* Limit the maximum width */
-    min-height: 500px; /* Ensure a consistent height */
-}
-/*demo code */
-#bubble-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-#bubble-header h3,
-#bubble-chart-title {
-  margin-right: 0 !important;
-  text-align: center;
-}
-/* Center the slider and label */
-#sliderContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0 0 0;
-    gap: 12px;
-  }
-  /* .bubble-box {
-    border: 2px solid #007bff;
-    border-radius: 12px;
-    background: #f8faff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    margin: 0 auto 20px auto;
-    padding: 22px 28px 18px 28px;
-    max-width: 500px;
-    text-align: center;
-  }
-  
-  .bubble-box-title, .bubble-box legend {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #007bff;
-    padding: 0 18px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-  }
-  
-  #sliderContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 12px;
-  } */
-  
-
-
-
-
-
-  
-  
-  /* Tooltip */
-  .tooltip {
-    position: absolute;
-    background: #222;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.2s;
-    font-size: 12px;
-    max-width: 300px;
-    word-wrap: break-word;
-    pointer-events: auto;
-  }
-  
-  /* Tooltip links */
-  .tooltip a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  .tooltip a:hover {
-    text-decoration: underline;
-  }
-
-/**Demo*/
-
-#bubble-chart-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center the title and chart */
-    gap: 20px; /* Add spacing between the title and the chart */
+    z-index: 999;
+    box-sizing: border-box;
 }
 
-
-
-
-
-
-
-
-
-  
-/* Pie Chart Section */
-/* #histogram {
-    display: block;
-    margin: 60px auto 0 350px; /* Align between the vertical navbar and the left side */
-    border-radius: 10px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 70%; /* Take up 70% of the width */
-    max-width: 800px; /* Limit the maximum width */
-    min-height: 400px; /* Ensure a consistent height */
-} */
-
-/* Pie Chart Section */
-#histogram-section {
-    padding: 40px 20px; /* Add padding around the section */
-    background-color: #ffffff; /* Set a white background */
-    border-radius: 15px; /* Round the corners of the section */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    margin: 20px auto; /* Center the section and add spacing */
-    max-width: 900px; /* Limit the maximum width */
-    text-align: center; /* Center-align the content */
-}
-
-.pie-chart-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center the title and chart */
-    gap: 20px; /* Add spacing between the title and the chart */
-}
-
-#histogram {
-    display: block;
-    margin: 0 auto; /* Center the chart */
-    border-radius: 10px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Make it responsive */
-    max-width: 800px; /* Limit the maximum width */
-    min-height: 400px; /* Ensure a consistent height */
-}
-
-
-
-  /* Heading Styles */
-.celebrity-heading {
-    font-size: 1.8rem; /* Adjust the font size */
-    font-weight: bold; /* Make the text bold */
-    color: #1100ff; /* Set the text color to a professional blue */
-    text-align: center; /* Center the heading horizontally */
-    margin-top: 20px; /* Add spacing above the heading */
-    margin-bottom: 15px; /* Add spacing below the heading */
-    text-transform: uppercase; /* Transform text to uppercase */
-    letter-spacing: 1px; /* Add spacing between letters */
-    font-family: 'Georgia', sans-serif; /* Set the font family */
-    text-shadow: 1px 1px 2px rgba(11, 69, 123, 0.2); /* Add a subtle shadow */
-}
-/* Heading Styles */
-/* Heading Styles */
-.heading {
-    font-size: 2.5rem; /* Adjust the font size */
-    font-weight: bold; /* Make the text bold */
-    color: #ff5722; /* Set the text color to a vibrant orange */
-    text-align: center; /* Center the heading horizontally */
-    margin-top: 20px; /* Add spacing above the heading */
+/* --- Main Content Sections --- */
+/* Apply common styling to all primary content sections */
+/* Ensure these IDs exist on the corresponding section elements in HTML */
+#leaderboard-section,
+#bubble-chart-section,
+#histogram-section,
+#graph-section {
+    padding: 20px; /* Consistent padding */
+    margin-left: auto; /* Center content */
+    margin-right: auto; /* Center content */
+    margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 200px; /* Add spacing below the heading */
-    text-transform: uppercase; /* Transform text to uppercase */
-    letter-spacing: 1.5px; /* Add spacing between letters */
-    font-family: 'Times New Roman', sans-serif; /* Set the font family */
-    text-shadow: 2px 2px 4px rgba(82, 23, 23, 0.2); /* Add a subtle shadow */
-    background-color: #f0f8ff; /* Add a light blue background */
-    padding: 10px 20px; /* Add padding around the text */
-    border-radius: 10px; /* Round the corners of the background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-}
-  
-  /* Bubble interactivity */
-  .bubble {
-    cursor: pointer;
-    stroke: #fff;
-    stroke-width: 1px;
-  }
-  .bubble:hover {
-    stroke: #007bff;
-    stroke-width: 2px;
-  }
-  
-  path:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
-  
-  /* Slider Container */
-  #sliderContainer {
-    text-align: center;
-    margin: 20px;
-  }
-  
-  /* Slider Label */
-#sliderValue {
-    font-size: 1.2rem; /* Adjust the font size */
-    font-weight: bold; /* Make the text bold */
-    color: #007bff; /* Set the text color to a professional blue */
-    margin-right: 10px; /* Add spacing to the right of the label */
-    font-family: 'Arial', sans-serif; /* Set the font family */
-    text-transform: uppercase; /* Transform text to uppercase */
-    letter-spacing: 1px; /* Add spacing between letters */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-}
-
-  
-  /* Slider Styling */
-  #countSlider {
-    -webkit-appearance: none;
-    width: 300px;
-    height: 10px;
-    background: linear-gradient(to right, #4caf50, #2196f3);
-    border-radius: 5px;
-    outline: none;
-    opacity: 0.9;
-    transition: opacity 0.2s;
-    border: 2px solid red !important; /* Intentional? */
-  }
-  
-  #countSlider:hover {
-    opacity: 1;
-  }
-
-  #bubble-chart-section {
-    position: relative;
-  }
-
-  #bubble-header {
-    position: absolute;
-    top: 100px;
-    left: 45%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 10px 20px;
-    border-radius: 8px;
-    z-index: 2;
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
-  }
-
-  #bubble-chart-title {
-    margin: 0;
-    font-size: 1.5rem;
-  }
-
-  #sliderContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  #countSlider {
-    cursor: pointer;
-  }
-
-
-
-
-  
-  /* Slider Thumb */
-  #countSlider::-webkit-slider-thumb,
-  #countSlider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: #ff5722;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  /* General Styles */
-:root {
-    --primary-color: #007bff; /* Professional blue */
-    --secondary-color: #0056b3; /* Darker blue */
-    --background-color: #f4f4f9; /* Light neutral background */
-    --text-color: #333; /* Darker text for readability */
-    --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Softer shadow for depth */
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-/* Outer Container */
-.outer-container {
-    display: flex;
-    justify-content: space-between; /* Space between leaderboard and circles */
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 20px;
-    gap: 20px; /* Add spacing between sections */
-}
-
-/* Box Container (Leaderboard Section) */
-.box-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
+    max-width: 1100px; /* Example max width for content area */
+    width: 95%; /* Allow content to use most of the available space, fallback if max-width is too large */
+    box-sizing: border-box;
+    /* border-bottom: 1px solid #ddd; */ /* Optional: remove if container has border */
+    /* Common background/styling for sections */
     background-color: #ffffff;
     border-radius: 15px;
-    /* box-shadow: var(--box-shadow); */
-    width: 70%; /* Take up 70% of the width */
-    max-width: 800px; /* Limit the maximum width */
-    margin: 50px 0 0 350px; /* Add left margin to shift it between the navbar and the left side */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Heading Styles */
-.heading {
-    font-size: 2.5rem;
-    color: var(--primary-color);
+/* --- Leaderboard Specific --- */
+/* Remove the problematic fixed margin from .box-container */
+.box-container { /* This container is INSIDE #leaderboard-section */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center dropdowns and chart */
+    padding: 20px; /* Add padding */
+    background-color: transparent; /* Make transparent if section has background */
+    border-radius: 0; /* Remove radius if section has it */
+    box-shadow: none; /* Remove shadow if section has it */
+    width: 100%; /* Fill the parent section */
+    margin: 0; /* Reset specific margins */
+    box-sizing: border-box;
+}
+
+.heading { /* Style for "Leaderboard" title INSIDE .box-container */
+    font-size: 1.8rem; /* Adjusted size */
+    color: #007bff;
     margin-bottom: 15px;
-    text-align: left;
-    text-transform: uppercase;
+    text-align: center; /* Center heading */
+    width: 100%; /* Ensure it spans */
     font-weight: bold;
-    background-color: #e6f2ff;
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Remove background/padding if not desired */
+    /* background-color: #e6f2ff; */
+    /* padding: 10px 20px; */
+    /* border-radius: 10px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
-/* Dropdown Styles */
 .dropdowns {
     margin-bottom: 25px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center; /* Center dropdowns */
     gap: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
-
+/* Keep dropdown select styles */
 .dropdowns select {
     padding: 12px 18px;
     font-size: 16px;
-    border: 2px solid var(--primary-color);
+    border: 2px solid #007bff; /* var(--primary-color); */
     border-radius: 8px;
     background-color: #ffffff;
-    color: var(--text-color);
+    color: #08046c; /* var(--text-color); */
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dropdowns select:hover {
-    border-color: var(--secondary-color);
+    border-color: #0056b3; /* var(--secondary-color); */
     background-color: #f0f8ff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
@@ -512,68 +171,325 @@ body {
     box-shadow: 0 0 5px rgba(0, 61, 128, 0.5);
 }
 
-/* Chart Styles */
-.chart {
-    margin-top: 20px; /* Add spacing between dropdowns and chart */
+
+.chart { /* Leaderboard SVG container INSIDE .box-container */
+    margin-top: 20px;
     width: 100%;
-    max-width: 700px;
-    min-height: 400px;
-    padding: 20px;
+    max-width: 1100px; /* Control chart max size */
+    min-height: 400px; /* Keep min-height if needed, but consider reducing */
+    padding: 10px; /* Adjust padding */
     background-color: #ffffff;
-    border: 3px solid var(--primary-color);
-    border-radius: 15px;
-    box-shadow: var(--box-shadow);
+    border: 1px solid #ccc; /* Simpler border */
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05); /* Subtle inset shadow */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     position: relative;
+    box-sizing: border-box;
 }
-
 .chart svg {
-    width: 100%;
-    height: 100%;
-    display: block;
+    display: block; /* Ensure SVG behaves like a block */
+    max-width: 100%; /* Prevent SVG overflow */
+    height: auto; /* Allow height to adjust */
+    /* min-height: 380px; */ /* Control SVG min height if needed */
 }
-/* 
-.chart .bar {
-    fill: var(--primary-color);
-    transition: fill 0.3s ease, height 0.3s ease;
-} */
 
-.chart .bar:hover {
-    fill: var(--secondary-color);
+/* --- Bubble Chart Specific --- */
+#bubble-chart-section {
+     /* Uses general section styles now */
+     display: flex; /* Use flexbox for layout */
+     flex-direction: column; /* Stack header and chart */
+     align-items: center; /* Center items horizontally */
+     /* background-color: #fff; /* Already handled by general section rule */
+     /* border-radius: 15px; */
+     /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); */
+     /* padding: 20px; */
+}
+
+#bubble-header {
+    position: static; /* CHANGE: Remove absolute positioning */
+    transform: none; /* CHANGE: Remove transform */
+    display: flex;
+    flex-direction: column; /* Stack title and slider */
+    align-items: center;
+    gap: 15px;
+    background: none; /* Remove background, parent has one */
+    padding: 0;
+    margin-bottom: 20px; /* Space below header */
+    z-index: auto; /* Reset z-index */
+    width: 100%; /* Allow it to span */
+    max-width: 500px; /* Control width of slider area */
+}
+
+#bubble-chart-title { /* Heading inside bubble section */
+    margin: 0;
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#sliderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%; /* Make slider container take width */
+}
+
+#countSlider {
+    -webkit-appearance: none;
+    width: 300px; /* Keep fixed width or make % */
+    height: 10px;
+    background: linear-gradient(to right, #4caf50, #2196f3);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
     cursor: pointer;
 }
+#countSlider:hover {
+    opacity: 1;
+}
+#countSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ff5722;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+#countSlider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ff5722;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: none; /* Add for Firefox */
+}
+
+#sliderValue {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 10px;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+}
 
 
-/* Vertical Navbar */
-#celebrity-circles {
-    position: fixed;
-    top: 60px; /* Adjust to match the height of your top navbar */
-    right: 0; /* Move navbar to the right */
-    width: 210px; /* Increased width by 1.5 times (140px * 1.5) */
-    height: calc(100vh - 60px); /* Leave space for the top navbar */
-    background-color: #f0f0f0;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    padding-top: 20px;
-    z-index: 999; /* Adjust if needed to stack properly */
+#bubbleChart { /* The SVG */
+    display: block;
+    margin: 0 auto; /* Center SVG */
+    border: 1px solid #eee; /* Optional border for SVG */
+    border-radius: 10px;
+    background: #fff;
+    padding: 10px; /* Padding around bubbles */
+    box-shadow: none; /* Remove inner shadow if section has one */
+    width: 100%; /* Make it responsive */
+    max-width: 800px;
+    min-height: 500px; /* Keep if necessary, but consider reducing */
+    height: auto; /* Allow height to scale */
+    box-sizing: border-box;
+}
+
+/* --- Pie Chart Specific --- */
+#histogram-section {
+    /* Uses general section styles */
+     display: flex; /* Use flexbox */
+     flex-direction: column; /* Stack title and chart */
+     align-items: center; /* Center items */
+     /* background-color: #ffffff; */ /* Handled by general section rule */
+     /* border-radius: 15px; */
+     /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+     /* padding: 20px; */
+}
+
+.pie-chart-container { /* Container INSIDE #histogram-section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%; /* Take full width of section */
+}
+
+#pie-chart-title { /* Use this ID from HTML */
+     font-size: 1.5rem;
+     font-weight: bold;
+     color: #007bff;
+     margin: 0 0 10px 0; /* Adjust margin */
+     text-transform: uppercase;
+}
+
+#histogram { /* The SVG */
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #050505; /* Optional border */
+    border-radius: 10px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: none;
+    width: 100%;
+    max-width: 700px;/* Pie charts often smaller */
+    /* CHANGE: Use aspect-ratio for better scaling */
+    aspect-ratio: 1 / 1; /* Example: Square aspect ratio for pie chart */
+    height: 700px; /* Let aspect-ratio control height based on width */
+    min-height: auto; /* Remove fixed min-height if using aspect-ratio */
+    box-sizing: border-box;
+}
+
+
+/* --- Graph Specific --- */
+#graph-section {
+    /* Uses general section styles */
+     display: flex; /* Use flexbox */
+     flex-direction: column; /* Stack title and chart */
+     align-items: center; /* Center items */
+     /* background-color: #ffffff; */ /* Handled by general section rule */
+     /* border-radius: 15px; */
+     /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+     /* padding: 20px; */
+}
+
+#graph-container { /* Container *inside* the section */
+    border: none; /* Remove double border */
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: none; /* Remove double shadow */
+    margin: 0; /* Reset margin */
+    width: 100%; /* Fill section */
+    max-width: 800px;
+    box-sizing: border-box;
+}
+
+#graph-title {
+    font-size: 1.5rem; /* Consistent heading size */
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+#graph { /* Div where graph is likely drawn */
+    width: 100%;
+    /* CHANGE: Use aspect-ratio here too */
+    aspect-ratio: 16 / 9; /* Example: Common ratio for line charts */
+    min-height: auto; /* Remove fixed min-height */
+    /* Add a background temporarily to see if the div exists */
+    /* background-color: lightcoral; */
+}
+
+
+/* Remove redundant/conflicting rules */
+/* #histogram { margin: 60px auto 0 350px; } /* REMOVE */
+/* #bubbleChart { margin: 60px auto 0 350px; width: 70%; } /* REMOVE */
+/* #bubbleChart, #histogramContainer, #urlContainer { ... } /* REMOVE if these are handled by .section or specific IDs */
+/* .outer-container { ... } /* REMOVE if not used */
+/* .section { padding: 40px 20px; border-bottom: 1px solid #ddd; } /* REMOVE old rule */
+
+
+/* General h3 (if still needed, make less specific) */
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-top: 10px; /* Reduced margin */
+    margin-bottom: 15px;
+    margin-left: 0; /* Remove specific margin */
+    margin-right: 0; /* Remove specific margin */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    line-height: 1.4;
+}
+
+/* Specific heading overrides if needed */
+.celebrity-heading { /* Keep if used */
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1100ff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Georgia', sans-serif;
+    text-shadow: 1px 1px 2px rgba(11, 69, 123, 0.2);
+
+}
+
+
+/* === Corrections End === */
+
+/* Keep tooltip, slider thumb, celebrity image styles etc. as they were */
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  background: #222;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: 12px;
+  max-width: 300px;
+  word-wrap: break-word;
+  pointer-events: none; /* Usually tooltips shouldn't be interactive */
+  z-index: 1010; /* Ensure tooltip is above other elements */
+}
+/* Tooltip links (if any) */
+.tooltip a {
+    color: #61dafb; /* Light blue for links in dark tooltip */
+    text-decoration: none;
+}
+.tooltip a:hover {
+    text-decoration: underline;
+}
+
+/* Bubble interactivity */
+.bubble {
+    cursor: pointer;
+    stroke: #fff;
+    stroke-width: 1px;
+    transition: stroke 0.2s, stroke-width 0.2s; /* Add transition */
+}
+.bubble:hover {
+    stroke: #007bff;
+    stroke-width: 2px;
+}
+
+/* Path interactivity (e.g., in pie chart) */
+path:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 /* Celebrity Images */
 .celeb-image {
-    width: 90px; /* Increased width by 1.5 times (60px * 1.5) */
-    height: 90px; /* Increased height by 1.5 times (60px * 1.5) */
-    border-radius: 50%; /* Keep the circular shape */
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: block; /* Prevent extra space below image */
+    margin: 10px auto; /* Center images within the sidebar */
 }
 
 .celeb-image:hover {
-    transform: scale(1.3); /* Slightly enlarge the image on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add a glow/shadow */
+    transform: scale(1.1); /* Slightly smaller scale for less jump */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Enhanced shadow */
 }
 
 
@@ -581,43 +497,93 @@ body {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: var(--primary-color);
+    background-color: #333; /* Match navbar */
     color: #ffffff;
     font-size: 14px;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed; /* REMOVE fixed position */
+    /* bottom: 0; */
     width: 100%;
+    margin-top: 40px; /* Add space above footer */
+    box-sizing: border-box;
 }
 
-/* Center the headings for Pie Chart and Line Chart */
-#histogram-section h3,
-/* Tweet Activity Section Styles */
-#graph-section {
-    padding: 40px 20px; /* Add padding around the section */
-    background-color: #ffffff; /* Set a white background */
-    border-radius: 15px; /* Round the corners of the section */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    margin: 20px auto; /* Center the section and add spacing */
-    max-width: 900px; /* Limit the maximum width */
+/* Loading placeholder */
+.loading-placeholder {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    padding: 40px 20px; /* Add padding */
 }
 
-#graph-container {
-    border: 2px solid #007bff; /* Blue border */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px; /* Add padding inside the container */
-    background-color: #f9f9f9; /* Light background color */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    margin: 30px auto; /* Add vertical spacing and center the container */
-    max-width: 800px; /* Limit the maximum width */
-    width: 90%; /* Ensure responsiveness */
+/* Ensure chart bars have a fill */
+.chart .bar {
+    fill: #007bff; /* Default fill color */
+    transition: fill 0.3s ease;
 }
 
-#graph-title {
-    font-size: 1.8rem; /* Adjust the font size */
-    font-weight: bold; /* Make the text bold */
-    color: #007bff; /* Set the text color to blue */
-    text-align: center; /* Center the title */
-    margin-bottom: 20px; /* Add spacing below the title */
-    text-transform: uppercase; /* Transform text to uppercase */
-    letter-spacing: 1px; /* Add spacing between letters */
+.chart .bar:hover {
+    fill: #0056b3; /* Darker fill on hover */
+    cursor: pointer;
+}
+
+/* Add Media Query for smaller screens (optional but recommended) */
+@media (max-width: 768px) {
+    body {
+        padding-right: 0; /* Remove body padding for sidebar */
+    }
+
+    #celebrity-circles {
+        position: static; /* Make sidebar part of the flow */
+        width: 200px;
+         /* Add padding to the right */
+        height: auto;
+        max-height: 300px; /* Limit height */
+        box-shadow: none;
+        margin-bottom: 20px;
+        order: -1; /* Move sidebar to top on small screens */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: flex; /* Arrange images horizontally */
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center; /* Center images */
+        gap: 15px;
+    }
+
+    .celeb-image {
+        width: 150px; /* Smaller images */
+        height: 100px;
+        margin: 5px;
+    }
+
+    #leaderboard-section,
+    #bubble-chart-section,
+    #histogram-section,
+    #graph-section {
+        margin-left: 10px; /* Reduce margins */
+        margin-right: 10px;
+        width: auto; /* Let it fill available space */
+        max-width: none; /* Remove max-width limit */
+        padding: 15px;
+    }
+
+    .navbar ul {
+        gap: 10px; /* Reduce navbar gap */
+    }
+
+    .navbar h1 {
+        font-size: 1.5rem; /* Smaller title */
+    }
+
+    h3, #bubble-chart-title, #pie-chart-title, #graph-title {
+        font-size: 1.3rem; /* Smaller headings */
+    }
+
+    .heading {
+        font-size: 1.5rem; /* Smaller leaderboard heading */
+    }
+
+    .dropdowns {
+        flex-direction: column; /* Stack dropdowns */
+        align-items: center;
+    }
 }

@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-zinc-100 font-[ui_sans]">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Most Viral News</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-cloud/build/d3.layout.cloud.js"></script>
+</head>
+
+<body class="text-zinc-950 font-sans max-w-7xl mx-auto pb-10">
+
+    <div class="text-zinc-50 my-4 bg-zinc-950 px-10 py-2 rounded-full flex justify-between items-center">
+        <h1 class="font-semibold text-3xl">Most Viral News</h1>
+        <div class="font-light text-2xl">Khushi Pujara & Disha Suthar
+            <!-- <div class="font-extralight inline">[XYZ123456]</div> -->
+        </div>
+    </div>
+
+    <div id="app">
+        <div 
+            class="relative sticky top-3 z-50 rounded bg-zinc-50 shadow-lg overflow-auto px-10 pt-6 pb-2"
+            :class="{
+                'h-auto': !showDatabaseTable,
+                'h-[350px]': showDatabaseTable 
+            }"
+        >
+
+            <div class="mb-4">
+                <h1 class="inline font-medium text-4xl mr-8">01. Database</h1>
+                <div class="inline font-light text-3xl">Top 
+                    <form class="inline">
+                        <select v-model="selectedCount" name="" id="dataset-size" class="font-normal bg-zinc-100 border border-zinc-300 rounded-lg px-2 py-1 appearance-none bg-none">
+                            <option value='0' selected>0</option>
+                            <option v-for="opt in countOptions" :key="opt" :value="opt">[[ opt ]]</option>
+                        </select>
+                    </form> 
+                    
+                    most viral news on Twitter from 
+                    
+                    <form class="inline">
+                        <select v-model="selectedSource" name="" id="dataset-source" class="font-normal bg-zinc-100 border border-zinc-300 rounded-lg px-2 py-1 appearance-none bg-none">
+                            <option value="" selected>Select</option>
+                            <option v-for="src in sourceOptions" :key="src" :value="src">[[ src ]]</option>
+                        </select>
+                    </form>  
+                    
+                    dataset, having :
+                </div>
+            </div>
+            
+            <div class="mx-auto mb-2">
+                <!-- <div v-for="col in allColumns" :key="col" class="px-2 py-1 bg-zinc-200 rounded inline-flex align-center mr-2 mb-2"> -->
+                <div v-for="col in filteredColumns" :key="col" class="px-2 py-1 bg-zinc-200 rounded inline-flex align-center mr-2">
+                    <div class="inline-flex items-center mx-auto">
+                        <input type="checkbox" checked :id="col" :value="col" v-model="visibleColumns" class="w-5 h-5 text-zinc-900 bg-zinc-400 rounded">
+                        <label :for="col" class="ms-2 text-xl font-normal">[[ col ]]</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="text-right mb-2">
+                <button @click="showDatabaseTable = !showDatabaseTable"
+                    class="bg-zinc-900 text-zinc-50 px-6 py-2 rounded-xl text-lg font-semibold hover:bg-zinc-700 transition">
+                    [[ showDatabaseTable ? 'Hide Database' : 'Show Database' ]]
+                </button>
+            </div>
+
+            <!-- <table v-show="isTableVisible" class="table-auto w-full text-xl text-left rtl:text-right"> -->
+            <div v-if="showDatabaseTable">
+                <table class="table-auto w-full text-xl text-left rtl:text-right">
+                    <thead class="text-center">
+                        <tr>
+                            <th v-for="col in visibleColumns" :key="col" class="font-medium px-4 py-2 bg-zinc-100">
+                                [[ col ]]
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-normal">
+                        <tr v-for="row in filteredData" :key="row.id" class="border-t">
+                            <td v-for="col in visibleColumns" :key="col" class="p-2">
+                                [[ row[col] ]]
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h1 class="font-medium text-4xl w-full mx-auto text-center my-6">02. Descriptive Analysis</h1>
+
+        <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"> -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <template v-for="col in descriptiveColumns" :key="col">
+                <div
+                    v-if="visibleColumns.includes(col)"  
+                    class="rounded bg-zinc-50 shadow-lg h-[450px] overflow-auto px-4 pt-2 flex flex-col justify-start items-start"
+                >
+                    <!-- <h2 class="font-light text-3xl capitalize mb-2">[[ col ]]</h2> -->
+                    <div class="flex justify-between items-center">
+                        <div class="font-light text-3xl capitalize">[[ col ]]</div>
+                        <button @click="maximizeChart(col)" class="block text-zinc-700 hover:text-zinc-900">
+                            🔍
+                        </button>
+                    </div>
+
+                    <div :id="`chart-${col}`" class="w-full h-full"></div>
+                </div>
+            </template>
+        </div>
+
+
+        <h1 class="font-medium text-4xl w-full mx-auto text-center my-8 mb-6">03. Principal Component Analysis</h1>
+
+
+        <div class="text-center my-2">
+            <button @click="loadPCA = true" class="bg-zinc-900 text-zinc-50 px-6 py-3 rounded-lg text-xl font-semibold hover:bg-zinc-700 transition">
+                View
+            </button>
+        </div>
+        
+        <div v-if="loadPCA" class="rounded bg-zinc-50 shadow-lg overflow-hidden mt-6">
+            <iframe src="/pca/" class="w-full h-[1400px] border-none rounded-lg"></iframe>
+        </div>
+    
+        <!-- Modal Popover -->
+        <div v-if="showModal" class="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
+            <div class="bg-white rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 h-5/6 p-6 relative flex flex-col">
+        
+            <button @click="closeModal" class="absolute top-4 right-4 text-gray-700 hover:text-gray-900 text-2xl font-bold">&times;</button>
+            
+            <h2 class="text-3xl font-semibold mb-4 capitalize">[[ maximizeColumn ]]</h2>
+            
+            <div :id="`modal-chart-${maximizeColumn}`" class="flex-1"></div>
+            
+        </div>
+    </div>
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            delimiters: ['[[', ']]'], 
+            data() {
+                return {
+                    allData: [],
+                    countOptions: [0, 5, 10, 25, 50, 100],
+                    selectedCount: 0,
+                    sourceOptions: [],
+                    selectedSource: '',
+                    allColumns: [],
+                    visibleColumns: [],
+                    // descriptiveColumns: ['source', 'type', 'domain', 'domain_type', 'clean_title', 'sentiment'],
+                    descriptiveColumns: ['type', 'domain', 'domain_type', 'clean_title'],
+                    
+                    showModal: false,
+                    maximizeColumn: '',
+
+                    // isTableVisible: false,
+                    showDatabaseTable: false,
+
+                    loadPCA: false
+                };
+            },
+            computed: {
+                filteredColumns() {
+                    return this.allColumns.filter(col => col !== 'tweet_ids' && col !== 'sentiment');
+                },
+                filteredData() {
+                    let data = [...this.allData];
+                    if (this.selectedSource) {
+                        data = data.filter(d => d.source === this.selectedSource);
+                    }
+                    return data
+                        .sort((a, b) => b.tweet_count - a.tweet_count)
+                        .slice(0, this.selectedCount);
+                }
+            },
+            watch : {
+                filteredData: {
+                    handler() {
+                        if (this.visibleColumns.includes('type')) {
+                            this.renderTypeChart();
+                        }
+                        if (this.visibleColumns.includes('domain')) {
+                            this.renderDomainTreemap();
+                        }
+                        if (this.visibleColumns.includes('domain_type')) {
+                            this.renderDomainTypePieChart();
+                        }
+                        if (this.visibleColumns.includes('clean_title')) {
+                            this.renderCleanTitleWordCloud();
+                            // this.renderCleanTitleBubbleMap();
+                        }
+                    },
+                    deep: true
+                },
+                visibleColumns(newCols, oldCols) {
+                    if (newCols.includes('type')) {
+                        setTimeout(() => {
+                            this.renderTypeChart();
+                        }, 50);
+                    }
+                    if (newCols.includes('domain')) {
+                        setTimeout(() => {
+                            this.renderDomainTreemap();
+                        }, 50);
+                    }
+                    if (newCols.includes('domain_type')) {
+                        setTimeout(() => {
+                            this.renderDomainTypePieChart();
+                        }, 50);
+                    }
+                    if (newCols.includes('clean_title')) {
+                        setTimeout(() => {
+                            this.renderCleanTitleWordCloud();
+                            // this.renderCleanTitleBubbleMap();
+                        }, 50);
+                    }
+                }
+            },
+            methods: {
+                async fetchData() {
+                    const response = await fetch('/data/dataset.json');
+                    const data = await response.json();
+                    this.allData = data.map(item => {
+                        item.tweet_count = +item.tweet_count;  // convert to integer
+                        return item;
+                    });
+
+                    if (this.allData.length > 0) {
+                        this.allColumns = Object.keys(this.allData[0]);
+                        // this.visibleColumns = [...this.allColumns];
+                    }
+
+                    const uniqueSources = new Set(this.allData.map(d => d.source).filter(Boolean));
+                    this.sourceOptions = Array.from(uniqueSources);
+                },
+
+                toggleTable() {
+                    this.isTableVisible = !this.isTableVisible;
+                },
+
+
+                maximizeChart(column) {
+                    this.maximizeColumn = column;
+                    this.showModal = true;
+
+                    this.$nextTick(() => {
+                        // Once modal is fully visible, draw the chart
+                        if (column === 'type') {
+                            this.renderTypeChart(true);
+                        } else if (column === 'domain') {
+                            this.renderDomainTreemap(true);
+                        } else if (column === 'domain_type') {
+                            this.renderDomainTypePieChart(true);
+                        } else if (column === 'clean_title') {
+                            this.renderCleanTitleWordCloud(true);
+                            // this.renderCleanTitleBubbleMap(true);
+                        }
+                    });
+                },
+                closeModal() {
+                    this.showModal = false;
+                },
+
+                renderTypeChart(modal=false) {
+                    const container = modal 
+                        ? document.getElementById('modal-chart-type')
+                        : document.getElementById('chart-type');
+                    if (!container) return;
+                    container.innerHTML = ''; // Clear previous chart
+
+                    const counts = { real: 0, fake: 0 };
+                    this.filteredData.forEach(row => {
+                        const value = row.type?.toLowerCase();
+                        if (value === 'real') counts.real += 1;
+                        if (value === 'fake') counts.fake += 1;
+                    });
+
+                    const data = [
+                        { type: 'Real', count: counts.real },
+                        { type: 'Fake', count: counts.fake }
+                    ];
+
+                    const margin = { top: 20, right: 20, bottom: 40, left: 60 };
+                    const width = container.clientWidth - margin.left - margin.right;
+                    const height = container.clientHeight - margin.top - margin.bottom;
+
+                    const svg = d3.select(container)
+                        .append('svg')
+                        .attr('width', width + margin.left + margin.right)
+                        .attr('height', height + margin.top + margin.bottom)
+                        .append('g')
+                        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+                
+                    const x = d3.scaleBand()
+                        .domain(data.map(d => d.type))
+                        .range([0, width])
+                        .padding(0.4);
+
+                    const y = d3.scaleLinear()
+                        .domain([0, d3.max(data, d => d.count) + 2])
+                        .range([height, 0]);
+
+                    svg.append('g')
+                        .call(d3.axisLeft(y).ticks(5))
+                        .selectAll('text')
+                        .style('font-size', '12px');
+
+                    svg.append('g')
+                        .attr('transform', `translate(0,${height})`)
+                        .call(d3.axisBottom(x))
+                        .selectAll('text')
+                        .style('font-size', '14px')
+                        .style('font-weight', '600')
+                        .style('fill', '#334155');
+
+                    svg.selectAll('.bar')
+                        .data(data)
+                        .enter()
+                        .append('rect')
+                        .attr('x', d => x(d.type))
+                        .attr('y', d => y(d.count))
+                        .attr('width', x.bandwidth())
+                        .attr('height', d => height - y(d.count))
+                        // .attr('fill', d => d.type === 'Real' ? '#3B82F6' : '#F87171') // blue for real, red for fake
+                        .attr('fill', d => d.type === 'Real' ? '#14B8A6' : '#FB7185')
+                        .attr('rx', 6); 
+
+                    if (modal) {
+                        const tooltip = d3.select(container.parentNode)
+                            .append("div")
+                            .style("position", "absolute")
+                            .style("z-index", "10000")
+                            .style("background", "#f9fafb")
+                            .style("padding", "6px 12px")
+                            .style("border", "1px solid #d1d5db")
+                            .style("border-radius", "8px")
+                            .style("color", "#334155")
+                            .style("font-size", "14px")
+                            .style("pointer-events", "none")
+                            .style("opacity", 0);
+
+
+                        svg.selectAll('.bar')
+                            .data(data)
+                            .enter()
+                            .append('rect')
+                            .attr('x', d => x(d.type))
+                            .attr('y', d => y(d.count))
+                            .attr('width', x.bandwidth())
+                            .attr('height', d => height - y(d.count))
+                            .attr('fill', d => d.type === 'Real' ? '#14B8A6' : '#FB7185')
+                            .attr('rx', 6)
+                            .on('mouseover', function(event, d) {
+                                if (modal) {
+                                    tooltip.transition().duration(200).style("opacity", 1);
+                                    tooltip.html(`<strong>${d.type}</strong><br/>Count: ${d.count}`)
+                                        // .style("left", (event.pageX + 1) + "px")
+                                        // .style("top", (event.pageY + 1) + "px");
+                                        .style("left", (event.clientX - 500) + "px")        // Research
+                                        .style("top", (event.clientY - 100) + "px");        // Research
+                                    d3.select(this).attr('opacity', 0.8);
+                                }
+                            })
+                            .on('mousemove', function(event) {
+                                if (modal) {
+                                    tooltip.style("left", (event.clientX - 500) + "px")     // Research
+                                        .style("top", (event.clientY - 100) + "px");        // Research
+                                }
+                            })
+                            .on('mouseout', function(event, d) {
+                                if (modal) {
+                                    tooltip.transition().duration(500).style("opacity", 0);
+                                    d3.select(this).attr('opacity', 1);
+                                }
+                            });
+
+
+                        const zoom = d3.zoom()
+                            .scaleExtent([0.5, 5])
+                            .translateExtent([[0, 0], [width, height]])
+                            .extent([[0, 0], [width, height]])
+                            .on("zoom", (event) => {
+                                svg.attr("transform", event.transform);
+                            });
+
+                        d3.select(container.querySelector('svg'))
+                            .call(zoom);
+                    }
+
+                    svg.selectAll('.label')
+                        .data(data)
+                        .enter()
+                        .append('text')
+                        .text(d => d.count)
+                        .attr('x', d => x(d.type) + x.bandwidth() / 2)
+                        .attr('y', d => y(d.count) - 5)
+                        .attr('text-anchor', 'middle')
+                        .style('fill', '#334155')
+                        .style('font-size', '14px')
+                        .style('font-weight', 'bold');
+                },
+
+
+                renderDomainTreemap(modal=false) {
+                    const container = modal 
+                        ? document.getElementById('modal-chart-domain')
+                        : document.getElementById('chart-domain');
+                    if (!container) return;
+                    container.innerHTML = '';
+
+                    const uniqueId = (prefix = "id") => `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
+                    const domainMap = {};
+
+                    this.filteredData.forEach(row => {
+                        const domain = row.domain || 'Unknown';
+                        const type = row.type?.toLowerCase() || 'unknown';
+                        const tweetCount = row.tweet_count || 0;
+
+                        const key = `${domain}__${type}`; 
+
+                        if (!domainMap[key]) {
+                            domainMap[key] = { domain, type, tweet_count: 0 };
+                        }
+                        domainMap[key].tweet_count += tweetCount;
+                    });
+
+                    const realChildren = [];
+                    const fakeChildren = [];
+
+                    for (const key in domainMap) {
+                        const item = domainMap[key];
+                        const formatted = { name: item.domain, value: item.tweet_count };
+
+                        if (item.type === 'real') {
+                            realChildren.push(formatted);
+                        } else if (item.type === 'fake') {
+                            fakeChildren.push(formatted);
+                        }
+                    }
+
+                    const treeData = {
+                        children: [
+                            { name: 'Real', children: realChildren },
+                            { name: 'Fake', children: fakeChildren }
+                        ]
+                    };
+
+                    const root = d3.hierarchy(treeData)
+                        .sum(d => d.value)
+                        .sort((a, b) => b.value - a.value);
+
+                    const width = container.clientWidth;
+                    const height = container.clientHeight;
+
+                    d3.treemap()
+                        .size([width, height])
+                        .paddingOuter(2)
+                        .paddingTop(2)
+                        .paddingInner(2)
+                        .round(true)
+                        (root);
+
+                    const svg = d3.select(container)
+                        .append('svg')
+                        .attr('width', width)
+                        .attr('height', height);
+
+                    const chartGroup = svg.append('g');
+
+                    const colorScale = d => {
+                        if (d.ancestors()[1]?.data?.name === 'Real') return '#14B8A6'; 
+                        if (d.ancestors()[1]?.data?.name === 'Fake') return '#FB7185'; 
+                        return '#D1D5DB'; 
+                    };
+
+
+                    const nodes = chartGroup.selectAll('g')
+                        .data(root.leaves())
+                        .enter()
+                        .append('g')
+                        .attr('transform', d => `translate(${d.x0},${d.y0})`)
+                        .attr("id", d => d.uid = uniqueId("leaf"));
+
+                        const cell = nodes.append("g");
+
+                        cell.append('rect')
+                            .attr('id', d => d.uid = uniqueId("leaf"))
+                            .attr('width', d => d.x1 - d.x0)
+                            .attr('height', d => d.y1 - d.y0)
+                            .attr('fill', colorScale)
+                            .attr('rx', 2)
+                            .attr('ry', 2)
+                            .attr('stroke', 'none');
+
+                        cell.append('clipPath')
+                            .attr('id', d => d.clipUid = uniqueId("clip"))
+                        .append('use')
+                            .attr('xlink:href', d => `#${d.uid}`);
+
+                        cell.append('text')
+                            .attr("clip-path", d => `url(#${d.clipUid})`)
+                            .selectAll('tspan')
+                            .data(d => d.data.name.split(/\s+/)) 
+                            .join('tspan')
+                            .attr('x', 5)
+                            .attr('y', (d, i) => `${(i + 1) * 1.1}em`)
+                            .style('fill', '#334155')
+                            .style('font-size', '15px')
+                            .style('font-weight', '600')
+                            .text(d => d);
+                    
+                    if (modal) {
+                        const tooltip = d3.select(container.parentNode)
+                            .append("div")
+                            .style("position", "absolute")
+                            .style("z-index", 10000)
+                            .style("background", "#f9fafb")
+                            .style("padding", "6px 12px")
+                            .style("border", "1px solid #d1d5db")
+                            .style("border-radius", "8px")
+                            .style("color", "#334155")
+                            .style("font-size", "14px")
+                            .style("pointer-events", "none")
+                            .style("opacity", 0);
+
+                        svg.selectAll('rect')
+                            .on('mouseover', function(event, d) {
+                                tooltip.transition().duration(200).style("opacity", 1);
+                                tooltip.html(`<strong>${d.data.name}</strong><br/>Virality: ${d.data.value}`)
+                                    .style("left", (event.clientX - 500) + "px")            // Research
+                                    .style("top", (event.clientY - 100) + "px");            // Research
+                                d3.select(this).attr('opacity', 0.8);
+                            })
+                            .on('mousemove', function(event) {
+                                tooltip.style("left", (event.clientX - 500) + "px")         // Research
+                                    .style("top", (event.clientY - 100) + "px");            // Research
+                            })
+                            .on('mouseout', function(event, d) {
+                                tooltip.transition().duration(500).style("opacity", 0);
+                                d3.select(this).attr('opacity', 1);
+                            });
+
+                        const zoom = d3.zoom()
+                            .scaleExtent([0.5, 5])
+                            .translateExtent([[0, 0], [width, height]])
+                            .extent([[0, 0], [width, height]])
+                            .on("zoom", (event) => {
+                                chartGroup.attr("transform", event.transform);
+                            });
+
+                        d3.select(container.querySelector('svg'))
+                            .call(zoom);
+                    }
+                },
+
+
+                renderDomainTypePieChart(modal = false) {
+                    const container = modal 
+                        ? document.getElementById('modal-chart-domain_type')
+                        : document.getElementById('chart-domain_type');
+                    if (!container) return;
+                    container.innerHTML = '';
+
+                    const counts = {};
+
+                    this.filteredData.forEach(row => {
+                        const domainType = row.domain_type || 'Unknown';
+                        if (!counts[domainType]) {
+                            counts[domainType] = 0;
+                        }
+                        counts[domainType] += 1;
+                    });
+
+                    const data = Object.entries(counts).map(([key, value]) => ({
+                        domainType: key,
+                        count: value
+                    }));
+
+                    const width = container.clientWidth;
+                    const height = container.clientHeight;
+                    const radius = Math.min(width, height) / 2 - 20;
+
+                    const svg = d3.select(container)
+                        .append('svg')
+                        .attr('width', width)
+                        .attr('height', height)
+                        .append('g')
+                        .attr('transform', `translate(${width / 2}, ${height / 2})`);
+
+                    const color = d3.scaleOrdinal()
+                        .domain(data.map(d => d.domainType))
+                        .range([
+                            '#3B82F6',
+                            '#6366F1', 
+                            '#22D3EE', 
+                            '#34D399', 
+                            '#FBBF24', 
+                            '#F87171', 
+                            '#A78BFA', 
+                            '#F472B6'  
+                        ]);
+
+                    const pie = d3.pie()
+                        .value(d => d.count)
+                        .sort(null);
+
+                    const arc = d3.arc()
+                        .innerRadius(0)
+                        .outerRadius(radius);
+
+                    const arcs = svg.selectAll('arc')
+                        .data(pie(data))
+                        .enter()
+                        .append('g')
+                        .attr('class', 'arc');
+
+                    arcs.append('path')
+                        .attr('d', arc)
+                        .attr('fill', d => color(d.data.domainType))
+                        .attr('stroke', '#ffffff')
+                        .attr('stroke-width', '2px')
+                        .on('mouseover', function(event, d) {
+                            if (modal) {
+                                tooltip.transition().duration(200).style("opacity", .9);
+                                tooltip.html(`<strong>${d.data.domainType}</strong><br/>Count: ${d.data.count}`)
+                                    .style("left", (event.clientX + 8) + "px")
+                                    .style("top", (event.clientY + 8) + "px");
+
+                                d3.select(this).transition().duration(200).attr('transform', 'scale(1.05)');
+                            }
+                        })
+                        .on('mousemove', function(event) {
+                            if (modal) {
+                                tooltip.style("left", (event.clientX + 8) + "px")
+                                    .style("top", (event.clientY + 8) + "px");
+                            }
+                        })
+                        .on('mouseout', function(event, d) {
+                            if (modal) {
+                                tooltip.transition().duration(500).style("opacity", 0);
+                                d3.select(this).transition().duration(200).attr('transform', 'scale(1)');
+                            }
+                        });
+
+                    arcs.append('text')
+                        .attr('transform', d => `translate(${arc.centroid(d)})`)
+                        .style('text-anchor', 'middle')
+                        .style('font-size', '12px')
+                        .style('font-weight', 'bold')
+                        .style('fill', '#334155') 
+                        .text(d => d.data.domainType.length > 10 ? d.data.domainType.slice(0, 9) + '…' : d.data.domainType);
+
+                    let tooltip;
+                    if (modal) {
+                        tooltip = d3.select(container.parentNode)
+                            .append("div")
+                            .style("position", "fixed")
+                            .style("z-index", "10000")
+                            .style("background", "#f9fafb")
+                            .style("padding", "6px 12px")
+                            .style("border", "1px solid #d1d5db")
+                            .style("border-radius", "8px")
+                            .style("color", "#334155")
+                            .style("font-size", "14px")
+                            .style("pointer-events", "none")
+                            .style("opacity", 0);
+                    
+                        const zoom = d3.zoom()
+                            .scaleExtent([0.5, 5])
+                            .on("zoom", (event) => {
+                                svg.attr("transform", event.transform);
+                            });
+
+                        d3.select(container.querySelector('svg'))
+                            .call(zoom);
+                    }
+                },
+                
+
+                renderCleanTitleWordCloud(modal = false) {
+                    const container = modal 
+                        ? document.getElementById('modal-chart-clean_title')
+                        : document.getElementById('chart-clean_title');
+                    if (!container) return;
+                    container.innerHTML = '';
+
+                    const wordCounts = {};
+
+                    this.filteredData.forEach(row => {
+                        if (row.clean_title) {
+                            const words = row.clean_title.split(' ');
+                            words.forEach(word => {
+                                if (word.trim() !== '') {
+                                    word = word.toLowerCase();
+                                    if (!wordCounts[word]) {
+                                        wordCounts[word] = 0;
+                                    }
+                                    wordCounts[word] += 1;
+                                }
+                            });
+                        }
+                    });
+
+                    const data = Object.entries(wordCounts).map(([word, count]) => ({
+                        text: word,
+                        size: count
+                    }));
+
+                    const width = container.clientWidth;
+                    const height = container.clientHeight;
+
+                    const svg = d3.select(container)
+                        .append('svg')
+                        .attr('width', width)
+                        .attr('height', height)
+                        .append('g')
+                        .attr('transform', `translate(${width / 2}, ${height / 2})`);
+
+                    const color = d3.scaleOrdinal()
+                        .domain(data.map(d => d.text))
+                        .range([
+                            '#3B82F6', '#6366F1', '#22D3EE', '#34D399',
+                            '#FBBF24', '#F87171', '#A78BFA', '#F472B6', '#14B8A6'
+                        ]);
+
+                    let tooltip;
+                    if (modal) {
+                        tooltip = d3.select(container.parentNode)
+                            .append("div")
+                            .style("position", "fixed")
+                            .style("z-index", "10000")
+                            .style("background", "#f9fafb")
+                            .style("padding", "6px 12px")
+                            .style("border", "1px solid #d1d5db")
+                            .style("border-radius", "8px")
+                            .style("color", "#334155")
+                            .style("font-size", "14px")
+                            .style("pointer-events", "none")
+                            .style("opacity", 0);
+                    }
+
+                    const layout = d3.layout.cloud()
+                        .size([width, height])
+                        .words(data)
+                        .padding(2)  
+                        .rotate(() => (Math.random() > 0.9 ? 90 : 0))  
+                        .font('ui-sans-serif')
+                        .fontWeight('bold')
+                        .fontSize(d => Math.sqrt(d.size) * 10)  
+                        .on('end', draw);
+
+                    layout.start();
+
+                    function draw(words) {
+                        svg.selectAll('text')
+                            .data(words)
+                            .enter().append('text')
+                            .style('font-size', d => `${d.size}px`)
+                            .style('fill', (d, i) => color(i)) 
+                            .style('pointer-events', 'all')    
+                            .attr('text-anchor', 'middle')
+                            .style('font-weight', 'bold')
+                            .style('font-family', 'ui-sans-serif') 
+                            .attr('transform', d => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
+                            .text(d => d.text)
+                            .on('mouseover', function(event, d) {
+                                if (modal) {
+                                    tooltip.transition().duration(200).style("opacity", .9);
+                                    tooltip.html(`<strong>${d.text}</strong><br/>Frequency: ${d.size}`)
+                                        .style("left", (event.clientX + 8) + "px")
+                                        .style("top", (event.clientY + 8) + "px");
+
+                                    d3.select(this)
+                                    .transition()
+                                    .duration(200)
+                                    .style('font-size', `${d.size * 1.2}px`)
+                                    .style('fill', '#0EA5E9');
+                                }
+                            })
+                            .on('mousemove', function(event) {
+                                if (modal) {
+                                    tooltip.style("left", (event.clientX + 8) + "px")
+                                        .style("top", (event.clientY + 8) + "px");
+                                }
+                            })
+                            .on('mouseout', function(event, d) {
+                                if (modal) {
+                                    tooltip.transition().duration(500).style("opacity", 0);
+                                    d3.select(this)
+                                    .transition()
+                                    .duration(200)
+                                    .style('font-size', `${d.size}px`)
+                                    .style('fill', (d, i) => color(i)); 
+                                }
+                            });
+
+                        if (modal) {
+                            const zoom = d3.zoom()
+                                .scaleExtent([0.5, 5])
+                                .on("zoom", (event) => {
+                                    svg.attr("transform", event.transform);
+                                });
+
+                            d3.select(container.querySelector('svg'))
+                                .call(zoom);
+                        }
+                    }
+                },
+
+
+                renderCleanTitleBubbleMap(modal = false) {
+                    const container = modal 
+                        ? document.getElementById('modal-chart-clean_title')
+                        : document.getElementById('chart-clean_title');
+                    if (!container) return;
+                    container.innerHTML = '';
+
+                    const wordCounts = {};
+
+                    this.filteredData.forEach(row => {
+                        if (row.clean_title) {
+                            const words = row.clean_title.split(' ');
+                            words.forEach(word => {
+                                if (word.trim() !== '') {
+                                    word = word.toLowerCase();
+                                    if (!wordCounts[word]) {
+                                        wordCounts[word] = 0;
+                                    }
+                                    wordCounts[word] += 1;
+                                }
+                            });
+                        }
+                    });
+
+                    const data = Object.entries(wordCounts).map(([word, count]) => ({
+                        id: word,
+                        value: count
+                    }));
+
+                    const width = container.clientWidth;
+                    const height = container.clientHeight;
+
+                    const svg = d3.select(container)
+                        .append('svg')
+                        .attr('width', width)
+                        .attr('height', height);
+
+                    const color = d3.scaleOrdinal()
+                        .domain(data.map(d => d.id))
+                        .range([
+                            '#3B82F6', '#6366F1', '#22D3EE', '#34D399',
+                            '#FBBF24', '#F87171', '#A78BFA', '#F472B6', '#14B8A6'
+                        ]);
+
+                    const bubble = d3.pack()
+                        .size([width, height])
+                        .padding(5);
+
+                    const root = d3.hierarchy({ children: data })
+                        .sum(d => d.value);
+
+                    bubble(root);
+
+                    const node = svg.selectAll("g")
+                        .data(root.children)
+                        .enter().append("g")
+                        .attr("transform", d => `translate(${d.x},${d.y})`);
+
+                    node.append("circle")
+                        .attr("r", d => d.r)
+                        .style("fill", (d, i) => color(i))
+                        .style("stroke", "#ffffff")
+                        .style("stroke-width", "2");
+
+                    node.append("text")
+                        .text(d => d.data.id)
+                        .attr("text-anchor", "middle")
+                        .attr("alignment-baseline", "middle")
+                        .style("fill", "#334155")
+                        .style("font-size", d => Math.min(d.r / 2.5, 20))
+                        .style("pointer-events", "none")
+                        .style("font-weight", "bold");
+
+                    let tooltip;
+                    if (modal) {
+                        tooltip = d3.select(container.parentNode)
+                            .append("div")
+                            .style("position", "fixed")
+                            .style("z-index", "10000")
+                            .style("background", "#f9fafb")
+                            .style("padding", "6px 12px")
+                            .style("border", "1px solid #d1d5db")
+                            .style("border-radius", "8px")
+                            .style("color", "#334155")
+                            .style("font-size", "14px")
+                            .style("pointer-events", "none")
+                            .style("opacity", 0);
+                    }
+
+                    node.on('mouseover', function(event, d) {
+                        if (modal) {
+                            tooltip.transition().duration(200).style("opacity", .9);
+                            tooltip.html(`<strong>${d.data.id}</strong><br/>Frequency: ${d.data.value}`)
+                                .style("left", (event.clientX + 8) + "px")
+                                .style("top", (event.clientY + 8) + "px");
+
+                            d3.select(this).select('circle')
+                            .transition().duration(200)
+                            .attr('stroke', '#0EA5E9')
+                            .attr('stroke-width', '4');
+                        }
+                    })
+                    .on('mousemove', function(event) {
+                        if (modal) {
+                            tooltip.style("left", (event.clientX + 8) + "px")
+                                .style("top", (event.clientY + 8) + "px");
+                        }
+                    })
+                    .on('mouseout', function(event, d) {
+                        if (modal) {
+                            tooltip.transition().duration(500).style("opacity", 0);
+                            d3.select(this).select('circle')
+                            .transition().duration(200)
+                            .attr('stroke', '#ffffff')
+                            .attr('stroke-width', '2');
+                        }
+                    });
+
+                    if (modal) {
+                        const zoom = d3.zoom()
+                            .scaleExtent([0.5, 5])
+                            .on("zoom", (event) => {
+                                svg.selectAll('g')
+                                    .attr("transform", event.transform);
+                            });
+
+                        svg.call(zoom);
+                    }
+                }
+
+
+
+            },
+            mounted() {
+                this.fetchData();
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

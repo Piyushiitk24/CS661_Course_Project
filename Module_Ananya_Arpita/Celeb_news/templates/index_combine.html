@@ -19,7 +19,7 @@
       <li><a href="#graph-section">Graph</a></li>
     </ul>
   </nav>
-  <style>
+  <!-- <style>
     body {
       background-image: url("{{ url_for('static', filename='css/bkg_4.jpg') }}");
       background-size: cover;
@@ -27,11 +27,11 @@
       background-attachment: fixed;
       background-position: center;
     }
-  </style>
+  </style> -->
   <!-- Section 1: Leaderboard -->
   <section class="section" id="leaderboard-section">
     <div class="box-container">
-      <h1 class="heading">Leaderboard</h1>
+      <h1 class="heading">LEADERBOARD</h1>
       <div class="dropdowns">
         <label for="type">Type:</label>
         <select id="type">
@@ -49,67 +49,99 @@
       </div>
 
       <div id="chart" class="chart">
-        <svg></svg>
+        <!-- SVG will be generated here -->
       </div>
     </div>
     <div id="celebrity-circles" class="celebrity-circles">
-      <h2 class="celebrity-heading">Popular Faces</h2>
+      <div class="celebrity-heading">POPULAR FACES</h2>
+      
+      <!-- Celebrity images will be generated here -->
     </div>
   </section>
 
   <!-- Section 2: Bubble Chart & Slider -->
-  <!-- <section class="section" id="bubble-chart-section">
-    <div id="sliderContainer">
-      <label for="countSlider" id="sliderValue">Minimum Count: 0</label>
-      <input type="range" id="countSlider" min="0" max="100" value="0" />
+  <section class="section" id="bubble-chart-section">
+    <div id="bubble-header">
+      <h3 id="bubble-chart-title">Bubble Chart</h3>
+      <div id="sliderContainer">
+        <label for="countSlider" id="sliderValue">Minimum Count: 0</label>
+        <input type="range" id="countSlider" min="0" max="100" value="0" />
+      </div>
     </div>
-    <h3 id="bubble-chart-title">Bubble Chart</h3>
-
-    <svg id="bubbleChart" width="100%" height="600"></svg>
-    <div class="tooltip" style="opacity: 0; position: absolute; background: #fff; border: 1px solid #ccc; padding: 5px;"></div>
-  </section> -->
-
- <section class="section" id="bubble-chart-section">
-  <div id="bubble-header">
-    <h3 id="bubble-chart-title">Bubble Chart</h3>
-    <div id="sliderContainer">
-      <label for="countSlider" id="sliderValue">Minimum Count: 0</label>
-      <input type="range" id="countSlider" min="0" max="100" value="0" />
-    </div>
-  </div>
-  <svg id="bubbleChart" width="100%" height="600"></svg>
-  <div class="tooltip" style="opacity: 0; position: absolute; background: #fff; border: 1px solid #ccc; padding: 5px;"></div>
-</section> 
-
-  <!-- Section 3: Pie Chart -->
-<section class="section" id="histogram-section">
-  <div class="pie-chart-container">
-    <h3 id="pie-chart-title">Pie Chart</h3> <!-- Dynamic heading -->
-    <svg id="histogram" width="800" height="400"></svg>
-  </div>
-</section> 
   
+    <!-- New container for both charts -->
+    <div class="chart-combined-container">
+      <!-- Bubble Chart -->
+      <svg id="bubbleChart"></svg>
+  
+      <!-- Mini Pie Chart -->
+      <div class="pie-chart-container">
+        <h3 id="pie-chart-title">Pie Chart</h3>
+        <svg id="histogram"></svg>
+      </div>
+    </div>
+  
+    <!-- Tooltip div is created dynamically in JS -->
+  </section>
 
 
 
 
+  <style>
+    .chart-combined-container {
+      display: flex; /* Make them side by side */
+      align-items: center; /* Center them vertically */
+      gap: 20px; /* Space between bubble and pie charts */
+      margin-top: 20px;
+      
+      width: 100%; /* Increased width by 1.5% */
+      margin-left: -0.65%; /* Shift slightly left to stay centered */
+    }
+    
+    /* Bubble chart (larger) */
+    #bubbleChart {
+      flex: 3; /* Takes more space */
+      width: 102%;
+      height: 600px; /* Or whatever you need */
+    }
+    
+    /* Pie chart (smaller) */
+    .pie-chart-container {
+      flex: 1; /* Takes less space */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center the mini pie */
+    }
+    
+    #histogram {
+      width: 350px; /* Reduced size for mini pie */
+      height: 350px;
+    }
+    
+    /* Titles styling (optional) */
+    #bubble-chart-title, #pie-chart-title {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    </style>
 
-<!-- Tweet Activity Section -->
-<!-- Section 4: Tweet Activity -->
 <!-- Section 4: Tweet Activity -->
 <section class="section" id="graph-section">
   <div id="graph-container">
     <h3 id="graph-title">Tweet Activity</h3>
-    <div id="graph"></div>
+    <!-- ADD LEGEND CONTAINER HERE -->
+    <div id="legend" style="text-align: center; margin-bottom: 10px;"></div>
+    <!-- END LEGEND CONTAINER -->
+    <div id="graph"></div> <!-- Container for the line chart SVG -->
   </div>
 </section>
   <!-- Scripts -->
-  <script>
-    // Dynamic slider label update
-    document.getElementById('countSlider').addEventListener('input', function () {
-      document.getElementById('sliderValue').textContent = 'Minimum Count: ' + this.value;
-    });
-  </script>
+  <!-- <script>
+    // Dynamic slider label update (moved to main_combine.js)
+    // document.getElementById('countSlider').addEventListener('input', function () {
+    //   document.getElementById('sliderValue').textContent = 'Minimum Count: ' + this.value;
+    // });
+  </script> -->
   <script src="{{ url_for('static', filename='js/main_combine.js') }}"></script>
 </body>
 </html>

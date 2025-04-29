@@ -12,7 +12,7 @@ export default function Home() {
     { name: "Ananya", url: "https://www.linkedin.com/in/ananya-chaturvedi-70b24a219/" },
     { name: "Arpita", url: "https://www.linkedin.com/in/arpita-santra" },
     { name: "Disha", url: "" },
-    { name: "Khusi", url: "" },
+    { name: "Khushi", url: "" },
     { name: "Piyush", url: "" },
     { name: "Ravi", url: "" },
     { name: "Sankhadeep", url: "https://www.linkedin.com/in/sankha14" }
@@ -23,7 +23,7 @@ export default function Home() {
     { name: "Virality Analysis", url: "http://127.0.0.1:5001" },
     { name: "Top Trending Personalities", url: "http://127.0.0.1:5002" },
     { name: "Thematic Clustering", url: "http://localhost:5174/" },
-    { name: "Trendy News Analysis", url: "/trendy" },
+    { name: "Trendy News Analysis", url: "http://127.0.0.1:5003" },
   ];
 
   return (

@@ -1,0 +1,60 @@
+!!!!!!!!!!!!!! Ensure you have Python and Node.js (with npm) installed on your system !!!!!!!!!!!!!!
+
+1. Manually look into the "CS661_Course_Project/Module_Aakriti" and "CS661_Course_Project/Module_Sankhadeep/client"
+folders for a folder named "node_modules". If it is present, move onto the next step. If not present (or if you get 
+any error in Step 5 below) then navigate to (or open) in a terminal in those folders one by one and run:
+```bash
+	npm install
+```
+
+Close the terminal when the installs complete.
+
+
+
+2. In a new terminal navigate to (or open) the "CS661_Course_Project" folder
+
+
+ 
+3. Activate your python virtual environment if you intend to use one that you created earlier (otherwise skip this step):
+```bash
+	<path_to_the_virtual_environment>/bin/activate
+```
+
+
+4. Run (if you are trying to run the project for the first time in your machine, otherwise skip this step):
+```bash
+	pip install -r requirements.txt
+```
+
+Wait for the installs to finish.
+
+
+
+5. Run:
+```bash
+	python start_all.py
+```
+
+Let this server terminal run in the background for the entire duration you would like to visit the project webpages.
+
+
+
+6. Open a browser and paste the following link and the project Homepage will open up: http://localhost:5173
+
+
+
+7. !!! IMPORTANT !!! When you are done and wish to close the project, to properly stop the servers and free up the ports for reuse:
+	
+	i.   Simply close the server terminal
+	ii.  Then in a new terminal navigate to (or open) the "CS661_Course_Project" folder
+	iii. Then run:
+		```bash
+			python3 stop_all.py
+		```
+
+Done! Close the terminal.
+
+
+~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ END ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+
