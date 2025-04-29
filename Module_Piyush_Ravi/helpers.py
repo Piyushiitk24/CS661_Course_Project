@@ -5,7 +5,7 @@ from wordcloud import STOPWORDS
 import re
 from urllib.parse import urlparse
 import numpy as np
-import sys # Added for better printing
+import sys
 
 TWITTER_EPOCH = 1288834974657
 DEFAULT_STOPWORDS = STOPWORDS.union({'report', 'reports', 'says', 'sources', 'source'})
@@ -13,17 +13,13 @@ DEFAULT_STOPWORDS = STOPWORDS.union({'report', 'reports', 'says', 'sources', 'so
 def get_timestamp_ms_from_tweet_id(tweet_id):
     """Attempts to extract the timestamp from a Twitter Snowflake ID."""
     try:
-        # Ensure tweet_id is treated as an integer
         tweet_id_int = int(tweet_id)
-        # Check if the ID is potentially valid (Snowflake IDs are 64-bit integers)
-        # Very old IDs might not fit this, but it's a basic check.
+        # Basic check for potential Snowflake ID range
         if tweet_id_int < 0 or tweet_id_int > (1 << 63) - 1:
-             # print(f"DEBUG: Tweet ID {tweet_id} out of typical range.", file=sys.stderr) # Optional: very verbose
              return None
         return (tweet_id_int >> 22) + TWITTER_EPOCH
     except (ValueError, TypeError, OverflowError):
-        # Catches non-numeric IDs, None, or IDs too large for standard int
-        # print(f"DEBUG: Failed to convert Tweet ID {tweet_id} to int.", file=sys.stderr) # Optional: very verbose
+        # Catches non-numeric IDs, None, or IDs too large
         return None
 
 def get_datetime_from_tweet_id_string(tweet_id_string):
@@ -32,13 +28,11 @@ def get_datetime_from_tweet_id_string(tweet_id_string):
     Returns None if no valid ID is found or the input is invalid.
     """
     if pd.isna(tweet_id_string) or not isinstance(tweet_id_string, str):
-        # print(f"DEBUG: Invalid input tweet_id_string: {tweet_id_string}", file=sys.stderr) # Optional: verbose
         return None
     try:
         # Split by any whitespace and filter out empty strings
         ids = [tid for tid in tweet_id_string.split() if tid]
         if not ids:
-            # print(f"DEBUG: No IDs found after splitting: '{tweet_id_string}'", file=sys.stderr) # Optional: verbose
             return None
 
         # Try to find the first valid timestamp
@@ -46,26 +40,24 @@ def get_datetime_from_tweet_id_string(tweet_id_string):
         for potential_id in ids:
             timestamp_ms = get_timestamp_ms_from_tweet_id(potential_id)
             if timestamp_ms is not None:
-                # print(f"DEBUG: Found valid timestamp for ID {potential_id} in '{tweet_id_string}'", file=sys.stderr) # Optional: verbose
                 break # Use the first valid one
 
         if timestamp_ms is None:
-            # print(f"DEBUG: No valid timestamp found in any ID within '{tweet_id_string}'", file=sys.stderr) # Optional: verbose
             return None
 
         # Convert timestamp to datetime, coercing errors to NaT
         dt = pd.to_datetime(timestamp_ms / 1000, unit='s', errors='coerce')
         if pd.isna(dt):
-             # print(f"DEBUG: pd.to_datetime failed for timestamp {timestamp_ms} from '{tweet_id_string}'", file=sys.stderr) # Optional: verbose
              return None
         return dt
     except Exception as e:
         # Catch any other unexpected errors during processing
-        print(f"DEBUG: Unexpected error in get_datetime_from_tweet_id_string for input '{tweet_id_string}': {e}", file=sys.stderr)
+        print(f"Error in get_datetime_from_tweet_id_string for input '{tweet_id_string}': {e}", file=sys.stderr)
         return None
 
 
 def clean_text(text):
+    """Lowercase, remove non-alphabetic chars, and remove stopwords."""
     if not isinstance(text, str):
         return ""
     text = text.lower()
@@ -73,11 +65,13 @@ def clean_text(text):
     return ' '.join(word for word in text.split() if word not in DEFAULT_STOPWORDS)
 
 def calculate_sentiment(text):
+    """Calculate sentiment polarity using TextBlob."""
     if not isinstance(text, str):
         return 0.0
     return TextBlob(text).sentiment.polarity
 
 def extract_domain(url):
+    """Extracts the domain name from a URL, removing 'www.' prefix."""
     if not isinstance(url, str):
         return None
     # Handle cases like 'www.domain.com/path' which urlparse might misinterpret without scheme
@@ -91,11 +85,12 @@ def extract_domain(url):
             domain = domain[4:]
         return domain if domain else None # Return None if domain is empty
     except Exception as e:
-        print(f"DEBUG: Error parsing URL '{url}': {e}", file=sys.stderr)
+        print(f"Error parsing URL '{url}': {e}", file=sys.stderr)
         return None
 
 
 def categorize_domain(domain):
+    """Categorizes a domain into broad types."""
     if not domain:
         return 'other'
     domain = domain.lower()
@@ -113,17 +108,17 @@ def categorize_domain(domain):
     # Wiki
     elif 'wikipedia.org' in domain:
         return 'wiki'
-    # Specific known sites from sample data (can be expanded)
+    # Specific known sites from sample data
     elif any(d in domain for d in ['dailymail.co.uk', 'hollywoodlife.com', 'variety.com', 'refinery29.com', 'brides.com', 'speedtalk.com', 'politics2020.info', 'nscdscamps.org', 'howafrica.com', 'nfib-sbet.org', 'cq.com']):
-         # Could categorize these more specifically if needed, e.g., 'tabloid', 'entertainment', 'political_blog'
          return 'specific_source'
     # Government/Org
-    elif any(x in domain for x in ['.gov', '.org', '.edu']): # Keep .org check less broad than specific known orgs
+    elif any(x in domain for x in ['.gov', '.org', '.edu']):
          return 'gov_org_edu'
     return 'other'
 
 
 def get_word_frequency_data(df_filtered, min_freq=5, top_n=100):
+    """Calculates word frequencies and log2 ratio for fake vs real news titles."""
     fake_df = df_filtered[df_filtered['type'] == 'fake']
     real_df = df_filtered[df_filtered['type'] == 'real']
     fake_words = ' '.join(fake_df['clean_title'].astype(str).dropna()).split()
@@ -138,26 +133,27 @@ def get_word_frequency_data(df_filtered, min_freq=5, top_n=100):
         total_freq = f_freq + r_freq
         if total_freq < min_freq:
             continue
-        # Adjusted ratio calculation for better stability and range
+        # Adjusted ratio calculation with add-1 smoothing
         if f_freq > 0 and r_freq > 0:
-            ratio = np.log2((f_freq + 1) / (r_freq + 1)) # Add-1 smoothing
+            ratio = np.log2((f_freq + 1) / (r_freq + 1))
         elif f_freq > 0:
             ratio = 3 # Assign a high positive value if only fake
         elif r_freq > 0:
             ratio = -3 # Assign a high negative value if only real
         else:
-            ratio = 0 # Should not happen if total_freq > 0
+            ratio = 0
 
         word_data.append({'text': word, 'total_freq': total_freq, 'fake_freq': f_freq, 'real_freq': r_freq, 'log2_ratio': ratio})
 
-    # Sort and take top N
+    # Sort by total frequency and take top N
     word_data.sort(key=lambda x: x['total_freq'], reverse=True)
     return word_data[:top_n]
 
 
 def load_and_prepare_data():
+    """Loads data from CSVs, performs cleaning, date extraction, and feature engineering."""
     print("Loading and preparing data...")
-    data_folder = 'data/' # Define base path
+    data_folder = 'data/' # Define base path for data files
     try:
         df_fake_gossip = pd.read_csv(data_folder + 'gossipcop_fake.csv')
         df_fake_gossip['source'] = 'gossipcop'
@@ -168,30 +164,27 @@ def load_and_prepare_data():
         df_real_politi = pd.read_csv(data_folder + 'politifact_real.csv')
         df_real_politi['source'] = 'politifact'
     except FileNotFoundError as e:
-        print(f"Error loading file: {e}. Ensure CSV files are in the '{data_folder}' subfolder relative to where the script is run.", file=sys.stderr)
+        print(f"Error loading file: {e}. Ensure CSV files are in the '{data_folder}' subfolder.", file=sys.stderr)
         sys.exit(1) # Exit if data can't be loaded
 
     required_cols = ['title', 'tweet_ids', 'news_url']
     all_dfs = [df_fake_gossip, df_real_gossip, df_fake_politi, df_real_politi]
     df_names = ['gossipcop_fake', 'gossipcop_real', 'politifact_fake', 'politifact_real']
 
-    # Check for required columns before adding 'type'
+    # Check for required columns and assign 'type'
     valid_dfs = []
     for df_check, name in zip(all_dfs, df_names):
         missing_cols = [col for col in required_cols if col not in df_check.columns]
         if missing_cols:
             print(f"Error: Column(s) '{', '.join(missing_cols)}' missing in {name}.csv. Skipping this file.", file=sys.stderr)
-            # Optionally decide whether to exit or just skip
-            # sys.exit(1)
         else:
-            # Assign type based on filename convention (could be more robust)
             if 'fake' in name:
                 df_check['type'] = 'fake'
             elif 'real' in name:
                 df_check['type'] = 'real'
             else:
                 print(f"Warning: Could not determine type for {name}.csv", file=sys.stderr)
-                df_check['type'] = 'unknown' # Or handle differently
+                df_check['type'] = 'unknown'
             valid_dfs.append(df_check)
 
     if not valid_dfs:
@@ -205,14 +198,12 @@ def load_and_prepare_data():
     print(df['source'].value_counts(dropna=False))
     print("--------------------------\n")
 
-    # --- Debugging Date Conversion ---
+    # --- Date Conversion ---
     print("Attempting date conversion from 'tweet_ids'...")
-    # Apply the conversion function
     df['date_raw'] = df['tweet_ids'].apply(get_datetime_from_tweet_id_string)
-    # Ensure the result is in datetime format, coercing errors (though function should return None or dt)
     df['date'] = pd.to_datetime(df['date_raw'], errors='coerce')
 
-    # Identify rows where date conversion failed (resulted in NaT)
+    # Identify rows where date conversion failed
     failed_date_mask = df['date'].isna()
     num_failed = failed_date_mask.sum()
     print(f"\n--- Date Conversion Results ---")
@@ -220,20 +211,16 @@ def load_and_prepare_data():
 
     if num_failed > 0:
         print("\nSample of rows that failed date conversion (showing tweet_ids and source):")
-        # Select relevant columns for the sample
         sample_failed = df.loc[failed_date_mask, ['tweet_ids', 'source', 'title']].head(20)
-        # Use to_string to prevent truncation of tweet_ids
         print(sample_failed.to_string())
 
-        # Check source distribution specifically for failed rows
         print("\nSource distribution for rows that FAILED date conversion:")
         print(df.loc[failed_date_mask, 'source'].value_counts(dropna=False))
     print("-------------------------------\n")
-    # --- End Debugging Date Conversion ---
+    # --- End Date Conversion ---
 
 
     initial_rows = len(df)
-    # Store counts BEFORE dropping NaT dates
     counts_before_drop = df['source'].value_counts(dropna=False)
 
     # Drop rows where the final 'date' column is NaT
@@ -243,7 +230,6 @@ def load_and_prepare_data():
     print(f"\n--- After Dropping NaT Dates ---")
     print(f"Removed {rows_dropped} rows due to missing/invalid dates (NaT in 'date' column).")
 
-    # Store counts AFTER dropping NaT dates
     counts_after_drop = df['source'].value_counts(dropna=False)
 
     print("\nSource distribution BEFORE dropping NaT dates:")
@@ -257,25 +243,22 @@ def load_and_prepare_data():
     print(diff[diff != 0]) # Show only sources where rows were dropped
     print("-----------------------------\n")
 
-    # Continue with other processing...
+    # --- Feature Engineering ---
     print("Extracting domain and cleaning text...")
     df['domain'] = df['news_url'].apply(extract_domain)
     df['domain_type'] = df['domain'].apply(categorize_domain)
-    # Ensure 'title' is string before cleaning
     df['clean_title'] = df['title'].astype(str).apply(clean_text)
     df['sentiment'] = df['title'].astype(str).apply(calculate_sentiment)
 
-    # Drop the intermediate raw date column if it exists
+    # Drop the intermediate raw date column
     if 'date_raw' in df.columns:
         df = df.drop(columns=['date_raw'])
 
     print(f"\nFinal DataFrame shape: {df.shape}")
     print("Data preparation complete.")
 
-    # --- Save the FULLY PROCESSED DataFrame to a CSV file ---
-    # Moved to the end of the function, before returning df
+    # --- Save Processed Data ---
     try:
-        # Using a different filename to avoid confusion with previous attempts
         output_filename = 'combined_data_processed.csv'
         df.to_csv(output_filename, index=False)
         print(f"Fully processed data saved to {output_filename}")
@@ -284,17 +267,14 @@ def load_and_prepare_data():
 
     return df
 
-# --- Example of how to call it (if running this file directly) ---
+# --- Example usage when running this file directly ---
 if __name__ == '__main__':
-    # Make sure you have a 'data' subfolder with the CSVs
-    # Or adjust the path in load_and_prepare_data
     try:
         prepared_df = load_and_prepare_data()
         print("\nSample of prepared data:")
         print(prepared_df.head())
         print("\nData types:")
         print(prepared_df.info())
-        # Example: Check date range per source
         print("\nDate range per source (after cleaning):")
         if not prepared_df.empty:
              print(prepared_df.groupby('source')['date'].agg(['min', 'max', 'count']))

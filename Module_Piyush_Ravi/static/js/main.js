@@ -6,9 +6,7 @@
 const API_BASE_URL = '/api';
 const LOADING_PLACEHOLDER_HTML = '<div class="loading-placeholder">Loading Data...</div>';
 const ERROR_MESSAGE_HTML = (msg) => `<p class="error-message">Error: ${msg}</p>`;
-// REMOVED Scatterplot constants
 const BUBBLE_PADDING = 2; // Padding for word cloud collision calculation
-// REMOVED MIN_BUBBLE_RADIUS_FOR_TEXT (not used in text cloud)
 
 
 // --- Global State Variables ---
@@ -24,6 +22,8 @@ let currentFilters = {
     wordSentiment: 'all',
     wordMinFreq: 5,
     heatmapMonth: 'all',
+    heatmapMinYear: null, // Will be set on init
+    heatmapMaxYear: null, // Will be set on init
     domainType: 'all',
     domainMinArticles: 5,
     domainSort: 'count',
@@ -31,7 +31,6 @@ let currentFilters = {
 };
 
 // --- Tooltip D3 Selections ---
-// REMOVED scatterPlotTooltip
 let wordCloudTooltip, heatmapTooltip, domainTooltip;
 
 // --- DOM Element References ---
@@ -42,6 +41,8 @@ const wordMinFreqSlider = document.getElementById('word-min-freq');
 const wordMinFreqValueSpan = document.getElementById('word-min-freq-value');
 const selectedWordInfoDiv = document.getElementById('selected-word-info');
 const heatmapMonthSelect = document.getElementById('heatmap-month');
+const heatmapMinYearSelect = document.getElementById('heatmap-min-year');
+const heatmapMaxYearSelect = document.getElementById('heatmap-max-year');
 const heatmapResetButton = document.getElementById('heatmap-reset-filters');
 const heatmapFilterInfo = document.getElementById('heatmap-filter-info');
 const domainTypeSelect = document.getElementById('domain-type');
@@ -53,7 +54,7 @@ const domainFilterInfo = document.getElementById('domain-filter-info');
 // ==========================================================================
 // Utility Functions
 // ==========================================================================
-async function fetchData(endpoint, params = {}) { // Keep unchanged
+async function fetchData(endpoint, params = {}) {
     const url = new URL(`${API_BASE_URL}${endpoint}`, window.location.origin);
     Object.keys(params).forEach(key => {
         if (params[key] !== null && params[key] !== undefined) {
@@ -63,63 +64,45 @@ async function fetchData(endpoint, params = {}) { // Keep unchanged
     console.log('Fetching:', url.toString());
     try {
         const response = await fetch(url);
-        // --- FIX: Reinstate the response.ok check ---
-        if (!response.ok) { // Check if the response status is not OK (e.g., 404, 500)
+        if (!response.ok) {
             let errorMsg = `HTTP error! status: ${response.status}`;
             try {
-                // Try to parse error details from the response body
                 const errorData = await response.json();
                 errorMsg += ` - ${errorData.error || 'Unknown server error'}`;
             } catch (e) {
-                // If parsing fails or no JSON body, just use the status
                 console.warn("Could not parse error response body:", e);
             }
-            throw new Error(errorMsg); // Throw an error to be caught by the outer catch block
+            throw new Error(errorMsg);
         }
-        // If response is ok, parse the JSON data
         const data = await response.json();
-        // console.log(`Data received for ${endpoint}:`, Array.isArray(data) ? data.slice(0, 5) : data); // Less verbose logging
-        return data; // Return the successfully fetched data
-    } catch (error) { // Catch network errors or errors thrown above
+        return data;
+    } catch (error) {
         console.error(`Error fetching ${endpoint}:`, error);
-        throw error; // Re-throw to be caught by calling functions (e.g., refresh functions)
+        throw error;
     }
 }
 
-// --- RE-INTRODUCE CIRCULAR FISHEYE FUNCTION ---
-/**
- * Creates a circular fisheye distortion function.
- * @param {number} radius - The radius of the fisheye effect.
- * @param {number} distortion - The distortion factor (e.g., 2-5). Higher means more magnification.
- * @returns {function} A function that takes coordinates [x, y] relative to a focus and returns distorted coordinates {x, y, scale}.
- */
-function createFisheye(radius = 100, distortion = 3) { // Keep unchanged
+function createFisheye(radius = 100, distortion = 3) {
     let radius2 = radius * radius;
 
-    function distort(x, y) { // Assumes x, y are relative to focus [0,0]
+    function distort(x, y) {
         const dx = x;
         const dy = y;
         const distance2 = dx * dx + dy * dy;
-
-        // No distortion outside the fisheye radius or if exactly at the center
         if (distance2 >= radius2 || distance2 === 0) {
             return { x: x, y: y, scale: 1 };
         }
-
         const distance = Math.sqrt(distance2);
-        // Geometric distortion formula (same as Bostock's example)
         const distortedDistance = distance * (distortion + 1) / (distortion * (distance / radius) + 1);
-
         const scale = distortedDistance / distance;
         return { x: dx * scale, y: dy * scale, scale: scale };
     }
 
-    // Returns a function that distorts coordinates relative to a provided focus point.
     distort.focus = function(focusPoint) {
         return function(x, y) {
             const dx = x - focusPoint[0];
             const dy = y - focusPoint[1];
-            const result = distort(dx, dy); // Use the internal distort for relative coords
+            const result = distort(dx, dy);
             return {
                 x: focusPoint[0] + result.x,
                 y: focusPoint[1] + result.y,
@@ -149,37 +132,30 @@ function createFisheye(radius = 100, distortion = 3) { // Keep unchanged
 // Chart Update Functions
 // ==========================================================================
 
-/** Word Cloud Update Function (REVISED SIZING) */
+/** Word Cloud Update Function */
 function updateWordCloud(data) {
     const container = document.getElementById('word-cloud-chart');
-    container.innerHTML = ''; // Clear previous
+    container.innerHTML = '';
     if (!data || !data.length) {
         container.innerHTML = '<p class="loading-placeholder">No word cloud data.</p>';
         return;
     }
 
-    // --- DYNAMIC SIZING ---
-    // Get dimensions from the container DIV *after* CSS might have sized it
     const containerRect = container.getBoundingClientRect();
-    // Use container dimensions, fallback if not rendered yet or too small
     const width = containerRect.width > 50 ? containerRect.width : 800;
-    // Use container height if available and large enough, else fallback
-    const height = containerRect.height > 100 ? containerRect.height : 700; // Increased base height
-    // ---
+    const height = containerRect.height > 100 ? containerRect.height : 700;
 
-    console.log("Word Cloud Dimensions:", width, height); // Debug log
+    console.log("Word Cloud Dimensions:", width, height);
 
     const svg = d3.select(container).append("svg")
         .attr("width", width)
         .attr("height", height)
-        // Keep viewBox centered, using the calculated dimensions
         .attr("viewBox", [-width / 2, -height / 2, width, height])
-        .style("max-width", "100%") // Already set in CSS, but good practice
+        .style("max-width", "100%")
         .attr("preserveAspectRatio", "xMidYMid meet");
 
     const g = svg.append("g");
 
-    // Prepare data (Keep unchanged)
     data = data.map(d => ({
         ...d,
         total_freq: +d.total_freq || 0,
@@ -191,16 +167,13 @@ function updateWordCloud(data) {
     const realColor = "var(--accent-blue)";
     const neutralColor = "var(--text-secondary)";
     const extentFreq = d3.extent(data, d => d.total_freq);
-    // Font size scale (Keep unchanged)
     const fontSizeScale = d3.scaleSqrt()
         .domain([Math.max(1, extentFreq[0] || 1), Math.max(1, extentFreq[1] || 1)])
-        .range([12, 45]) // Adjust font size range as needed
+        .range([12, 45])
         .clamp(true);
 
-    // Map nodes (Keep unchanged)
     const nodes = data.map(d => {
         let nodeColor;
-        /* ... color logic ... */
         if (currentFilters.wordType === 'fake') nodeColor = fakeColor;
         else if (currentFilters.wordType === 'real') nodeColor = realColor;
         else {
@@ -213,30 +186,25 @@ function updateWordCloud(data) {
         const originalFontSize = fontSizeScale(d.total_freq);
         return {
             ...d,
-            // Estimate radius for collision based on font size (adjust multiplier as needed)
-            radius: originalFontSize * 0.6 + BUBBLE_PADDING, // Keep using font size for collision radius
+            radius: originalFontSize * 0.6 + BUBBLE_PADDING,
             color: nodeColor,
-            originalFontSize: originalFontSize // Store original font size
+            originalFontSize: originalFontSize
         };
     });
 
-    // Simulation setup (Use new dimensions for center force if needed - viewBox handles this)
     if (wordSimulation) wordSimulation.stop();
     wordSimulation = d3.forceSimulation(nodes)
-        .force("charge", d3.forceManyBody().strength(-20)) // Restore charge strength
-        .force("collide", d3.forceCollide().radius(d => d.radius).strength(0.8)) // Use estimated radius
-        // Center force naturally uses the center [0,0] of the viewBox system
-        .force("center", d3.forceCenter(0, 0).strength(0.05)) // Adjusted strength slightly
-        .force("x", d3.forceX(0).strength(0.02)) // Keep centered on X
-        .force("y", d3.forceY(0).strength(0.02)) // Keep centered on Y
+        .force("charge", d3.forceManyBody().strength(-20))
+        .force("collide", d3.forceCollide().radius(d => d.radius).strength(0.8))
+        .force("center", d3.forceCenter(0, 0).strength(0.05))
+        .force("x", d3.forceX(0).strength(0.004))
+        .force("y", d3.forceY(0).strength(0.02))
         .on("tick", ticked);
 
-    // --- Fisheye Setup --- (Adjust radius based on new dimensions)
     const fisheye = createFisheye()
-        .radius(Math.min(width, height) / 2.5) // Use dynamic dimensions
+        .radius(Math.min(width, height) / 2.5)
         .distortion(2.5);
 
-    // Node rendering (Group containing just text) - (Keep unchanged)
     const node = g.selectAll("g.node")
         .data(nodes, d => d.text)
         .join("g")
@@ -245,39 +213,33 @@ function updateWordCloud(data) {
             .call(enter => enter.transition().duration(1000).ease(d3.easeCubicOut).style("opacity", 1))
             .classed("selected-word", d => d.text === currentFilters.selectedWord)
             .call(drag(wordSimulation));
-            // Attach interactions to the group OR the text below
 
-    // Append Text directly to the group (Keep unchanged)
     node.append("text")
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "central")
-        .style("font-size", d => `${d.originalFontSize}px`) // Use original font size
+        .style("font-size", d => `${d.originalFontSize}px`)
         .style("fill", d => d.color)
         .style("cursor", "pointer")
         .text(d => d.text)
-        .on("mouseover", handleWordMouseOver) // Attach hover here
-        .on("mouseout", handleWordMouseOut)   // Attach mouseout here
-        .on("click", handleWordClick);        // Attach click here
+        .on("mouseover", handleWordMouseOver)
+        .on("mouseout", handleWordMouseOut)
+        .on("click", handleWordClick);
 
-    // Ticked function - Updates group transform (Keep unchanged)
     function ticked() {
-        node.each(d => { /* Simulation updates d.x, d.y */ });
-        // Only update position if fisheye is not active
+        node.each(() => { /* Simulation updates d.x, d.y */ });
         if (!svg.classed('fisheye-active')) {
              node.attr("transform", d => `translate(${d.x || 0},${d.y || 0})`);
         }
     }
 
-    // Drag functions (Keep unchanged)
     function drag(simulation) {
         function dragstarted(event, d) {
             if (!event.active) simulation.alphaTarget(0.3).restart();
             d.fx = d.x; d.fy = d.y;
             isDraggingWord = true;
-            svg.classed('fisheye-active', false); // Turn off fisheye during drag
-            // Reset any fisheye effect immediately
+            svg.classed('fisheye-active', false);
             node.attr("transform", n => `translate(${n.x || 0},${n.y || 0})`)
-                .select("text").style("font-size", n => `${n.originalFontSize}px`); // Reset font size
+                .select("text").style("font-size", n => `${n.originalFontSize}px`);
         }
         function dragged(event, d) {
             d.fx = event.x; d.fy = event.y;
@@ -286,7 +248,6 @@ function updateWordCloud(data) {
             if (!event.active) simulation.alphaTarget(0);
             d.fx = null; d.fy = null;
             isDraggingWord = false;
-            // Re-apply fisheye if mouse is still over SVG after drag
             const svgNode = svg.node();
             if (!svgNode) return;
             const svgBounds = svgNode.getBoundingClientRect();
@@ -298,7 +259,6 @@ function updateWordCloud(data) {
         return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
     }
 
-    // --- Fisheye Interaction Handlers on SVG --- (Use dynamic width/height)
     svg.on("mousemove", handleFisheyeMouseMove)
        .on("mouseleave", handleFisheyeMouseLeave);
 
@@ -314,7 +274,7 @@ function updateWordCloud(data) {
         try { inverseMatrix = gNode.getScreenCTM().inverse(); }
         catch(e) { console.error("Error inverting CTM:", e); return; }
         let transformedPoint = screenPoint.matrixTransform(inverseMatrix);
-        const focusPoint = [transformedPoint.x, transformedPoint.y]; // Use transformed point directly
+        const focusPoint = [transformedPoint.x, transformedPoint.y];
 
         const fisheyeFocus = fisheye.focus(focusPoint);
         svg.classed('fisheye-active', true);
@@ -323,45 +283,38 @@ function updateWordCloud(data) {
             const nodeX = typeof d.x === 'number' ? d.x : 0;
             const nodeY = typeof d.y === 'number' ? d.y : 0;
             const distorted = fisheyeFocus(nodeX, nodeY);
-            const scale = distorted.scale; // Get scale factor
+            const scale = distorted.scale;
 
             d3.select(this)
                 .attr("transform", `translate(${distorted.x}, ${distorted.y})`);
 
-            // --- Scale the TEXT FONT SIZE --- (Adapted from prompt)
             d3.select(this).select('text')
-                .style("font-size", `${d.originalFontSize * scale}px`); // Scale original font size
+                .style("font-size", `${d.originalFontSize * scale}px`);
         });
     }
 
     function handleFisheyeMouseLeave() {
         if (isDraggingWord) return;
         svg.classed('fisheye-active', false);
-        // Transition nodes back to original state
         node.transition().duration(400).ease(d3.easeCubicOut)
-            .attr("transform", d => `translate(${d.x || 0},${d.y || 0})`) // Reset position
-            .select("text") // Select the text element
-                .style("font-size", d => `${d.originalFontSize}px`); // Reset font size
+            .attr("transform", d => `translate(${d.x || 0},${d.y || 0})`)
+            .select("text")
+                .style("font-size", d => `${d.originalFontSize}px`);
     }
 
-    // --- Individual Word Interaction Handlers --- (Keep unchanged)
     function handleWordMouseOver(event, d) {
         if (isDraggingWord) return;
-
-        // Raise the parent group
         d3.select(this.parentNode).raise();
-
-        // Tooltip logic (remains the same)
         if (wordCloudTooltip && wordCloudTooltip.node()) {
              wordCloudTooltip.style("opacity", 1)
                  .html(`<b>${d.text}</b><br>Total: ${d.total_freq}<br>Fake: ${d.fake_freq}<br>Real: ${d.real_freq}<br>Ratio: ${d.log2_ratio.toFixed(2)}`)
                  .style("left", (event.pageX + 15) + "px")
                  .style("top", (event.pageY - 15) + "px");
          }
-         // Update details panel on hover
          if (selectedWordInfoDiv) {
+             // Update details panel on hover
              selectedWordInfoDiv.innerHTML = `
-                 <strong>Word (Hover):</strong> ${d.text}<br>
+                 <strong>Word:</strong> ${d.text}<br>
                  <strong>Total Frequency:</strong> ${d.total_freq}<br>
                  <strong>Fake Frequency:</strong> ${d.fake_freq}<br>
                  <strong>Real Frequency:</strong> ${d.real_freq}<br>
@@ -371,7 +324,6 @@ function updateWordCloud(data) {
     }
     function handleWordMouseOut() {
          if (wordCloudTooltip) wordCloudTooltip.style("opacity", 0);
-         // Restore details panel to selected word (or none)
          if (selectedWordInfoDiv) {
              if (currentFilters.selectedWord) {
                  const selectedData = currentWordData.find(w => w.text === currentFilters.selectedWord);
@@ -384,16 +336,14 @@ function updateWordCloud(data) {
                          <strong>Log2 Ratio:</strong> ${selectedData.log2_ratio.toFixed(2)}
                      `;
                  } else {
-                     selectedWordInfoDiv.innerHTML = 'Selected Word: None'; // Fallback if selected word data not found
+                     selectedWordInfoDiv.innerHTML = 'Selected Word: None';
                  }
              } else {
                   selectedWordInfoDiv.innerHTML = 'Selected Word: None';
              }
          }
     }
-    // Removed calculateInternalFontSize as it's not used in the text cloud
 
-    // SVG background click handler (Keep unchanged)
     svg.on("click", (event) => {
         if (event.target === svg.node()) {
              if (currentFilters.selectedWord) {
@@ -402,30 +352,28 @@ function updateWordCloud(data) {
                  if (selectedWordInfoDiv) selectedWordInfoDiv.innerHTML = 'Selected Word: None';
                  console.log("Word selection cleared");
                  svg.selectAll("g.node").classed("selected-word", false);
-                 // REMOVED scatter plot selection update
 
                  if (prev !== currentFilters.selectedWord) {
                      refreshHeatmap();
                      refreshDomainChart();
-                     updateFilterInfoDisplays(); // Update filter info text
+                     updateFilterInfoDisplays();
                  }
              }
          }
     });
 
-    // Restart simulation (Keep unchanged)
     wordSimulation.nodes(nodes).alpha(0.6).restart();
 }
 
-// --- Other Update Functions (Keep updateHeatmap, updateDomainChart, updateScatterPlot) ---
-function updateHeatmap(data, tooltip) { // Keep unchanged
+/** Heatmap Update Function */
+function updateHeatmap(data, tooltip) {
     const container = document.getElementById('heatmap-chart'); container.innerHTML = '';
     if (!data || !data.length) { container.innerHTML = '<p class="loading-placeholder">No heatmap data available.</p>'; return; }
     data = data.map(d => ({ ...d, year: +d.year, month: +d.month, fake: +d.fake || 0, real: +d.real || 0 }));
 
     const width = container.clientWidth > 0 ? container.clientWidth : 600;
     const legendHeight = 40;
-    const height = 400 + legendHeight; // Keep height consistent
+    const height = 400 + legendHeight;
     const margin = { top: 30, right: 30, bottom: 50 + legendHeight, left: 60 };
     const chartWidth = width - margin.left - margin.right;
     const chartHeight = height - margin.top - margin.bottom;
@@ -433,21 +381,36 @@ function updateHeatmap(data, tooltip) { // Keep unchanged
     const svg = d3.select(container).append("svg").attr("width", width).attr("height", height)
         .append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const years = [...new Set(data.map(d => d.year))].sort(d3.ascending);
+    // Determine year range based on data or filters
+    const minDataYear = d3.min(data, d => d.year);
+    const maxDataYear = d3.max(data, d => d.year);
+    const startYear = minDataYear !== undefined ? minDataYear : parseInt(currentFilters.heatmapMinYear);
+    const endYear = maxDataYear !== undefined ? maxDataYear : parseInt(currentFilters.heatmapMaxYear);
+    const years = d3.range(startYear, endYear + 1);
+
     const months = d3.range(1, 13);
 
     const counts = data.map(d => d.fake + d.real);
-    const maxCount = d3.max(counts) || 1;
-    const minCount = 0; // Assume minimum is 0
+    const calculatedMaxCount = d3.max(counts);
+    const minCount = 0;
+
+    // Adjust maxCount for color scale domain to handle no data or all zero counts
+    let scaleMaxCount;
+    if (calculatedMaxCount === undefined || calculatedMaxCount === null || calculatedMaxCount <= minCount) {
+        scaleMaxCount = 1; // Ensure domain is at least [0, 1]
+    } else {
+        scaleMaxCount = calculatedMaxCount;
+    }
 
     const x = d3.scaleBand().domain(years).range([0, chartWidth]).padding(0.05);
     const y = d3.scaleBand().domain(months).range([chartHeight, 0]).padding(0.05);
 
     const numberOfSteps = 7;
-    const colorInterpolator = d3.interpolateViridis; // Or interpolatePlasma, etc.
+    const colorInterpolator = d3.interpolateViridis;
     const colorRange = d3.range(numberOfSteps).map(i => colorInterpolator(i / (numberOfSteps - 1)));
+
     const color = d3.scaleQuantize()
-        .domain([minCount, maxCount])
+        .domain([minCount, scaleMaxCount])
         .range(colorRange);
 
     const cells = svg.selectAll(".heatmap-cell")
@@ -459,29 +422,36 @@ function updateHeatmap(data, tooltip) { // Keep unchanged
                 .attr("y", d => y(d.month))
                 .attr("width", x.bandwidth())
                 .attr("height", y.bandwidth())
+                .attr("rx", 3)
+                .attr("ry", 3)
                 .style("opacity", 0)
                 .call(enter => enter.transition().duration(750).ease(d3.easeCubicOut).style("opacity", 1).attr("fill", d => color(d.fake + d.real))),
-            update => update.call(update => update.transition().duration(750).ease(d3.easeCubicOut)
-                .attr("x", d => x(d.year))
-                .attr("y", d => y(d.month))
-                .attr("width", x.bandwidth())
-                .attr("height", y.bandwidth())
-                .attr("fill", d => color(d.fake + d.real))),
+            update => update
+                .attr("rx", 3)
+                .attr("ry", 3)
+                .call(update => update.transition().duration(750).ease(d3.easeCubicOut)
+                    .attr("x", d => x(d.year))
+                    .attr("y", d => y(d.month))
+                    .attr("width", x.bandwidth())
+                    .attr("height", y.bandwidth())
+                    .attr("fill", d => color(d.fake + d.real))),
             exit => exit.transition().duration(400).ease(d3.easeCubicIn).style("opacity", 0).remove()
         )
         .on("mouseover", (event, d) => {
-            // console.log("Heatmap mouseover fired for:", d); // Less verbose
+            // Bring the hovered element to the front in the SVG DOM
+            d3.select(event.currentTarget).raise();
+
+            // Tooltip logic
             if (tooltip && tooltip.node()) {
                 tooltip.style("opacity", 1)
                     .html(`<b>Year: ${d.year} / Month: ${new Date(2000, d.month - 1).toLocaleString('default', { month: 'long' })}</b><br>Fake: ${d.fake}<br>Real: ${d.real}<br>Total: ${d.fake + d.real}`)
                     .style("left", (event.pageX + 15) + "px")
                     .style("top", (event.pageY - 15) + "px");
-                d3.select(event.currentTarget).raise().style("stroke", "var(--accent-yellow)").style("stroke-width", 1.5);
             } else { console.error("Invalid tooltip passed to updateHeatmap!"); }
         })
         .on("mouseout", (event) => {
+            // Tooltip logic
             if (tooltip) tooltip.style("opacity", 0);
-            d3.select(event.currentTarget).style("stroke", null).style("stroke-width", null);
         });
 
     // Axes (X and Y)
@@ -495,14 +465,12 @@ function updateHeatmap(data, tooltip) { // Keep unchanged
         .call(d3.axisLeft(y)
             .tickFormat(d => new Date(2000, d - 1).toLocaleString('default', { month: 'short' }))
             .tickSizeOuter(0));
-    svg.append("text").attr("class", "axis-label") // X Axis Label
+    svg.append("text").attr("class", "axis-label")
         .attr("text-anchor", "middle")
         .attr("x", chartWidth / 2)
-        .attr("y", chartHeight + margin.bottom - legendHeight - 10) // Adjust position
+        .attr("y", chartHeight + margin.bottom - legendHeight - 10)
         .text("Year");
-    svg.append("text").attr("class", "axis-label") // Y Axis Label
-        .attr("text-anchor", "middle")
-        .attr("text-anchor", "middle")
+    svg.append("text").attr("class", "axis-label")
         .attr("transform", "rotate(-90)")
         .attr("x", -chartHeight / 2)
         .attr("y", -margin.left + 15)
@@ -512,7 +480,7 @@ function updateHeatmap(data, tooltip) { // Keep unchanged
     const legendWidth = Math.min(chartWidth * 0.8, 300);
     const legendBarHeight = 8;
     const legendX = (chartWidth - legendWidth) / 2;
-    const legendY = chartHeight + margin.bottom - legendHeight + 5; // Position below X axis label
+    const legendY = chartHeight + margin.bottom - legendHeight + 5;
 
     const legendGroup = svg.append("g")
         .attr("class", "heatmap-legend")
@@ -534,17 +502,15 @@ function updateHeatmap(data, tooltip) { // Keep unchanged
         .domain(color.domain())
         .range([0, legendWidth]);
 
-    // --- FIX: Use .thresholds() instead of .quantiles() ---
-    // Use quantize thresholds for ticks
-    const thresholds = [color.domain()[0], ...color.thresholds(), color.domain()[1]]; // Corrected line
+    const thresholds = [color.domain()[0], ...color.thresholds(), color.domain()[1]];
 
     const legendAxis = d3.axisBottom(legendScale)
-        .tickValues(thresholds) // Use thresholds for ticks
-        .tickFormat(d3.format(".0f")) // Format as integer
+        .tickValues(thresholds)
+        .tickFormat(d3.format(".0f"))
         .tickSize(legendBarHeight + 4);
 
     legendGroup.append("g")
-        .attr("transform", `translate(0, 0)`) // Position axis below the color bar
+        .attr("transform", `translate(0, 0)`)
         .call(legendAxis)
         .select(".domain").remove();
 
@@ -552,10 +518,11 @@ function updateHeatmap(data, tooltip) { // Keep unchanged
         .attr("class", "legend-title")
         .attr("text-anchor", "middle")
         .attr("x", legendWidth / 2)
-        .attr("y", -6) // Position title above the color bar
+        .attr("y", -6)
         .text("Article Count per Month");
 }
 
+/** Domain Chart Update Function */
 function updateDomainChart(data, tooltip) {
     const container = document.getElementById('domain-chart');
     container.innerHTML = '';
@@ -581,7 +548,6 @@ function updateDomainChart(data, tooltip) {
     const x = d3.scaleBand().domain(data.map(d => d.domain)).range([0, chartWidth]).padding(0.2);
     const y = d3.scaleLinear().domain([0, d3.max(data, d => d.count) || 1]).range([chartHeight, 0]).nice();
 
-    // --- CORRECTED: Declare color scale ONCE ---
     const domainTypes = [...new Set(data.map(d => d.type || 'other'))];
     const colorScale = d3.scaleOrdinal(d3.schemeSet2)
                           .domain(domainTypes);
@@ -595,18 +561,24 @@ function updateDomainChart(data, tooltip) {
                 .attr("y", chartHeight)
                 .attr("width", x.bandwidth())
                 .attr("height", 0)
-                .attr("fill", d => colorScale(d.type || 'other')) // Correctly uses colorScale
+                .attr("fill", d => colorScale(d.type || 'other'))
+                .attr("rx", 6) // Rounded corners
+                .attr("ry", 6)
                 .call(enter => enter.transition().duration(1000).ease(d3.easeBounceOut)
                     .delay((d, i) => i * 30)
                     .attr("y", d => y(d.count))
                     .attr("height", d => chartHeight - y(d.count))),
-            update => update.call(update => update.transition().duration(1000).ease(d3.easeCubicOut)
-                .delay((d, i) => i * 20)
-                .attr("x", d => x(d.domain))
-                .attr("y", d => y(d.count))
-                .attr("width", x.bandwidth())
-                .attr("height", d => chartHeight - y(d.count))
-                .attr("fill", d => colorScale(d.type || 'other'))), // Correctly uses colorScale
+            update => update
+                .attr("rx", 6) // Rounded corners
+                .attr("ry", 6)
+                .call(update => update.transition().duration(1000).ease(d3.easeCubicOut)
+                    .delay((d, i) => i * 20)
+                    .attr("x", d => x(d.domain))
+                    .attr("y", d => y(d.count))
+                    .attr("width", x.bandwidth())
+                    .attr("height", d => chartHeight - y(d.count))
+                    .attr("fill", d => colorScale(d.type || 'other'))
+                ),
             exit => exit.transition().duration(400).ease(d3.easeCubicIn)
                 .attr("y", chartHeight)
                 .attr("height", 0)
@@ -615,17 +587,15 @@ function updateDomainChart(data, tooltip) {
         .on("mouseover", (event, d) => {
             if (tooltip && tooltip.node()) {
                 tooltip.style("opacity", 1)
-                    .html(`<b>Domain: ${d.domain}</b><br>Count: ${d.count}<br>Type: ${d.type || 'N/A'}<br>URL: ${d.url || 'N/A'}`) // Uses d.type
+                    .html(`<b>Domain: ${d.domain}</b><br>Count: ${d.count}<br>Type: ${d.type || 'N/A'}<br>URL: ${d.url || 'N/A'}`)
                     .style("left", (event.pageX + 15) + "px")
                     .style("top", (event.pageY - 15) + "px");
-                d3.select(event.currentTarget).raise().style("filter", "brightness(1.3)");
             } else {
                 console.error("Invalid tooltip passed to updateDomainChart!");
             }
         })
         .on("mouseout", (event) => {
             if (tooltip) tooltip.style("opacity", 0);
-            d3.select(event.currentTarget).style("filter", null);
         })
         .on("click", (event, d) => {
             console.log("Clicked domain:", d.domain, d.url);
@@ -633,8 +603,6 @@ function updateDomainChart(data, tooltip) {
                 window.open(d.url.startsWith('http') ? d.url : 'http://' + d.url, '_blank');
             }
         });
-
-    // --- REMOVED Redundant declarations and fill setting ---
 
     // Axes
     svg.append("g")
@@ -671,12 +639,12 @@ function updateDomainChart(data, tooltip) {
 // UI Update Functions / Event Handlers / Refresh Functions / Initialization
 // ==========================================================================
 
-function updateFilterInfoDisplays() { // Keep unchanged
+function updateFilterInfoDisplays() {
     let heatmapInfo = 'Showing data for all words.';
     let domainInfo = 'Showing data for all words.';
     if (currentFilters.selectedWord) {
         const wordSpan = `<span class="badge bg-warning text-dark">${currentFilters.selectedWord}</span>`;
-        const filterText = `Filtering for word: ${wordSpan} `; // Added space
+        const filterText = `Filtering for word: ${wordSpan} `;
         heatmapInfo = filterText;
         domainInfo = filterText;
     }
@@ -684,7 +652,7 @@ function updateFilterInfoDisplays() { // Keep unchanged
     if (domainFilterInfo) domainFilterInfo.innerHTML = domainInfo;
 }
 
-function addEventListeners() { // Update slider listener to call refreshWordCloud
+function addEventListeners() {
     console.log("Adding event listeners...");
     if (wordSourceSelect)
         wordSourceSelect.addEventListener('change', () => { currentFilters.wordSource = wordSourceSelect.value; refreshAllCharts(); });
@@ -703,8 +671,6 @@ function addEventListeners() { // Update slider listener to call refreshWordClou
             if (wordMinFreqValueSpan)
                 wordMinFreqValueSpan.textContent = wordMinFreqSlider.value;
         });
-        // Use 'change' for API call to avoid too many requests while dragging
-        // UPDATED refresh call
         wordMinFreqSlider.addEventListener('change', () => { currentFilters.wordMinFreq = wordMinFreqSlider.value; refreshWordCloud(); });
     } else { console.warn("Word Min Freq Slider not found"); }
 
@@ -712,10 +678,43 @@ function addEventListeners() { // Update slider listener to call refreshWordClou
         heatmapMonthSelect.addEventListener('change', () => { currentFilters.heatmapMonth = heatmapMonthSelect.value; refreshHeatmap(); });
     else { console.warn("Heatmap Month Select not found"); }
 
+    if (heatmapMinYearSelect) {
+        heatmapMinYearSelect.addEventListener('change', () => {
+            currentFilters.heatmapMinYear = heatmapMinYearSelect.value;
+            // Ensure min year doesn't exceed max year
+            if (heatmapMaxYearSelect && parseInt(currentFilters.heatmapMinYear) > parseInt(currentFilters.heatmapMaxYear)) {
+                currentFilters.heatmapMaxYear = currentFilters.heatmapMinYear;
+                heatmapMaxYearSelect.value = currentFilters.heatmapMaxYear;
+            }
+            refreshHeatmap();
+        });
+    } else { console.warn("Heatmap Min Year Select not found"); }
+
+    if (heatmapMaxYearSelect) {
+        heatmapMaxYearSelect.addEventListener('change', () => {
+            currentFilters.heatmapMaxYear = heatmapMaxYearSelect.value;
+            // Ensure max year isn't below min year
+            if (heatmapMinYearSelect && parseInt(currentFilters.heatmapMaxYear) < parseInt(currentFilters.heatmapMinYear)) {
+                currentFilters.heatmapMinYear = currentFilters.heatmapMaxYear;
+                heatmapMinYearSelect.value = currentFilters.heatmapMinYear;
+            }
+            refreshHeatmap();
+        });
+    } else { console.warn("Heatmap Max Year Select not found"); }
+
     if (heatmapResetButton) {
         heatmapResetButton.addEventListener('click', () => {
             if (heatmapMonthSelect) heatmapMonthSelect.value = 'all';
             currentFilters.heatmapMonth = 'all';
+            // Reset Year Filters to full range
+            if (heatmapMinYearSelect && heatmapMinYearSelect.options.length > 0) {
+                 heatmapMinYearSelect.value = heatmapMinYearSelect.options[0].value;
+                 currentFilters.heatmapMinYear = heatmapMinYearSelect.value;
+             }
+             if (heatmapMaxYearSelect && heatmapMaxYearSelect.options.length > 0) {
+                 heatmapMaxYearSelect.value = heatmapMaxYearSelect.options[heatmapMaxYearSelect.options.length - 1].value;
+                 currentFilters.heatmapMaxYear = heatmapMaxYearSelect.value;
+             }
             refreshHeatmap();
         });
     } else { console.warn("Heatmap Reset Button not found"); }
@@ -739,16 +738,17 @@ function addEventListeners() { // Update slider listener to call refreshWordClou
     console.log("Event listeners added.");
 }
 
-// --- Modify handleWordClick slightly for clarity ---
-function handleWordClick(event, d) { // Remove scatterplot update
-    event.stopPropagation(); // Prevent SVG background click if clicking on word
+function handleWordClick(event, d) {
+    event.stopPropagation(); // Prevent triggering SVG background click
     const previouslySelected = currentFilters.selectedWord;
 
-    if (previouslySelected === d.text) { // Clicked selected word again: Deselect
+    if (previouslySelected === d.text) {
+        // Deselect if clicking the already selected word
         currentFilters.selectedWord = null;
         if (selectedWordInfoDiv) selectedWordInfoDiv.innerHTML = 'Selected Word: None';
         console.log("Word selection cleared");
-    } else { // Clicked a new word: Select it
+    } else {
+        // Select the new word
         currentFilters.selectedWord = d.text;
         if (selectedWordInfoDiv) {
             selectedWordInfoDiv.innerHTML = `<strong>Selected Word:</strong> ${d.text}<br><strong>Total Frequency:</strong> ${d.total_freq}<br><strong>Fake Frequency:</strong> ${d.fake_freq}<br><strong>Real Frequency:</strong> ${d.real_freq}<br><strong>Log2 Ratio:</strong> ${d.log2_ratio.toFixed(2)}`;
@@ -756,28 +756,22 @@ function handleWordClick(event, d) { // Remove scatterplot update
         console.log("Selected word:", currentFilters.selectedWord, " Details:", d);
     }
 
-    // Update visual selection state in Word Cloud
+    // Update visual selection state in the word cloud
     d3.select('#word-cloud-chart').selectAll("g.node")
         .classed("selected-word", node_d => node_d.text === currentFilters.selectedWord);
 
-    // REMOVED scatter plot selection update
-
-    // Refresh dependent charts only if selection actually changed
+    // Refresh dependent charts if the selection changed
     if (previouslySelected !== currentFilters.selectedWord) {
         refreshHeatmap();
         refreshDomainChart();
-        updateFilterInfoDisplays(); // Update filter info text
+        updateFilterInfoDisplays();
     }
 }
 
-
-// RENAMED function, removed scatterplot logic
 async function refreshWordCloud() {
     const wcContainer = document.getElementById('word-cloud-chart');
     if (!wcContainer) { console.error("Word cloud container not found!"); return; }
-
     wcContainer.innerHTML = LOADING_PLACEHOLDER_HTML;
-
     try {
         const params = {
             source: currentFilters.wordSource,
@@ -788,8 +782,7 @@ async function refreshWordCloud() {
         console.log('Refreshing Word Cloud with params:', params);
         currentWordData = await fetchData('/word-data', params);
         console.log('Word data received, count:', currentWordData.length);
-        updateWordCloud(currentWordData); // Update word cloud
-        // REMOVED scatterplot update call
+        updateWordCloud(currentWordData);
     } catch (error) {
         console.error("Failed to refresh Word Cloud:", error);
         const errorHtml = ERROR_MESSAGE_HTML(`loading word data: ${error.message}`);
@@ -797,17 +790,19 @@ async function refreshWordCloud() {
     }
 }
 
-async function refreshHeatmap() { // Keep unchanged
+async function refreshHeatmap() {
     const container = document.getElementById('heatmap-chart');
     if (!container) { console.error("Heatmap container not found!"); return; }
     container.innerHTML = LOADING_PLACEHOLDER_HTML;
-    updateFilterInfoDisplays(); // Update info based on selected word
+    updateFilterInfoDisplays();
     try {
         const params = {
-            source: currentFilters.wordSource, // Use word source filter
-            type: currentFilters.wordType,     // Use word type filter
+            source: currentFilters.wordSource,
+            type: currentFilters.wordType,
             selected_word: currentFilters.selectedWord,
             month: currentFilters.heatmapMonth,
+            min_year: currentFilters.heatmapMinYear,
+            max_year: currentFilters.heatmapMaxYear
         };
         console.log('Refreshing Heatmap with params:', params);
         currentHeatmapData = await fetchData('/heatmap-data', params);
@@ -819,15 +814,15 @@ async function refreshHeatmap() { // Keep unchanged
     }
 }
 
-async function refreshDomainChart() { // Keep unchanged
+async function refreshDomainChart() {
     const container = document.getElementById('domain-chart');
     if (!container) { console.error("Domain chart container not found!"); return; }
     container.innerHTML = LOADING_PLACEHOLDER_HTML;
-    updateFilterInfoDisplays(); // Update info based on selected word
+    updateFilterInfoDisplays();
     try {
         const params = {
-            source: currentFilters.wordSource, // Use word source filter
-            type: currentFilters.wordType,     // Use word type filter
+            source: currentFilters.wordSource,
+            type: currentFilters.wordType,
             selected_word: currentFilters.selectedWord,
             domain_type: currentFilters.domainType,
             min_articles: currentFilters.domainMinArticles
@@ -836,10 +831,10 @@ async function refreshDomainChart() { // Keep unchanged
         currentDomainData = await fetchData('/domain-data', params);
         console.log('Domain data received, count:', currentDomainData.length);
 
-        // Apply sorting
+        // Sort data based on selected criteria
         if (currentFilters.domainSort === 'alpha') {
             currentDomainData.sort((a, b) => d3.ascending(a.domain?.toLowerCase(), b.domain?.toLowerCase()));
-        } else { // Default to 'count'
+        } else { // Default to sorting by count descending
             currentDomainData.sort((a, b) => d3.descending(+a.count || 0, +b.count || 0));
         }
 
@@ -850,25 +845,21 @@ async function refreshDomainChart() { // Keep unchanged
     }
 }
 
-// --- Keep refreshAllCharts (ensure it calls the correct word cloud refresh function) ---
 async function refreshAllCharts() {
     console.log("Refreshing all charts based on primary filters...");
     const wcContainer = document.getElementById('word-cloud-chart');
-    // REMOVED spContainer reference
     const hmContainer = document.getElementById('heatmap-chart');
     const dcContainer = document.getElementById('domain-chart');
     if (wcContainer) wcContainer.innerHTML = LOADING_PLACEHOLDER_HTML;
-    // REMOVED spContainer clear
     if (hmContainer) hmContainer.innerHTML = LOADING_PLACEHOLDER_HTML;
     if (dcContainer) dcContainer.innerHTML = LOADING_PLACEHOLDER_HTML;
 
-    updateFilterInfoDisplays(); // Update filter info immediately
+    updateFilterInfoDisplays();
 
     try {
-        // First, fetch data for Word Cloud
-        await refreshWordCloud(); // UPDATED call
-
-        // Then, refresh Heatmap and Domain Chart concurrently
+        // Load word cloud first as others might depend on its selection state
+        await refreshWordCloud();
+        // Load heatmap and domain chart concurrently
         const results = await Promise.allSettled([
             refreshHeatmap(),
             refreshDomainChart()
@@ -877,20 +868,33 @@ async function refreshAllCharts() {
         results.forEach((result, i) => {
             if (result.status === 'rejected') {
                 console.error(`Chart refresh failed (${i === 0 ? 'heatmap' : 'domain'}):`, result.reason);
+                // Display error in the specific chart container
+                const container = i === 0 ? hmContainer : dcContainer;
+                if (container) {
+                    container.innerHTML = ERROR_MESSAGE_HTML(`loading data: ${result.reason?.message || 'Unknown error'}`);
+                }
             }
         });
     } catch (error) {
-        console.error("Error during refreshAllCharts sequence:", error);
+        // Catch error from refreshWordCloud if it happens
+        console.error("Error during refreshWordCloud sequence:", error);
+        if (wcContainer) {
+            wcContainer.innerHTML = ERROR_MESSAGE_HTML(`loading word data: ${error.message}`);
+        }
+        // Show errors in dependent charts if word cloud fails
+        if (hmContainer) hmContainer.innerHTML = ERROR_MESSAGE_HTML('Word data failed to load');
+        if (dcContainer) dcContainer.innerHTML = ERROR_MESSAGE_HTML('Word data failed to load');
     }
     console.log("Finished refreshing charts attempt.");
 }
 
 
-// --- Keep DOMContentLoaded listener (keep scatterplot tooltip creation for now) ---
-document.addEventListener('DOMContentLoaded', () => { // Keep unchanged
+// --- Keep DOMContentLoaded listener ---
+document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded - Initializing Dashboard");
 
     if (typeof d3 !== 'undefined') {
+        // Function to create or select a tooltip div
         const createTooltip = (id) => {
             let tooltip = d3.select(`#${id}`);
             if (!tooltip.node()) {
@@ -903,29 +907,32 @@ document.addEventListener('DOMContentLoaded', () => { // Keep unchanged
             return tooltip;
         };
 
+        // Initialize tooltips
         wordCloudTooltip = createTooltip("word-cloud-tooltip");
         heatmapTooltip = createTooltip("heatmap-tooltip");
         domainTooltip = createTooltip("domain-tooltip");
-        // REMOVED scatterPlotTooltip creation
 
         console.log("Tooltip elements ensured:", {
             word: wordCloudTooltip.node(),
             heatmap: heatmapTooltip.node(),
             domain: domainTooltip.node()
-            // REMOVED scatter tooltip log
         });
     } else {
         console.error("D3 library not loaded!");
         document.body.innerHTML = '<h1 style="color:red; text-align:center; margin-top: 50px;">Critical Error: D3 library failed to load.</h1>';
-        return;
+        return; // Stop initialization if D3 is missing
     }
 
     // Initialize slider value displays
     if (wordMinFreqValueSpan && wordMinFreqSlider) wordMinFreqValueSpan.textContent = wordMinFreqSlider.value;
     if (domainMinArticlesValueSpan && domainMinArticlesSlider) domainMinArticlesValueSpan.textContent = domainMinArticlesSlider.value;
 
-    addEventListeners();
-    refreshAllCharts(); // Initial data load and render
+    // Initialize year filters from the select elements' initial values
+    if (heatmapMinYearSelect) currentFilters.heatmapMinYear = heatmapMinYearSelect.value;
+    if (heatmapMaxYearSelect) currentFilters.heatmapMaxYear = heatmapMaxYearSelect.value;
+
+    addEventListeners(); // Attach event listeners to controls
+    refreshAllCharts(); // Perform initial data load and render all charts
 
     console.log("Dashboard Initialization Complete.");
 });

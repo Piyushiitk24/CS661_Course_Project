@@ -1,35 +1,31 @@
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quantico:wght@400;700&display=swap');
 
-/* --- START: Replace these sections in your style.css --- */
-
 :root {
-    /* --- Light Theme Palette (Based on Provided Styles) --- */
+    /* --- Light Theme Palette --- */
     --bg-body: #F5F5F5;
-    --bg-tint: rgba(147, 112, 219, 0.05); /* Light purple tint */
-    /* INCREASED OPACITY HERE vvv */
-    --panel-bg: rgba(255, 255, 255, 0.85); /* Semi-transparent white - MORE OPAQUE */
-    --panel-tint: rgba(147, 112, 219, 0.1); /* Slightly stronger purple tint for panels */
-    --panel-border: #00BFFF; /* Deep Sky Blue */
-    /* INCREASED GLOW OPACITY/SPREAD HERE vvv */
-    --panel-border-glow: rgba(0, 191, 255, 0.6); /* Deep Sky Blue Glow - STRONGER */
-    --panel-shadow: rgba(0, 0, 0, 0.1); /* Subtle dark shadow */
+    --bg-tint: rgba(147, 112, 219, 0.05);
+    --panel-bg: rgba(255, 255, 255, 0.85);
+    --panel-tint: rgba(147, 112, 219, 0.1);
+    --panel-border: #00BFFF;
+    --panel-border-glow: rgba(0, 191, 255, 0.6);
+    --panel-shadow: rgba(0, 0, 0, 0.1);
 
     /* --- Accents --- */
-    --accent-blue: #00aaff; /* Bright Blue */
-    --accent-lime: #aaff00; /* Brighter Lime */
-    --accent-magenta: #ff00ff; /* Bright Magenta */
-    --accent-orange: #ffaa00; /* Bright Orange */
-    --accent-yellow: #ffff00; /* Bright Yellow */
-    --accent-red: #ff4444; /* Bright Red */
-    --accent-aqua: #00ffff; /* Bright Aqua */
-    --accent-yellow-highlight: var(--accent-yellow); /* Keep yellow for highlights */
+    --accent-blue: #00aaff;
+    --accent-lime: #aaff00;
+    --accent-magenta: #ff00ff;
+    --accent-orange: #ffaa00;
+    --accent-yellow: #ffff00;
+    --accent-red: #ff4444;
+    --accent-aqua: #00ffff;
+    --accent-yellow-highlight: var(--accent-yellow);
 
     /* --- Text --- */
-    --text-primary: #333333; /* Dark Gray */
-    --text-secondary: #666666; /* Medium Gray */
-    --text-headings: #222222; /* Very Dark Gray */
-    --text-dark: #222222; /* Consistent dark text */
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-headings: #222222;
+    --text-dark: #222222;
 
     /* --- Fonts --- */
     --font-body: 'Poppins', sans-serif;
@@ -38,6 +34,9 @@
     /* --- Transitions --- */
     --transition-fast: 0.2s ease-out;
     --transition-medium: 0.3s ease-out;
+
+    /* --- Focus Glow --- */
+    --glow-color-focus: rgba(0, 191, 255, 0.35);
 }
 
 body {
@@ -47,18 +46,10 @@ body {
     font-weight: 400;
     padding-top: 25px;
     min-height: 100vh;
-    background-attachment: fixed; /* Keep this */
-    position: relative; /* Keep this */
-
-    /* --- REMOVE OR COMMENT OUT THESE LINES --- */
-    /* background-image: url('../Images/image1.jpg'); */
-    /* background-size: cover; */
-    /* background-position: center center; */
-    /* background-repeat: no-repeat; */
-    /* --- END REMOVED LINES --- */
+    background-attachment: fixed;
+    position: relative;
 }
 
-/* Keep the body::before rule for the tint overlay */
 body::before {
     content: '';
     position: fixed;
@@ -79,12 +70,14 @@ h1, h2 {
     letter-spacing: 1px;
     text-shadow: none;
 }
+
 h1 {
     font-size: 2.5rem;
     margin-bottom: 40px;
     text-transform: uppercase;
     color: var(--text-headings);
 }
+
 h2 {
     font-size: 1.4rem;
     font-weight: 700;
@@ -96,20 +89,21 @@ h2 {
     text-shadow: none;
 }
 
-.container-fluid { max-width: 1700px; }
+.container-fluid {
+    max-width: 1700px;
+}
 
 .chart-container {
-    background: var(--panel-bg); /* Use updated more opaque background */
-    backdrop-filter: blur(8px); /* Slightly increase blur */
+    background: var(--panel-bg);
+    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 2px solid var(--panel-border); /* Slightly thicker border */
+    border: 2px solid var(--panel-border);
     border-radius: 8px;
     padding: 25px;
     margin-bottom: 30px;
-    /* UPDATED SHADOW with INSET glow */
-    box-shadow: 0 5px 15px var(--panel-shadow), /* Outer shadow */
-                0 0 20px var(--panel-border-glow), /* Enhanced outer glow */
-                inset 0 0 10px rgba(0, 191, 255, 0.25); /* Subtle INNER glow */
+    box-shadow: 0 5px 15px var(--panel-shadow),
+                0 0 20px var(--panel-border-glow),
+                inset 0 0 10px rgba(0, 191, 255, 0.25);
     position: relative;
     overflow: visible;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
@@ -117,56 +111,39 @@ h2 {
 
 .chart-container:hover {
     transform: translateY(-3px);
-    /* UPDATED HOVER SHADOW with enhanced INSET glow */
-    box-shadow: 0 8px 20px var(--panel-shadow), /* Outer shadow */
-                0 0 30px var(--panel-border-glow), /* Enhanced outer glow */
-                inset 0 0 15px rgba(0, 191, 255, 0.35); /* Enhanced INNER glow */
+    box-shadow: 0 8px 20px var(--panel-shadow),
+                0 0 30px var(--panel-border-glow),
+                inset 0 0 15px rgba(0, 191, 255, 0.35);
 }
 
 /* --- Layout for Full Viewport Word Cloud Row --- */
-
 #word-cloud-row {
-    /* Attempt to fill most of the viewport height minus header */
-    /* Adjust 88vh if needed based on your header height */
     min-height: 88vh;
-    display: flex; /* Make the row a flex container */
-    flex-direction: row; /* Arrange columns side-by-side (default) */
-    margin-bottom: 30px; /* Keep margin below this tall row */
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
 }
 
-/* Target the direct children columns within the row */
 #word-cloud-row > .col-lg-9,
 #word-cloud-row > .col-lg-3 {
-    display: flex; /* Make columns flex containers */
-    flex-direction: column; /* Stack elements vertically within columns */
-    padding-left: 15px; /* Restore Bootstrap gutter padding */
-    padding-right: 15px; /* Restore Bootstrap gutter padding */
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-/* Target the chart containers within those columns */
 #word-cloud-row > div > .chart-container {
-    flex-grow: 1; /* Allow container to grow and fill column height */
-    display: flex; /* Make container a flex container */
-    flex-direction: column; /* Stack title, controls, chart div vertically */
-    margin-bottom: 0; /* Remove margin as row handles spacing */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
 }
 
-/* Target the actual chart div within the word cloud's container */
 #word-cloud-chart {
-    flex-grow: 1; /* Allow chart div to grow and fill container space */
-    min-height: 400px; /* Prevent collapsing when empty, adjust if needed */
-    width: 100%; /* Ensure it takes full width */
+    flex-grow: 1;
+    min-height: 400px; /* Prevent collapsing */
+    width: 100%;
 }
-
-/* Optional: Style the details panel container if needed */
-#selected-word-info {
-    /* You might want it to grow or have a specific min-height */
-    /* flex-grow: 1; */ /* Uncomment if you want it to fill vertical space */
-    min-height: 150px; /* Example minimum height */
-}
-
-/* --- End Layout Adjustments --- */
-
 
 .filter-section {
     background-color: transparent;
@@ -200,25 +177,28 @@ button.btn {
     transition: all var(--transition-medium);
     padding: 0.3rem 0.6rem;
     font-family: var(--font-body);
-    /* Add subtle glow to controls as well? Optional */
-    /* box-shadow: 0 0 3px 1px var(--glow-color); */
 }
 
 /* --- SELECT (Dropdown) Styling --- */
 select.form-select {
-    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23343a40'%3E%3Cpath fill-rule='evenodd' d='M7.21 10.79a.75.75 0 0 1 .05-1.06L9.43 8 7.26 6.27a.75.75 0 1 1 1.01-1.1l2.75 2.5c.33.3.33.8 0 1.1l-2.75 2.5a.75.75 0 0 1-1.06-.03Z' clip-rule='evenodd' transform='rotate(90 8 8)'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 0.5rem center;
-    background-size: 16px 16px; padding-right: 2rem;
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 16px 16px;
+    padding-right: 2rem;
 }
+
 select.form-select:hover {
     border-color: #adb5bd;
     background-color: #f8f9fa;
 }
+
 select.form-select:focus {
     background-color: #ffffff;
-    border-color: var(--accent-aqua); /* Match glow color */
-    /* Use the glow color for focus */
+    border-color: var(--accent-aqua);
     box-shadow: 0 0 0 0.2rem var(--glow-color-focus);
     outline: none;
     transform: none;
@@ -226,49 +206,70 @@ select.form-select:focus {
 
 /* --- RANGE SLIDER Styling --- */
 input[type=range].form-range {
-    appearance: none; -webkit-appearance: none; width: 100%; height: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
     background: linear-gradient(to right, var(--accent-blue), var(--accent-magenta), var(--accent-orange));
-    border-radius: 3px; outline: none; padding: 0; border: none; cursor: pointer;
-    box-shadow: none; /* Remove potential glow from base style */
+    border-radius: 3px;
+    outline: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
 }
+
 input[type=range].form-range::-webkit-slider-thumb {
-    appearance: none; -webkit-appearance: none; width: 16px; height: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
     background: var(--text-secondary);
     border: none;
-    border-radius: 50%; cursor: pointer; margin-top: -5px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -5px;
     transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
+
 input[type=range].form-range::-moz-range-thumb {
-    width: 16px; height: 16px; background: var(--text-secondary); border: none;
-    border-radius: 50%; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    width: 16px;
+    height: 16px;
+    background: var(--text-secondary);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
+
 input[type=range].form-range:active::-webkit-slider-thumb,
 input[type=range].form-range:focus::-webkit-slider-thumb {
-    background: var(--accent-aqua); /* Match glow color */
-    /* Use glow color for focus shadow */
+    background: var(--accent-aqua);
     box-shadow: 0 0 8px var(--glow-color-focus);
 }
+
 input[type=range].form-range:active::-moz-range-thumb,
 input[type=range].form-range:focus::-moz-range-thumb {
-    background: var(--accent-aqua); /* Match glow color */
+    background: var(--accent-aqua);
     box-shadow: 0 0 8px var(--glow-color-focus);
 }
-input[type=range].form-range::-webkit-slider-runnable-track { background: transparent; }
+
+input[type=range].form-range::-webkit-slider-runnable-track {
+    background: transparent;
+}
+
 input[type=range].form-range:focus {
     transform: none;
-    /* Add subtle glow to track on focus? Optional */
-    /* box-shadow: 0 0 5px 1px var(--glow-color-focus); */
 }
-
 
 /* --- BUTTON Styling --- */
-button.btn { /* Target all buttons for focus */
-     box-shadow: none; /* Remove potential glow from base style */
+button.btn {
+     box-shadow: none;
 }
+
 button.btn:focus {
-    border-color: var(--accent-aqua); /* Match glow color */
-    /* Use the glow color for focus */
+    border-color: var(--accent-aqua);
     box-shadow: 0 0 0 0.2rem var(--glow-color-focus);
     outline: none;
 }
@@ -283,16 +284,40 @@ button.btn-secondary {
     transition: all var(--transition-fast);
 }
 button.btn-secondary:hover {
+    /* Keep general hover */
     background-color: #5a6268;
     border-color: #545b62;
     color: #ffffff;
     transform: scale(1.03) translateY(-1px);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Keep hover shadow distinct from focus glow */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
-/* Ensure secondary button focus glow overrides hover shadow if needed */
 button.btn-secondary:focus {
+    /* Keep general focus */
     border-color: var(--accent-aqua);
     box-shadow: 0 0 0 0.2rem var(--glow-color-focus);
+    outline: none;
+}
+
+/* Specific Styling for Heatmap Reset Button */
+#heatmap-reset-filters {
+    background-color: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+#heatmap-reset-filters:hover {
+    background-color: #e69500;
+    border-color: #d48800;
+    color: var(--text-dark);
+    transform: scale(1.03) translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#heatmap-reset-filters:focus {
+     border-color: var(--accent-yellow);
+     box-shadow: 0 0 0 0.2rem rgba(255, 170, 0, 0.4);
+     outline: none;
 }
 
 
@@ -313,6 +338,7 @@ button.btn-secondary:focus {
     line-height: 1.4;
     z-index: 10;
 }
+
 .tooltip b {
     font-weight: 700;
     color: var(--accent-blue);
@@ -321,66 +347,81 @@ button.btn-secondary:focus {
 }
 
 /* --- Word Cloud Specific --- */
-#word-cloud-chart svg { background-color: transparent; display: block; margin: auto; }
-#word-cloud-chart { min-height: 520px; }
+#word-cloud-chart svg {
+    background-color: transparent;
+    display: block;
+    margin: auto;
+}
+
+#word-cloud-chart {
+    min-height: 520px;
+}
 
 .node text {
-    font-weight: 500; /* Slightly bolder */
+    font-weight: 500;
     cursor: pointer;
     transition: opacity var(--transition-fast), transform var(--transition-fast), fill var(--transition-fast), filter var(--transition-fast);
-    /* Fill is set dynamically in JS */
-    fill: var(--text-secondary); /* Fallback fill */
-    /* Add subtle shadow for definition */
+    fill: var(--text-secondary);
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
 }
+
 .node:hover text {
     opacity: 1;
     transform: scale(1.1);
-    /* Use a bright color for hover, distinct from selection */
-    fill: var(--accent-orange); /* Bright orange hover */
-    filter: brightness(1.1); /* Make it slightly brighter */
+    fill: var(--accent-orange);
+    filter: brightness(1.1);
     text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
 }
+
 .selected-word text {
-    /* Use a strong, distinct color and glow for selection */
     fill: var(--accent-red);
-    text-shadow: 0 0 6px var(--accent-red), 0 0 10px rgba(255, 68, 68, 0.5); /* Red glow */
+    text-shadow: 0 0 6px var(--accent-red), 0 0 10px rgba(255, 68, 68, 0.5);
     font-weight: 700;
     opacity: 1;
-    filter: none; /* Ensure no other filters interfere */
+    filter: none;
 }
 
 /* --- Heatmap Specific --- */
 .heatmap-cell {
     stroke: rgba(255, 255, 255, 0.75);
     stroke-width: 1px;
-    rx: 0;
+    /* rx is set in JS */
     cursor: pointer;
-    transition: filter var(--transition-fast), stroke var(--transition-fast), transform var(--transition-fast);
+    transition: transform 0.25s ease-out,
+                stroke 0.25s ease-out,
+                stroke-width 0.25s ease-out,
+                fill 0.25s ease-out;
+    transform-origin: center center;
 }
+
 .heatmap-cell:hover {
     stroke: var(--accent-yellow);
     stroke-width: 1.5px;
-    filter: brightness(1.15);
-    transform: scale(1.04);
-    transform-origin: center center;
-    z-index: 5;
+    transform: translate(2px, 2px) scale(1.08);
     position: relative;
+    z-index: 5;
 }
+
 .heatmap-legend {
     font-family: var(--font-body);
     font-size: 10px;
     fill: var(--text-secondary);
 }
+
 .heatmap-legend rect {
     stroke: rgba(0, 0, 0, 0.1);
     stroke-width: 0.5px;
 }
+
 .heatmap-legend text {
     text-anchor: middle;
     fill: var(--text-secondary);
 }
-.heatmap-legend .domain { display: none; }
+
+.heatmap-legend .domain {
+    display: none;
+}
+
 .heatmap-legend .legend-title {
      text-anchor: middle;
      fill: var(--text-primary);
@@ -389,18 +430,23 @@ button.btn-secondary:focus {
 }
 
 /* --- Domain Chart Specific --- */
-.bar {
-    rx: 0;
-    cursor: pointer;
-    transition: fill var(--transition-medium), filter var(--transition-fast), transform var(--transition-fast);
+#domain-chart .chart-container {
+    perspective: 500px;
 }
+
+.bar {
+    cursor: pointer;
+    transition: fill 0.3s ease-out,
+                filter 0.3s ease-out,
+                transform 0.3s ease-out;
+}
+
 .bar:hover {
     fill: var(--accent-orange);
-    filter: brightness(1.1);
-    transform: scale(1.01, 1.03);
-    transform-origin: bottom;
-    box-shadow: none;
+    transform: translateZ(25px) scale(1.03);
+    filter: drop-shadow(5px 8px 5px rgba(0, 0, 0, 0.3));
 }
+
 
 /* --- Axis Styling --- */
 .axis-label {
@@ -411,53 +457,29 @@ button.btn-secondary:focus {
     letter-spacing: 0.5px;
     font-weight: 600;
 }
+
 .axis .tick text {
     fill: var(--text-secondary);
     font-family: var(--font-body);
     font-size: 10px;
 }
+
 .axis .domain {
     stroke: #adb5bd;
     stroke-width: 1px;
     stroke-opacity: 1;
 }
+
 .axis .tick line {
     stroke: #dee2e6;
     stroke-dasharray: none;
     stroke-opacity: 1;
 }
+
 #domain-chart .x-axis .tick text {
     transform: translate(-8px, 4px) rotate(-45);
     font-size: 9px;
 }
-
-/* --- Bubble Chart Specific --- */
-#bubble-chart-chart svg { background-color: transparent; display: block; margin: auto; cursor: default; }
-.bubble {
-    stroke: rgba(255, 255, 255, 0.6);
-    stroke-width: 1px;
-    transition: transform var(--transition-fast), filter var(--transition-fast), stroke var(--transition-fast);
-}
-.bubble:hover {
-    filter: brightness(1.1);
-    transform: scale(1.02);
-    stroke: var(--accent-blue);
-    stroke-width: 1.5px;
-}
-.bubble-text {
-    fill: var(--text-dark);
-    font-size: 10px;
-    font-weight: 500;
-    text-anchor: middle;
-    dominant-baseline: central;
-    pointer-events: none;
-    opacity: 0.9;
-    stroke: rgba(255, 255, 255, 0.7);
-    stroke-width: 2px;
-    paint-order: stroke;
-    stroke-linejoin: round;
-}
-.bubble-text.large { font-size: 12px; }
 
 /* --- Filter Info & Details Panel --- */
 .badge {
@@ -466,11 +488,13 @@ button.btn-secondary:focus {
     padding: 0.2em 0.5em;
     border-radius: 4px;
 }
+
 .badge.bg-warning {
     background-color: var(--accent-yellow) !important;
     color: var(--text-dark) !important;
     font-weight: 600;
 }
+
 #selected-word-info {
     min-height: 150px;
     padding: 15px;
@@ -482,6 +506,7 @@ button.btn-secondary:focus {
     line-height: 1.6;
     box-shadow: none;
 }
+
 #selected-word-info strong {
     color: var(--text-primary);
     margin-right: 8px;
@@ -489,7 +514,38 @@ button.btn-secondary:focus {
     display: inline-block;
     min-width: 110px;
 }
-#heatmap-filter-info, #domain-filter-info {
+
+/* --- Word Cloud Color Legend Styling --- */
+#word-color-legend {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+#word-color-legend h5 {
+    font-family: var(--font-headings);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.legend-item {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.legend-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+#heatmap-filter-info,
+#domain-filter-info {
     min-height: 25px;
     padding-top: 10px;
     color: var(--text-secondary);
@@ -510,13 +566,15 @@ button.btn-secondary:focus {
     letter-spacing: 1px;
     animation: pulse-light 1.8s infinite ease-in-out;
 }
+
 @keyframes pulse-light {
     0%, 100% { opacity: 0.6; }
     50% { opacity: 0.9; }
 }
 
 /* --- Slider Value Display --- */
-#word-min-freq-value, #domain-min-articles-value {
+#word-min-freq-value,
+#domain-min-articles-value {
     margin-left: 10px;
     color: var(--text-primary);
     font-weight: 600;
@@ -540,5 +598,3 @@ button.btn-secondary:focus {
     border: 1px solid rgba(220, 53, 69, 0.2);
     border-radius: 5px;
 }
-
-/* --- END: Replace these sections in your style.css --- */

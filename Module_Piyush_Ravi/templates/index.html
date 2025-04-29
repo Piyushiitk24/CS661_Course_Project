@@ -3,20 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Consider a more specific title if you like -->
     <title>Fake News Analysis</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="
-    background-image: url({{ url_for('static', filename='Images/image1.jpg') }});
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; is already set in CSS, no need to repeat */
-">
+<body>
     <div class="container-fluid mt-3">
-        <!-- Main Heading Inside a Panel -->
+        <!-- Main Heading -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="chart-container" style="padding-top: 20px; padding-bottom: 0px; margin-bottom: 20px;">
@@ -25,11 +18,10 @@
             </div>
         </div>
 
-        <!-- Row 1 (Original Row 1): Word Cloud and Details Panel -->
-        <div class="row" id="word-cloud-row"> <!-- <<< ADD THIS ID -->
+        <!-- Row 1: Word Cloud and Details Panel -->
+        <div class="row" id="word-cloud-row">
             <div class="col-lg-9">
                 <div class="chart-container">
-                     <!-- Optional: Changed H2 for clarity -->
                     <h2>Word Analysis</h2>
                     <div id="word-cloud-controls" class="filter-section">
                         <div class="row g-2 align-items-center">
@@ -71,23 +63,54 @@
             <div class="col-lg-3">
                 <div class="chart-container">
                     <h2>Details</h2>
-                    <div id="selected-word-info">Selected Word: None</div>
+                    <div id="selected-word-info">
+                        Selected Word: None
+                    </div>
+
+                    <div id="word-color-legend" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                        <h5 style="margin-bottom: 12px; font-size: 0.95em;">Word Color Meaning:</h5>
+                        <div class="legend-item">
+                            <span class="legend-swatch" style="background-color: var(--accent-red);"></span>
+                            More Frequent in Fake News
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-swatch" style="background-color: var(--accent-blue);"></span>
+                            More Frequent in Real News
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-swatch" style="background-color: var(--text-secondary);"></span>
+                            Neutral / Similar Frequency
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <!-- Row 2 (Original): Heatmap and Domain Chart -->
+        <!-- Row 2: Heatmap and Domain Chart -->
         <div class="row">
             <div class="col-lg-6">
-                <div class="chart-container">
+                <div class="chart-container heatmap-container">
                     <h2>Virality Heatmap</h2>
                     <div id="heatmap-controls" class="filter-section">
                         <div class="row g-2 align-items-center">
-                            <div class="col-md-5">
-                                <label>Year Range:</label>
-                                <span id="heatmap-year-label" style="font-weight: bold;">{{ min_year }} - {{ max_year }}</span>
+                            <div class="col-md-3">
+                                <label for="heatmap-min-year">Min Year:</label>
+                                <select id="heatmap-min-year" class="form-select form-select-sm">
+                                    {% for year in range(min_year, max_year + 1) %}
+                                    <option value="{{ year }}" {% if year == min_year %}selected{% endif %}>{{ year }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <label for="heatmap-max-year">Max Year:</label>
+                                <select id="heatmap-max-year" class="form-select form-select-sm">
+                                    {% for year in range(min_year, max_year + 1) %}
+                                    <option value="{{ year }}" {% if year == max_year %}selected{% endif %}>{{ year }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3">
                                 <label for="heatmap-month">Month:</label>
                                 <select id="heatmap-month" class="form-select form-select-sm">
                                     <option value="all" selected>All Months</option>
@@ -106,12 +129,15 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
+                                <label> </label> <!-- Spacer label for alignment -->
                                 <button id="heatmap-reset-filters" class="btn btn-secondary btn-sm w-100">Reset</button>
                             </div>
                         </div>
                         <div id="heatmap-filter-info" style="font-size: 0.8em; margin-top: 5px; min-height: 1.2em;"></div>
                     </div>
-                    <div id="heatmap-chart"></div>
+                    <div id="heatmap-chart">
+                        <!-- D3 creates the SVG inside here -->
+                    </div>
                 </div>
             </div>
 
@@ -125,9 +151,9 @@
                                 <select id="domain-type" class="form-select form-select-sm">
                                     <option value="all" selected>All Types</option>
                                     {% for dt in domain_types %}
-                                    {% if dt != 'all' %}
-                                    <option value="{{ dt }}">{{ dt.replace('_', ' ').title() }}</option>
-                                    {% endif %}
+                                        {% if dt != 'all' %}
+                                            <option value="{{ dt }}">{{ dt.replace('_', ' ').title() }}</option>
+                                        {% endif %}
                                     {% endfor %}
                                 </select>
                             </div>
@@ -154,7 +180,7 @@
 
     <!-- D3 Library -->
     <script src="{{ url_for('static', filename='js/d3.v7.min.js') }}"></script>
-    <!-- Your Custom JS -->
+    <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
