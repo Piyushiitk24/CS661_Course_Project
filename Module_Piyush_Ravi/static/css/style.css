@@ -47,10 +47,18 @@ body {
     font-weight: 400;
     padding-top: 25px;
     min-height: 100vh;
-    background-attachment: fixed;
-    position: relative;
+    background-attachment: fixed; /* Keep this */
+    position: relative; /* Keep this */
+
+    /* --- REMOVE OR COMMENT OUT THESE LINES --- */
+    /* background-image: url('../Images/image1.jpg'); */
+    /* background-size: cover; */
+    /* background-position: center center; */
+    /* background-repeat: no-repeat; */
+    /* --- END REMOVED LINES --- */
 }
 
+/* Keep the body::before rule for the tint overlay */
 body::before {
     content: '';
     position: fixed;
@@ -114,6 +122,51 @@ h2 {
                 0 0 30px var(--panel-border-glow), /* Enhanced outer glow */
                 inset 0 0 15px rgba(0, 191, 255, 0.35); /* Enhanced INNER glow */
 }
+
+/* --- Layout for Full Viewport Word Cloud Row --- */
+
+#word-cloud-row {
+    /* Attempt to fill most of the viewport height minus header */
+    /* Adjust 88vh if needed based on your header height */
+    min-height: 88vh;
+    display: flex; /* Make the row a flex container */
+    flex-direction: row; /* Arrange columns side-by-side (default) */
+    margin-bottom: 30px; /* Keep margin below this tall row */
+}
+
+/* Target the direct children columns within the row */
+#word-cloud-row > .col-lg-9,
+#word-cloud-row > .col-lg-3 {
+    display: flex; /* Make columns flex containers */
+    flex-direction: column; /* Stack elements vertically within columns */
+    padding-left: 15px; /* Restore Bootstrap gutter padding */
+    padding-right: 15px; /* Restore Bootstrap gutter padding */
+}
+
+/* Target the chart containers within those columns */
+#word-cloud-row > div > .chart-container {
+    flex-grow: 1; /* Allow container to grow and fill column height */
+    display: flex; /* Make container a flex container */
+    flex-direction: column; /* Stack title, controls, chart div vertically */
+    margin-bottom: 0; /* Remove margin as row handles spacing */
+}
+
+/* Target the actual chart div within the word cloud's container */
+#word-cloud-chart {
+    flex-grow: 1; /* Allow chart div to grow and fill container space */
+    min-height: 400px; /* Prevent collapsing when empty, adjust if needed */
+    width: 100%; /* Ensure it takes full width */
+}
+
+/* Optional: Style the details panel container if needed */
+#selected-word-info {
+    /* You might want it to grow or have a specific min-height */
+    /* flex-grow: 1; */ /* Uncomment if you want it to fill vertical space */
+    min-height: 150px; /* Example minimum height */
+}
+
+/* --- End Layout Adjustments --- */
+
 
 .filter-section {
     background-color: transparent;
