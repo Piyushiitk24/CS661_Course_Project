@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Load the dataset (update the path to the dataset)
 base_dir = os.path.dirname(__file__)
 data_path = os.path.join(base_dir, "..", "..", "data", "master_dataset.csv")  # Correct relative path to the dataset
-df = pd.read_csv(data_path)  # Load the dataset into a pandas DataFrame
+#df = pd.read_csv(data_path)  # Load the dataset into a pandas DataFrame
 @app.route('/')
 def index():
     return render_template('index_combine.html')
@@ -30,4 +30,4 @@ def data():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5002)
+    app.run(debug=True)

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navbar + Trending Sidebar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .navbar-darkpink {
+      background-color: #c2185b;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 56px; /* height of navbar */
+      right: 0;
+      width: 110px;
+      height: 100%;
+      background-color: #fce4ec;
+      padding: 10px;
+      overflow-y: auto;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .trending-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .trending-img:hover {
+      transform: scale(1.3);
+      z-index: 10;
+    }
+
+    .sidebar h6 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #c2185b;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    body {
+      padding-right: 120px; /* prevent content under sidebar */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar with Dropdowns -->
+  <nav class="navbar navbar-expand-lg navbar-darkpink w-100">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <!-- Left: Brand and Dropdowns -->
+      <div class="d-flex align-items-center">
+        <a class="navbar-brand text-white me-4" href="#">MySite</a>
+
+        <ul class="navbar-nav d-flex flex-row gap-3">
+          <!-- Dropdown 1 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown1" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown 1
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+              <li><a class="dropdown-item" href="#">Action 1</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else</a></li>
+            </ul>
+          </li>
+
+          <!-- Dropdown 2 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown2" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown 2
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <li><a class="dropdown-item" href="#">Option A</a></li>
+              <li><a class="dropdown-item" href="#">Option B</a></li>
+              <li><a class="dropdown-item" href="#">Option C</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Right Sidebar: Top Trending People -->
+  <div class="sidebar">
+    <h6>Top Trending</h6>
+    <div class="d-flex flex-column align-items-center gap-3">
+      <img src="https://randomuser.me/api/portraits/women/1.jpg" class="rounded-circle trending-img" alt="Person 1">
+      <img src="https://randomuser.me/api/portraits/men/2.jpg" class="rounded-circle trending-img" alt="Person 2">
+      <img src="https://randomuser.me/api/portraits/women/3.jpg" class="rounded-circle trending-img" alt="Person 3">
+      <img src="https://randomuser.me/api/portraits/men/4.jpg" class="rounded-circle trending-img" alt="Person 4">
+      <img src="https://randomuser.me/api/portraits/women/5.jpg" class="rounded-circle trending-img" alt="Person 5">
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mt-5">
+    <p>This is the main content area. It’s offset from the right to make room for the trending sidebar.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

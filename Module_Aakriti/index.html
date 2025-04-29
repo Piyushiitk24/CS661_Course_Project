@@ -18,28 +18,48 @@
       color: #22f3e3;
     }
 
+    
     #dashboard {
       display: flex;
+      width: 100%;
       justify-content: center;
-      gap: 100px;
-      margin-top: 30px;
-      flex-direction: row;
+      align-items: flex-start;
+      margin-top: 20px;
+      gap: 0;                           
+      transition: gap 0.6s ease;       
     }
 
+    
     .chart {
       position: relative;
+      max-width: 400px;                
+      opacity: 1;
+      transition: 
+        max-width 0.6s ease,
+        opacity   0.4s ease;
+      overflow: visible;               
+    }
+
+    
+    .hidden {
+      max-width: 0;
+      opacity: 0;
+      pointer-events: none;
+      overflow: hidden;
     }
 
     .tooltip {
       position: absolute;
-      background: white;
-      color: black;
+      background: #102434;
+      color: #22f3e3;
+      font-family: 'Segoe UI', sans-serif;
       border: 1px solid #ccc;
       padding: 10px;
       border-radius: 5px;
       font-size: 14px;
       pointer-events: none;
       opacity: 0;
+      z-index: 1000;                  
       transition: opacity 0.3s ease;
       width: 180px;
     }
@@ -55,22 +75,13 @@
       margin-top: 20px;
       margin-bottom: 10px;
     }
-
-    /* Swapping the positions of the charts */
-    #chart1 {
-      order: 2;
-    }
-
-    #chart2 {
-      order: 1;
-    }
   </style>
 </head>
 <body>
 
   <h1>Fake News Analysis Dashboard</h1>
 
-  <label for="domain-select" style="color: #ffffff; font-weight: bold;">Select Domain:</label>
+  <label for="domain-select">Select Domain:</label>
   <select id="domain-select">
     <option value="both" selected>Both</option>
     <option value="gossip">Gossip</option>
@@ -78,26 +89,21 @@
   </select>
 
   <div id="dashboard">
-    <div class="chart" id="chart1">
-      <h2>Thematic Analysis of Fake News</h2>
-      <svg width="400" height="400"></svg>
-      <div class="tooltip" id="tooltip1"></div>
-    </div>
-
+    
     <div class="chart" id="chart2">
       <h2>Real vs Fake</h2>
       <svg width="400" height="400"></svg>
       <div class="tooltip" id="tooltip2"></div>
     </div>
+
+    
+    <div class="chart hidden" id="chart1">
+      <h2>Thematic Analysis of Fake News</h2>
+      <svg width="400" height="400"></svg>
+      <div class="tooltip" id="tooltip1"></div>
+    </div>
   </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
-
-
-
-
-
-
