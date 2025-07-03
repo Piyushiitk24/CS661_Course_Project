@@ -1,0 +1,56 @@
+services:
+  # Main React Frontend
+  - type: web
+    name: fake-news-frontend
+    env: node
+    buildCommand: cd Module_Sankhadeep/client && npm install && npm run build
+    startCommand: cd Module_Sankhadeep/client && npm run preview -- --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  # Module Aakriti Frontend
+  - type: web
+    name: module-aakriti
+    env: node
+    buildCommand: cd Module_Aakriti && npm install && npm run build
+    startCommand: cd Module_Aakriti && npm run preview -- --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  # Flask API - Module Piyush Ravi
+  - type: web
+    name: api-piyush-ravi
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: cd Module_Piyush_Ravi && python app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_APP
+        value: app.py
+
+  # Flask API - Module Ananya Arpita
+  - type: web
+    name: api-ananya-arpita
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: cd Module_Ananya_Arpita/Celeb_news && python app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_APP
+        value: app.py
+
+  # Flask API - Module Disha Khushi
+  - type: web
+    name: api-disha-khushi
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: cd Module_Disha_Khushi && python app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_APP
+        value: app.py
