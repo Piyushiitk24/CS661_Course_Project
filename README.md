@@ -1,4 +1,4 @@
-# CS661 Course Project - Fake News Analysis Setup and Run Guide
+# Course Project - Fake News Analysis Setup and Run Guide
 
 This guide provides step-by-step instructions to set up and run the project after cloning it from GitHub.
 
